@@ -1,0 +1,7 @@
+# This file contains pkgconfig build requirements that get picked up
+# but are undesirable. One entry per line, no whitespace.
+gnome-bluetooth-1.0
+libnm-util
+libnm-glib
+libecal-1.2
+gnome-keybindings

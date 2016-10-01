@@ -1,0 +1,9 @@
+# This file contains additional pkgconfig build requirements that did
+# not get picked up automatically. One name per line, no whitespace.
+libsoup-2.4
+libstartup-notification-1.0
+gobject-introspection-1.0
+libcanberra-gtk3
+gcr-base-3
+libcanberra
+telepathy-glib

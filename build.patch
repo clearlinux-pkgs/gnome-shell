@@ -1,0 +1,10 @@
+--- gnome-shell-3.22.0/configure~	2016-09-19 21:24:51.000000000 +0000
++++ gnome-shell-3.22.0/configure	2016-09-25 18:03:45.966103938 +0000
+@@ -19167,7 +19167,6 @@
+             gobject-introspection-1.0 >= $GOBJECT_INTROSPECTION_MIN_VERSION
+             libcanberra libcanberra-gtk3
+             telepathy-glib >= $TELEPATHY_GLIB_MIN_VERSION
+-            polkit-agent-1 >= $POLKIT_MIN_VERSION
+             gcr-base-3 >= $GCR_MIN_VERSION"
+ if test x$have_systemd = xyes; then
+   SHARED_PCS="${SHARED_PCS} libsystemd"

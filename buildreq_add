@@ -1,0 +1,8 @@
+# This file contains additional build requirements that did not get
+# picked up automatically. One name per line, no whitespace.
+python3
+evolution-data-server-dev
+clutter-dev
+mutter-data
+mutter-dev
+mutter
