@@ -4,7 +4,7 @@
 #
 Name     : gnome-shell
 Version  : 3.22.2
-Release  : 5
+Release  : 6
 URL      : https://download.gnome.org/sources/gnome-shell/3.22/gnome-shell-3.22.2.tar.xz
 Source0  : https://download.gnome.org/sources/gnome-shell/3.22/gnome-shell-3.22.2.tar.xz
 Summary  : No detailed summary available
