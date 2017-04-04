@@ -4,7 +4,7 @@
 #
 Name     : gnome-shell
 Version  : 3.22.2
-Release  : 7
+Release  : 8
 URL      : https://download.gnome.org/sources/gnome-shell/3.22/gnome-shell-3.22.2.tar.xz
 Source0  : https://download.gnome.org/sources/gnome-shell/3.22/gnome-shell-3.22.2.tar.xz
 Summary  : No detailed summary available
@@ -100,6 +100,7 @@ locales components for the gnome-shell package.
 
 %build
 export LANG=C
+export SOURCE_DATE_EPOCH=1491317744
 %configure --disable-static --disable-schemas-compile
 make V=1  %{?_smp_mflags}
 
@@ -111,6 +112,7 @@ export no_proxy=localhost
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
+export SOURCE_DATE_EPOCH=1491317744
 rm -rf %{buildroot}
 %make_install
 %find_lang gnome-shell
