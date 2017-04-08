@@ -1,8 +1,9 @@
 # This file contains additional build requirements that did not get
 # picked up automatically. One name per line, no whitespace.
-python3
+python3-dev
 evolution-data-server-dev
 clutter-dev
 mutter-data
 mutter-dev
 mutter
+gstreamer-dev

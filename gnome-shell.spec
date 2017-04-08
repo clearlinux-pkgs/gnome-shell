@@ -4,7 +4,7 @@
 #
 Name     : gnome-shell
 Version  : 3.24.0
-Release  : 9
+Release  : 10
 URL      : https://download.gnome.org/sources/gnome-shell/3.24/gnome-shell-3.24.0.tar.xz
 Source0  : https://download.gnome.org/sources/gnome-shell/3.24/gnome-shell-3.24.0.tar.xz
 Summary  : No detailed summary available
@@ -19,6 +19,7 @@ BuildRequires : clutter-dev
 BuildRequires : docbook-xml
 BuildRequires : evolution-data-server-dev
 BuildRequires : gettext
+BuildRequires : gstreamer-dev
 BuildRequires : gtk-doc
 BuildRequires : gtk-doc-dev
 BuildRequires : libxslt-bin
@@ -42,7 +43,7 @@ BuildRequires : pkgconfig(libstartup-notification-1.0)
 BuildRequires : pkgconfig(libsystemd)
 BuildRequires : pkgconfig(polkit-agent-1)
 BuildRequires : pkgconfig(telepathy-glib)
-BuildRequires : python3
+BuildRequires : python3-dev
 
 %description
 GNOME Shell provides core user interface functions for the GNOME 3 desktop,
@@ -98,7 +99,7 @@ locales components for the gnome-shell package.
 
 %build
 export LANG=C
-export SOURCE_DATE_EPOCH=1491683880
+export SOURCE_DATE_EPOCH=1491684250
 %configure --disable-static --disable-schemas-compile
 make V=1  %{?_smp_mflags}
 
@@ -110,7 +111,7 @@ export no_proxy=localhost
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1491683880
+export SOURCE_DATE_EPOCH=1491684250
 rm -rf %{buildroot}
 %make_install
 %find_lang gnome-shell
