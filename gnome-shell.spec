@@ -4,7 +4,7 @@
 #
 Name     : gnome-shell
 Version  : 3.24.1
-Release  : 11
+Release  : 12
 URL      : https://download.gnome.org/sources/gnome-shell/3.24/gnome-shell-3.24.1.tar.xz
 Source0  : https://download.gnome.org/sources/gnome-shell/3.24/gnome-shell-3.24.1.tar.xz
 Summary  : No detailed summary available
@@ -31,12 +31,14 @@ BuildRequires : pkgconfig(gcr-base-3)
 BuildRequires : pkgconfig(gdk-pixbuf-2.0)
 BuildRequires : pkgconfig(gio-2.0)
 BuildRequires : pkgconfig(gjs-1.0)
+BuildRequires : pkgconfig(gnome-bluetooth-1.0)
 BuildRequires : pkgconfig(gobject-introspection-1.0)
 BuildRequires : pkgconfig(gsettings-desktop-schemas)
 BuildRequires : pkgconfig(gtk+-3.0)
 BuildRequires : pkgconfig(libcanberra)
 BuildRequires : pkgconfig(libcanberra-gtk3)
 BuildRequires : pkgconfig(libcroco-0.6)
+BuildRequires : pkgconfig(libecal-1.2)
 BuildRequires : pkgconfig(libpulse)
 BuildRequires : pkgconfig(libsoup-2.4)
 BuildRequires : pkgconfig(libstartup-notification-1.0)
@@ -99,7 +101,7 @@ locales components for the gnome-shell package.
 
 %build
 export LANG=C
-export SOURCE_DATE_EPOCH=1491994774
+export SOURCE_DATE_EPOCH=1492279796
 %configure --disable-static --disable-schemas-compile
 make V=1  %{?_smp_mflags}
 
@@ -111,7 +113,7 @@ export no_proxy=localhost
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1491994774
+export SOURCE_DATE_EPOCH=1492279796
 rm -rf %{buildroot}
 %make_install
 %find_lang gnome-shell
