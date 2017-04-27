@@ -4,7 +4,7 @@
 #
 Name     : gnome-shell
 Version  : 3.24.1
-Release  : 12
+Release  : 13
 URL      : https://download.gnome.org/sources/gnome-shell/3.24/gnome-shell-3.24.1.tar.xz
 Source0  : https://download.gnome.org/sources/gnome-shell/3.24/gnome-shell-3.24.1.tar.xz
 Summary  : No detailed summary available
@@ -39,6 +39,8 @@ BuildRequires : pkgconfig(libcanberra)
 BuildRequires : pkgconfig(libcanberra-gtk3)
 BuildRequires : pkgconfig(libcroco-0.6)
 BuildRequires : pkgconfig(libecal-1.2)
+BuildRequires : pkgconfig(libnm-glib)
+BuildRequires : pkgconfig(libnm-util)
 BuildRequires : pkgconfig(libpulse)
 BuildRequires : pkgconfig(libsoup-2.4)
 BuildRequires : pkgconfig(libstartup-notification-1.0)
@@ -100,8 +102,11 @@ locales components for the gnome-shell package.
 %setup -q -n gnome-shell-3.24.1
 
 %build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1492279796
+export SOURCE_DATE_EPOCH=1493298661
 %configure --disable-static --disable-schemas-compile
 make V=1  %{?_smp_mflags}
 
@@ -109,11 +114,11 @@ make V=1  %{?_smp_mflags}
 export LANG=C
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
-export no_proxy=localhost
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1492279796
+export SOURCE_DATE_EPOCH=1493298661
 rm -rf %{buildroot}
 %make_install
 %find_lang gnome-shell
