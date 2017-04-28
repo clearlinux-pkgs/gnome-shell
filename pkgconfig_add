@@ -7,3 +7,5 @@ libcanberra-gtk3
 gcr-base-3
 libcanberra
 telepathy-glib
+libnm-glib
+libnm-gtk
