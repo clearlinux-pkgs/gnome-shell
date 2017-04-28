@@ -4,7 +4,7 @@
 #
 Name     : gnome-shell
 Version  : 3.24.1
-Release  : 13
+Release  : 14
 URL      : https://download.gnome.org/sources/gnome-shell/3.24/gnome-shell-3.24.1.tar.xz
 Source0  : https://download.gnome.org/sources/gnome-shell/3.24/gnome-shell-3.24.1.tar.xz
 Summary  : No detailed summary available
@@ -40,6 +40,7 @@ BuildRequires : pkgconfig(libcanberra-gtk3)
 BuildRequires : pkgconfig(libcroco-0.6)
 BuildRequires : pkgconfig(libecal-1.2)
 BuildRequires : pkgconfig(libnm-glib)
+BuildRequires : pkgconfig(libnm-gtk)
 BuildRequires : pkgconfig(libnm-util)
 BuildRequires : pkgconfig(libpulse)
 BuildRequires : pkgconfig(libsoup-2.4)
@@ -106,7 +107,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1493298661
+export SOURCE_DATE_EPOCH=1493396167
 %configure --disable-static --disable-schemas-compile
 make V=1  %{?_smp_mflags}
 
@@ -118,7 +119,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1493298661
+export SOURCE_DATE_EPOCH=1493396167
 rm -rf %{buildroot}
 %make_install
 %find_lang gnome-shell
@@ -139,12 +140,14 @@ rm -rf %{buildroot}
 /usr/libexec/gnome-shell-calendar-server
 /usr/libexec/gnome-shell-hotplug-sniffer
 /usr/libexec/gnome-shell-perf-helper
+/usr/libexec/gnome-shell-portal-helper
 
 %files data
 %defattr(-,root,root,-)
 /usr/share/GConf/gsettings/gnome-shell-overrides.convert
 /usr/share/applications/evolution-calendar.desktop
 /usr/share/applications/gnome-shell-extension-prefs.desktop
+/usr/share/applications/org.gnome.Shell.PortalHelper.desktop
 /usr/share/applications/org.gnome.Shell.desktop
 /usr/share/dbus-1/interfaces/org.gnome.Shell.PadOsd.xml
 /usr/share/dbus-1/interfaces/org.gnome.Shell.Screencast.xml
@@ -153,9 +156,11 @@ rm -rf %{buildroot}
 /usr/share/dbus-1/interfaces/org.gnome.ShellSearchProvider2.xml
 /usr/share/dbus-1/services/org.gnome.Shell.CalendarServer.service
 /usr/share/dbus-1/services/org.gnome.Shell.HotplugSniffer.service
+/usr/share/dbus-1/services/org.gnome.Shell.PortalHelper.service
 /usr/share/glib-2.0/schemas/org.gnome.shell.gschema.xml
 /usr/share/gnome-shell/gnome-shell-theme.gresource
 /usr/share/gnome-shell/perf-background.xml
+/usr/share/xdg-desktop-portal/portals/gnome-shell.portal
 
 %files doc
 %defattr(-,root,root,-)
