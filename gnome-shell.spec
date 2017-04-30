@@ -4,7 +4,7 @@
 #
 Name     : gnome-shell
 Version  : 3.24.1
-Release  : 15
+Release  : 16
 URL      : https://download.gnome.org/sources/gnome-shell/3.24/gnome-shell-3.24.1.tar.xz
 Source0  : https://download.gnome.org/sources/gnome-shell/3.24/gnome-shell-3.24.1.tar.xz
 Summary  : No detailed summary available
@@ -49,6 +49,7 @@ BuildRequires : pkgconfig(libsystemd)
 BuildRequires : pkgconfig(polkit-agent-1)
 BuildRequires : pkgconfig(telepathy-glib)
 BuildRequires : python3-dev
+Patch1: cve-2017-8288.patch
 
 %description
 GNOME Shell provides core user interface functions for the GNOME 3 desktop,
@@ -101,20 +102,21 @@ locales components for the gnome-shell package.
 
 %prep
 %setup -q -n gnome-shell-3.24.1
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1493437663
+export SOURCE_DATE_EPOCH=1493524377
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto -fno-semantic-interposition "
-export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto -fno-semantic-interposition "
-export FFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto -fno-semantic-interposition "
-export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto -fno-semantic-interposition "
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto -fno-semantic-interposition -fstack-protector-strong "
+export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto -fno-semantic-interposition -fstack-protector-strong "
+export FFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto -fno-semantic-interposition -fstack-protector-strong "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto -fno-semantic-interposition -fstack-protector-strong "
 %configure --disable-static --disable-schemas-compile
 make V=1  %{?_smp_mflags}
 
@@ -126,7 +128,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1493437663
+export SOURCE_DATE_EPOCH=1493524377
 rm -rf %{buildroot}
 %make_install
 %find_lang gnome-shell
