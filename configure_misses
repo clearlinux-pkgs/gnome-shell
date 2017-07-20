@@ -1,0 +1,3 @@
+Configure miss: whether C compiler accepts -Werror=unknown-warning-option
+Configure miss: whether the linker accepts -Wl,-fatal_warnings
+Configure miss: sass
