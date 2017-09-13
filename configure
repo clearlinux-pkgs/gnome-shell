@@ -1,1 +1,1 @@
---disable-schemas-compile
+--disable-schemas-compile --enable-man

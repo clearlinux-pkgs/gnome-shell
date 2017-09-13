@@ -4,7 +4,7 @@
 #
 Name     : gnome-shell
 Version  : 3.26.0
-Release  : 21
+Release  : 22
 URL      : https://download.gnome.org/sources/gnome-shell/3.26/gnome-shell-3.26.0.tar.xz
 Source0  : https://download.gnome.org/sources/gnome-shell/3.26/gnome-shell-3.26.0.tar.xz
 Summary  : No detailed summary available
@@ -14,11 +14,14 @@ Requires: gnome-shell-bin
 Requires: gnome-shell-lib
 Requires: gnome-shell-data
 Requires: gnome-shell-locales
+Requires: gnome-shell-doc
 BuildRequires : clutter-dev
+BuildRequires : docbook-xml
 BuildRequires : evolution-data-server-dev
 BuildRequires : glibc-bin
 BuildRequires : gnome-bluetooth-dev
 BuildRequires : gstreamer-dev
+BuildRequires : libxslt-bin
 BuildRequires : mesa-dev
 BuildRequires : meson
 BuildRequires : mutter
@@ -65,6 +68,14 @@ Group: Data
 data components for the gnome-shell package.
 
 
+%package doc
+Summary: doc components for the gnome-shell package.
+Group: Documentation
+
+%description doc
+doc components for the gnome-shell package.
+
+
 %package lib
 Summary: lib components for the gnome-shell package.
 Group: Libraries
@@ -90,7 +101,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1505324619
+export SOURCE_DATE_EPOCH=1505340480
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -98,11 +109,11 @@ export CFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-c
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-common -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-common -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
 export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-common -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
-%configure --disable-static --disable-schemas-compile
+%configure --disable-static --disable-schemas-compile --enable-man
 make V=1  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1505324619
+export SOURCE_DATE_EPOCH=1505340480
 rm -rf %{buildroot}
 %make_install
 %find_lang gnome-shell
@@ -149,6 +160,10 @@ rm -rf %{buildroot}
 /usr/share/gnome-shell/gnome-shell-theme.gresource
 /usr/share/gnome-shell/perf-background.xml
 /usr/share/xdg-desktop-portal/portals/gnome-shell.portal
+
+%files doc
+%defattr(-,root,root,-)
+%doc /usr/share/man/man1/*
 
 %files lib
 %defattr(-,root,root,-)
