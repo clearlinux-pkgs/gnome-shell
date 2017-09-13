@@ -7,3 +7,4 @@ mutter-data
 mutter-dev
 mutter
 gstreamer-dev
+glibc-bin

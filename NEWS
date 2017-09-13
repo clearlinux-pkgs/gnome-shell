@@ -1,35 +1,123 @@
-3.24.3
+3.26.0
+======
+* Misc. bug fixes [Ray, Michael, Jonas; #786332] #786783, #786886, #786868]
+
+Contributors:
+  Jonas Ådahl, Michael Catanzaro, Sebastian Keller, Ray Strode
+
+Translations:
+  Daniel Mustieles [es], Fran Dieguez [gl], Baurzhan Muftakhidinov [kk],
+  Marek Cernocky [cs], Andika Triwidada [id], Aurimas Černius [lt],
+  Piotr Drąg [pl], Trần Ngọc Quân [vi], Jordi Mas [ca], Fabio Tomat [fur],
+  gogo [hr], Dušan Kazik [sk], Piotr Drąg [ne], Emin Tufan Çetin [tr],
+  Ask Hjorth Larsen [da], Cheng-Chia Tseng [zh_TW], Rūdolfs Mazurs [lv],
+  Balázs Meskó [hu], Matej Urbančič [sl], Jiri Grönroos [fi],
+  Милош Поповић [sr], Милош Поповић [sr@latin], Rafael Fontenelle [pt_BR],
+  Wolfgang Stöggl [de], Milo Casagrande [it], hanniedu [nl],
+  Yuras Shumovich [be], Changwoo Ryu [ko], Alain Lojewski [fr],
+  Alexander Shopov [bg], Daniel Korostil [uk], Kris Thomsen [da],
+  A S Alam [pa], Sebastian Rasmussen [sv], Inaki Larranaga Murgoitio [eu],
+  Jiro Matsuzawa [ja]
+
+3.25.91
+=======
+* Open context menu of highlighted search result on Shift+F10 [Florian; #675315]
+* Fix mid-sentence capitalization in weather forecasts [Florian; #779873]
+* Add switcher popup to cycle through monitor configurations [Rui; #783550]
+* Offer system actions in search [Rares; #691900]
+* Misc. bug fixes [Mario, Florian, Rui; #777519, #786120, #786145, #786419,
+  #786526, #786520, #786520, #786146]
+
+Contributors:
+  Emmanuele Bassi, Marek Cernocky, Piotr Drąg, Carlos Garnacho, Rui Matos,
+  Florian Müllner, Mario Sanchez Prada, Rares Visalom
+
+Translations:
+  Marek Cernocky [cs], Piotr Drąg [pl], Muhammet Kara [tr],
+  Мирослав Николић [sr, sr@latin], Kukuh Syafaat [id],
+  Baurzhan Muftakhidinov [kk], Aurimas Černius [lt], Fran Dieguez [gl],
+  gogo [hr], Jordi Mas [ca]
+
+3.25.90
+=======
+* Add permission dialog for inhibiting shortucts [Florian; #783342]
+* Improve window picker layout [Florian, Jakub; #783953]
+* Remove legacy status icon tray [Florian; #785956]
+* Drop autotools support [Florian; #785153]
+* Misc. bug fixes [Florian, Carlos, Cosimo; #785090, #785309, #767805,
+  #747794, #785358, #785556]
+
+Contributors:
+  Emmanuele Bassi, Cosimo Cecchi, Carlos Garnacho, Florian Müllner,
+  Jakub Steiner
+
+Translations:
+  Fabio Tomat [fur], Pawan Chitrakar [ne], Aurimas Černius [lt], gogo [hr],
+  Daniel Mustieles [es], Baurzhan Muftakhidinov [kk], Matej Urbančič [sl],
+  Marek Cernocky [cs], Dušan Kazik [sk], Jordi Mas [ca], Fran Dieguez [gl],
+  Andika Triwidada [id], Anders Jonsson [sv], Balázs Meskó [hu]
+
+3.25.4
+======
+* gdm: Fix "Not listed" focus indication [Florian; #784040]
+* Fix missing icons in freedesktop notifications [Florian; #784245]
+* gdm: Disable user list when empty [Xiaoguang; #731320]
+* gdm: Allow empty reponse to PAM messages [Ray; #784360]
+* Fix blocked clicks in shutdown dialog [Florian; #781738]
+* Show OSD popup when changing volume via scroll wheel [Florian; #781028]
+* Refine list search results [Rares; #749957]
+* Replace mutter's unresponsive app dialog [Carlos; #762083]
+* Improve handling of extension errors [Florian; #781728]
+* Implement tablet rings/strips configuration [Carlos; #782033]
+* Adjust to mozjs52 update in gjs [Florian; #785084, #785090]
+* Support the meson build system [Florian; #783229]
+* Misc. bug fixes [Ray, Florian, Jonas, Marco, Shih-Yuan, Joaquim, Carlos S.;
+  #780403, #772589, #784130, #783975, #784353, #784361, #772284, #765011,
+  #765011, #765011, #784985, #781471, #785047, #736148, #736148]
+
+Contributors:
+  Jonas Ådahl, Alessandro Bono, Michael Catanzaro, Carlos Garnacho,
+  Shih-Yuan Lee (FourDollars), Florian Müllner, Joaquim Rocha,
+  Mario Sanchez Prada, Carlos Soriano, Ray Strode, Marco Trevisan (Treviño),
+  Rares Visalom, Xiaoguang Wang
+
+Translations:
+  Jeremy Bicha po/es, he.po, Kukuh Syafaat [id], Fabio Tomat [fur]
+
+3.25.3
 ======
 * Bypass proxies for captive portal [Bastien; #769692]
-* Fix missing icons in freedesktop notifications [Florian; #784245]
-* Fix blocked clicks in shutdown dialog [Florian; #781738]
-* Implement tablet rings/strips configuration [Carlos; #782033]
-* Misc. bug fixes [Matthias, Jeremy, Bastien, Florian; #780215, #782802,
-  #783286, #784130, #784353, #781471]
+* Correctly handle "text-shadow: none;" [Matt; #783485]
+* Add StEntry:hint-actor property [Mario; #783484]
+* Support text-shadow CSS property in StEntry [Mario; #783484]
+* Misc. bug fixes [Jonas, Florian, Bastien, Ting-Wei, Cosimo, Mario, Sebastian;
+  #777732, #783202, #783210, #783206, #783286, #783439, #783483, #783823,
+  #781950]
 
 Contributors:
-  Jeremy Bicha, Carlos Garnacho, Matthias Liertzer, Florian Müllner,
-  Bastien Nocera
+  Jonas Ådahl, Cosimo Cecchi, Sebastian Keller, Ting-Wei Lan, Florian Müllner,
+  Bastien Nocera, Mario Sanchez Prada, Matt Watson
 
-Translations:
-  Christian Stadelmann [de], Марко Костић [sr], Милош Поповић [sr@latin],
-  Furkan Ahmet Kara [tr], Jeremy Bicha [es, he]
-
-3.24.2
+3.25.2
 ======
-* Only fetch weather information when there's a valid location [Rares; #780404]
-* Handle extension errors during reload due to settings change [Emilio; #781728]
 * Fix StEntry::primary-icon-clicked emission [Florian; #782190]
-* Allow search providers to provide clipboard text for results [Daiki; #775099]
-* Misc. bug fixes [Florian; #781545]
+* Add an optional icon parameter to PopupMenu.addAction() [Mario; #782166]
+* Allow search providers to include clipboard text with results [Daiki; #775099]
+* Reduce dependency on Caribou [Carlos; #777342]
+* Add transparency to top bar when free floating [Alessandro; #747163]
+* Animate maximize/unmaximize operations [Alessandro; #766685]
+* Misc. bug fixes [Florian, Matthias, Jeremy, Michael, Carlos, Lan; #782000,
+  #780215, #782802, #782637, #782930, #755164, #780215, #782982]
 
 Contributors:
-  Florian Müllner, Emilio Pozuelo Monfort, Daiki Ueno, Rares Visalom
+  Jeremy Bicha, Michael Biebl, Alessandro Bono, Carlos Garnacho, Ting-Wei Lan,
+  Matthias Liertzer, Florian Müllner, Mario Sanchez Prada, Daiki Ueno
 
 Translations:
-  Milo Casagrande [it], Милош Поповић [sr], Khaled Hosny [ar]
+  Jordi Mas [ca], Christian Stadelmann [de], Милош Поповић [sr],
+  Милош Поповић [sr@latin], Furkan Ahmet Kara [tr]
 
-3.24.1
+3.25.1
 ======
 * Close Wifi selection dialog on lock [Florian; #780054]
 * Fix DND over window previews in overview [Florian; #737166]
@@ -37,11 +125,15 @@ Translations:
 * Follow GNOME Weather's location permissions [Florian; #780252]
 * Fix portals that require a new window to be loaded [Catalin; #759044]
 * Fix restricting menus to screen height on HiDPI displays [Cosimo; #753305]
-* Misc. bug fixes and cleanups [Florian, Cosimo, Bastien, Catalin, Carlos;
-  #780063, #780321, #780381, #780453, #758873, #780606, #642652]
+* Misc. bug fixes and cleanups [Florian, Cosimo, Bastien, Catalin, Carlos G.,
+  Jonas, Carlos S., Xiaoguang, Rares, Emilio; #780063, #780321, #780381,
+  #780453, #758873, #780606, #642652, #777732, #780157, #781482, #780404,
+  #781545, #781728]
 
 Contributors:
-  Cosimo Cecchi, Carlos Garnacho, Catalin Iacob, Florian Müllner, Bastien Nocera
+  Jonas Ådahl, Cosimo Cecchi, Philip Chimento, Carlos Garnacho, Catalin Iacob,
+  Florian Müllner, Bastien Nocera, Emilio Pozuelo Monfort, Carlos Soriano,
+  Rares Visalom, Xiaoguang Wang
 
 Translations:
   Marek Cernocky [cs], Piotr Drąg [pl], Anders Jonsson [sv], Stas Solovey [ru],
@@ -51,7 +143,8 @@ Translations:
   Changwoo Ryu [ko], Mario Blättermann [de], Fran Dieguez [gl],
   Dušan Kazik [sk], Yuras Shumovich [be], Fabio Tomat [fur],
   Kjartan Maraas [nb], Aurimas Černius [lt], Trần Ngọc Quân [vi],
-  Rūdolfs Mazurs [lv], Ask Hjorth Larsen [da], Tom Tryfonidis [el], gogo [hr]
+  Rūdolfs Mazurs [lv], Γιάννης Κουτσούκος [el], gogo [hr], Марко Костић [sr],
+  Jordi Mas [ca], Khaled Hosny [ar]
 
 3.24.0
 ======
