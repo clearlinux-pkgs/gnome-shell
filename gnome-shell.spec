@@ -4,7 +4,7 @@
 #
 Name     : gnome-shell
 Version  : 3.26.0
-Release  : 20
+Release  : 21
 URL      : https://download.gnome.org/sources/gnome-shell/3.26/gnome-shell-3.26.0.tar.xz
 Source0  : https://download.gnome.org/sources/gnome-shell/3.26/gnome-shell-3.26.0.tar.xz
 Summary  : No detailed summary available
@@ -17,7 +17,9 @@ Requires: gnome-shell-locales
 BuildRequires : clutter-dev
 BuildRequires : evolution-data-server-dev
 BuildRequires : glibc-bin
+BuildRequires : gnome-bluetooth-dev
 BuildRequires : gstreamer-dev
+BuildRequires : mesa-dev
 BuildRequires : meson
 BuildRequires : mutter
 BuildRequires : mutter-data
@@ -88,7 +90,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1505324373
+export SOURCE_DATE_EPOCH=1505324619
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -100,7 +102,7 @@ export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -f
 make V=1  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1505324373
+export SOURCE_DATE_EPOCH=1505324619
 rm -rf %{buildroot}
 %make_install
 %find_lang gnome-shell

@@ -8,3 +8,5 @@ mutter-dev
 mutter
 gstreamer-dev
 glibc-bin
+gnome-bluetooth-dev
+mesa-dev
