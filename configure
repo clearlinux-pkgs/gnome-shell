@@ -1,1 +1,1 @@
---disable-schemas-compile --enable-man
+-Denable-man=true -Denable-networkmanager=yes -Denable-systemd=yes
