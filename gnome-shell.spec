@@ -4,7 +4,7 @@
 #
 Name     : gnome-shell
 Version  : 3.26.2
-Release  : 24
+Release  : 25
 URL      : https://download.gnome.org/sources/gnome-shell/3.26/gnome-shell-3.26.2.tar.xz
 Source0  : https://download.gnome.org/sources/gnome-shell/3.26/gnome-shell-3.26.2.tar.xz
 Summary  : No detailed summary available
@@ -101,7 +101,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1509977466
+export SOURCE_DATE_EPOCH=1513705161
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -109,13 +109,11 @@ export CFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-m
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
 export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
-%configure --disable-static --disable-schemas-compile --enable-man
-make V=1  %{?_smp_mflags}
+CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --prefix /usr --buildtype=plain -Denable-man=true -Denable-networkmanager=yes -Denable-systemd=yes builddir
+ninja -v -C builddir
 
 %install
-export SOURCE_DATE_EPOCH=1509977466
-rm -rf %{buildroot}
-%make_install
+DESTDIR=%{buildroot} ninja -C builddir install
 %find_lang gnome-shell
 
 %files
