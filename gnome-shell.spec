@@ -4,7 +4,7 @@
 #
 Name     : gnome-shell
 Version  : 3.26.2
-Release  : 26
+Release  : 27
 URL      : https://download.gnome.org/sources/gnome-shell/3.26/gnome-shell-3.26.2.tar.xz
 Source0  : https://download.gnome.org/sources/gnome-shell/3.26/gnome-shell-3.26.2.tar.xz
 Summary  : No detailed summary available
@@ -43,6 +43,7 @@ BuildRequires : pkgconfig(polkit-agent-1)
 BuildRequires : pkgconfig(telepathy-glib)
 BuildRequires : python3
 BuildRequires : python3-dev
+Patch1: blur.patch
 
 %description
 GNOME Shell provides core user interface functions for the GNOME 3 desktop,
@@ -95,20 +96,21 @@ locales components for the gnome-shell package.
 
 %prep
 %setup -q -n gnome-shell-3.26.2
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1513705161
+export SOURCE_DATE_EPOCH=1522083283
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
-export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
-export FFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
-export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs "
+export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs "
+export FFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs "
 CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --prefix /usr --buildtype=plain -Denable-man=true -Denable-networkmanager=yes -Denable-systemd=yes builddir
 ninja -v -C builddir
 
