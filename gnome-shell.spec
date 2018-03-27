@@ -4,7 +4,7 @@
 #
 Name     : gnome-shell
 Version  : 3.26.2
-Release  : 27
+Release  : 28
 URL      : https://download.gnome.org/sources/gnome-shell/3.26/gnome-shell-3.26.2.tar.xz
 Source0  : https://download.gnome.org/sources/gnome-shell/3.26/gnome-shell-3.26.2.tar.xz
 Summary  : No detailed summary available
