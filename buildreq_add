@@ -10,3 +10,7 @@ gstreamer-dev
 glibc-bin
 gnome-bluetooth-dev
 mesa-dev
+sassc
+libsass-dev
+libxslt-bin
+docbook-xml
