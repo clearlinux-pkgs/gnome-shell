@@ -1,1 +1,2 @@
--Denable-man=true -Denable-networkmanager=yes -Denable-systemd=yes
+-Dman=true -Dnetworkmanager=true -Dsystemd=true
+
