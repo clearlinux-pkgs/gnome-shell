@@ -7,7 +7,7 @@ Add an AVX2 optimized blur function
  }
  
 +#pragma GCC push_options
-+#pragma GCC target("avx2")
++#pragma GCC target("fma")
 +
 +static guchar *
 +blur_pixels_avx2 (guchar  *pixels_in,
