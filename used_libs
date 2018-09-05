@@ -23,10 +23,10 @@ libgtk-3.so.0
 libical.so.3
 libjson-glib-1.0.so.0
 libm.so.6
-libmutter-2.so.0
-libmutter-clutter-2.so
-libmutter-cogl-2.so
-libmutter-cogl-pango-2.so
+libmutter-3.so.0
+libmutter-clutter-3.so
+libmutter-cogl-3.so
+libmutter-cogl-pango-3.so
 libnm.so.0
 libpango-1.0.so.0
 libpangocairo-1.0.so.0
