@@ -4,7 +4,7 @@
 #
 Name     : gnome-shell
 Version  : 3.30.2
-Release  : 51
+Release  : 52
 URL      : https://download.gnome.org/sources/gnome-shell/3.30/gnome-shell-3.30.2.tar.xz
 Source0  : https://download.gnome.org/sources/gnome-shell/3.30/gnome-shell-3.30.2.tar.xz
 Summary  : No detailed summary available
@@ -48,6 +48,7 @@ BuildRequires : pkgconfig(polkit-agent-1)
 BuildRequires : pkgconfig(telepathy-glib)
 BuildRequires : python3-dev
 BuildRequires : sassc
+Patch1: CVE-2019-3820.patch
 
 %description
 Please keep in sync with gnome-panel.
@@ -127,13 +128,14 @@ services components for the gnome-shell package.
 
 %prep
 %setup -q -n gnome-shell-3.30.2
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1542243854
+export SOURCE_DATE_EPOCH=1549488470
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
