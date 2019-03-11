@@ -4,7 +4,7 @@
 #
 Name     : gnome-shell
 Version  : 3.30.2
-Release  : 52
+Release  : 53
 URL      : https://download.gnome.org/sources/gnome-shell/3.30/gnome-shell-3.30.2.tar.xz
 Source0  : https://download.gnome.org/sources/gnome-shell/3.30/gnome-shell-3.30.2.tar.xz
 Summary  : No detailed summary available
