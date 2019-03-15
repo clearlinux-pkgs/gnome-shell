@@ -4,7 +4,7 @@
 #
 Name     : gnome-shell
 Version  : 3.32.0
-Release  : 54
+Release  : 55
 URL      : https://download.gnome.org/sources/gnome-shell/3.32/gnome-shell-3.32.0.tar.xz
 Source0  : https://download.gnome.org/sources/gnome-shell/3.32/gnome-shell-3.32.0.tar.xz
 Summary  : Next generation desktop shell
@@ -25,6 +25,7 @@ BuildRequires : docbook-xml
 BuildRequires : evolution-data-server-dev
 BuildRequires : glibc-bin
 BuildRequires : gnome-bluetooth-dev
+BuildRequires : gnome-control-center-dev
 BuildRequires : gsettings-desktop-schemas-dev
 BuildRequires : gstreamer-dev
 BuildRequires : libsass-dev
@@ -138,7 +139,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1552359303
+export SOURCE_DATE_EPOCH=1552658580
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
