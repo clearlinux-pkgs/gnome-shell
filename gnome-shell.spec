@@ -4,7 +4,7 @@
 #
 Name     : gnome-shell
 Version  : 3.32.1
-Release  : 56
+Release  : 57
 URL      : https://download.gnome.org/sources/gnome-shell/3.32/gnome-shell-3.32.1.tar.xz
 Source0  : https://download.gnome.org/sources/gnome-shell/3.32/gnome-shell-3.32.1.tar.xz
 Summary  : Next generation desktop shell
