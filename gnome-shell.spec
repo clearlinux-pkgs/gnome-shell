@@ -4,7 +4,7 @@
 #
 Name     : gnome-shell
 Version  : 3.32.1
-Release  : 58
+Release  : 59
 URL      : https://download.gnome.org/sources/gnome-shell/3.32/gnome-shell-3.32.1.tar.xz
 Source0  : https://download.gnome.org/sources/gnome-shell/3.32/gnome-shell-3.32.1.tar.xz
 Summary  : Next generation desktop shell
@@ -138,7 +138,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1556989751
+export SOURCE_DATE_EPOCH=1557005734
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
