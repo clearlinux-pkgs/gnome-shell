@@ -4,10 +4,10 @@
 #
 Name     : gnome-shell
 Version  : 3.34.0
-Release  : 62
+Release  : 63
 URL      : https://download.gnome.org/sources/gnome-shell/3.34/gnome-shell-3.34.0.tar.xz
 Source0  : https://download.gnome.org/sources/gnome-shell/3.34/gnome-shell-3.34.0.tar.xz
-Summary  : No detailed summary available
+Summary  : Next generation desktop shell
 Group    : Development/Tools
 License  : GPL-2.0 GPL-3.0
 Requires: gnome-shell-bin = %{version}-%{release}
@@ -57,7 +57,12 @@ BuildRequires : python3-dev
 BuildRequires : sassc
 
 %description
-Please keep in sync with gnome-panel.
+# GNOME Shell
+GNOME Shell provides core user interface functions for the GNOME 3 desktop,
+like switching to windows and launching applications. GNOME Shell takes
+advantage of the capabilities of modern graphics hardware and introduces
+innovative user interface concepts to provide a visually attractive and
+easy to use experience.
 
 %package bin
 Summary: bin components for the gnome-shell package.
@@ -139,15 +144,16 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1568069552
+export SOURCE_DATE_EPOCH=1568127031
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
-export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fcf-protection=full -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
+export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fcf-protection=full -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
+export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fcf-protection=full -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fcf-protection=full -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
 CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --libdir=lib64 --prefix=/usr --buildtype=plain -Dman=true -Dnetworkmanager=true -Dsystemd=true  builddir
 ninja -v -C builddir
 
