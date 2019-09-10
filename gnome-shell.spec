@@ -4,7 +4,7 @@
 #
 Name     : gnome-shell
 Version  : 3.34.0
-Release  : 61
+Release  : 62
 URL      : https://download.gnome.org/sources/gnome-shell/3.34/gnome-shell-3.34.0.tar.xz
 Source0  : https://download.gnome.org/sources/gnome-shell/3.34/gnome-shell-3.34.0.tar.xz
 Summary  : No detailed summary available
