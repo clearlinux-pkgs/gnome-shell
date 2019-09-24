@@ -1,0 +1,32 @@
+From 8754736fda6167402a4ff7f13727b3852c70b746 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jonas=20Dre=C3=9Fler?= <verdre@v0yd.nl>
+Date: Mon, 19 Nov 2018 12:26:16 +0100
+Subject: [PATCH 071/152] extensionUtils: Check version variable for undefined
+ first
+
+Avoid a warning message when trying to access requiredArray[2] by
+checking if its undefined first.
+
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/96
+---
+ js/misc/extensionUtils.js | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/js/misc/extensionUtils.js b/js/misc/extensionUtils.js
+index a05a88418..2b3c11704 100644
+--- a/js/misc/extensionUtils.js
++++ b/js/misc/extensionUtils.js
+@@ -165,8 +165,8 @@ function versionCheck(required, current) {
+         let requiredArray = required[i].split('.');
+         if (requiredArray[0] == major &&
+             requiredArray[1] == minor &&
+-            (requiredArray[2] == point ||
+-             (requiredArray[2] == undefined && parseInt(minor) % 2 == 0)))
++            ((requiredArray[2] === undefined && parseInt(minor) % 2 == 0) ||
++             requiredArray[2] == point))
+             return true;
+     }
+     return false;
+-- 
+2.23.0
+

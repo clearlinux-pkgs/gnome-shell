@@ -1,0 +1,44 @@
+From 8e3aac8ed7407293f561c78b776f00e6809503c5 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Marco=20Trevisan=20=28Trevi=C3=B1o=29?= <mail@3v1n0.net>
+Date: Fri, 13 Sep 2019 05:19:02 +0200
+Subject: [PATCH 140/152] renameFolderMenu: Move to non-legacy coding style
+
+Use proper indentation on multi-line methods calls and use single quotes on
+button label.
+
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/720
+---
+ js/ui/appDisplay.js | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/js/ui/appDisplay.js b/js/ui/appDisplay.js
+index b1f9a122c..2d5283c68 100644
+--- a/js/ui/appDisplay.js
++++ b/js/ui/appDisplay.js
+@@ -1735,10 +1735,10 @@ var RenameFolderMenu = class RenameFolderMenu extends PopupMenu.PopupMenu {
+         // Focus the text entry on menu pop-up
+         this.focusActor = this._entry.clutter_text;
+ 
+-        this._entry.clutter_text.connect('notify::text',
+-                                         this._validate.bind(this));
+-        this._entry.clutter_text.connect('activate',
+-                                         this._updateFolderName.bind(this));
++        this._entry.clutter_text.connect(
++            'notify::text', this._validate.bind(this));
++        this._entry.clutter_text.connect(
++            'activate', this._updateFolderName.bind(this));
+ 
+         // Rename button
+         this._button = new St.Button({
+@@ -1746,7 +1746,7 @@ var RenameFolderMenu = class RenameFolderMenu extends PopupMenu.PopupMenu {
+             reactive: true,
+             button_mask: St.ButtonMask.ONE | St.ButtonMask.TWO,
+             can_focus: true,
+-            label: _("Rename"),
++            label: _('Rename'),
+         });
+         box.add_child(this._button);
+ 
+-- 
+2.23.0
+

@@ -1,0 +1,33 @@
+From 15c252c11df4d3711b641f1c35c3531844361635 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Marco=20Trevisan=20=28Trevi=C3=B1o=29?= <mail@3v1n0.net>
+Date: Fri, 9 Aug 2019 02:17:49 +0200
+Subject: [PATCH 017/152] popupMenu: Remove extra parameter on boolean
+ ParamSpec initialization
+
+PopupBaseMenuItem properties were initialized using wrong param spec
+signature, fix this by removing the extra parameter.
+
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/700
+---
+ js/ui/popupMenu.js | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/js/ui/popupMenu.js b/js/ui/popupMenu.js
+index 1943b269f..31506dcdf 100644
+--- a/js/ui/popupMenu.js
++++ b/js/ui/popupMenu.js
+@@ -57,11 +57,9 @@ var PopupBaseMenuItem = GObject.registerClass({
+     Properties: {
+         'active': GObject.ParamSpec.boolean('active', 'active', 'active',
+                                             GObject.ParamFlags.READWRITE,
+-                                            GObject.TYPE_BOOLEAN,
+                                             false),
+         'sensitive': GObject.ParamSpec.boolean('sensitive', 'sensitive', 'sensitive',
+                                                GObject.ParamFlags.READWRITE,
+-                                               GObject.TYPE_BOOLEAN,
+                                                true),
+     },
+     Signals: {
+-- 
+2.23.0
+

@@ -1,0 +1,33 @@
+From 4c93ef39fa2b2e0a1fb65acc5326ffbf526361d1 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jonas=20Dre=C3=9Fler?= <verdre@v0yd.nl>
+Date: Wed, 11 Sep 2019 20:18:20 +0200
+Subject: [PATCH 077/152] extensionSystem: Handle added or removed sessionMode
+ extensions
+
+Right now we're only handling added sessionMode extensions correctly on
+sessionMode updates, also handle the other case and disable removed
+sessionMode extensions on sessionMode updates.
+
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/96
+---
+ js/ui/extensionSystem.js | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/js/ui/extensionSystem.js b/js/ui/extensionSystem.js
+index 90b135e61..99777a631 100644
+--- a/js/ui/extensionSystem.js
++++ b/js/ui/extensionSystem.js
+@@ -509,8 +509,8 @@ var ExtensionManager = class {
+         // property; it might make sense to make enabledExtensions independent
+         // from allowExtensions in the future
+         if (Main.sessionMode.allowExtensions) {
+-            if (this._initialized)
+-                this._enabledExtensions = this._getEnabledExtensions();
++            // Take care of added or removed sessionMode extensions
++            this._onEnabledExtensionsChanged();
+             this._enableAllExtensions();
+         } else {
+             this._disableAllExtensions();
+-- 
+2.23.0
+

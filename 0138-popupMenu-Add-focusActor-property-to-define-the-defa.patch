@@ -1,0 +1,53 @@
+From 54f369404a570dafae89d679743c9d09d02ab4c8 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Marco=20Trevisan=20=28Trevi=C3=B1o=29?= <mail@3v1n0.net>
+Date: Fri, 13 Sep 2019 05:15:41 +0200
+Subject: [PATCH 138/152] popupMenu: Add focusActor property to define the
+ default focus actor
+
+The PopupMenuManager is supposed to grab and focus the menu actors, with
+normal menus we always need to grab the actual menu but set the key focus to
+the source actor so that it will be able to move the focus to the menu
+child, if requested.
+
+However there are menus such as the RenameFolderMenu that requires the
+key-focus once prompted, so provide a focusActor property (defaulting to the
+sourceActor) that can be set in order to define the actor to give the
+keyboard focus to, when the menu is popped-up.
+
+Fixes https://gitlab.gnome.org/GNOME/gnome-shell/issues/1604
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/720
+---
+ js/ui/popupMenu.js | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+
+diff --git a/js/ui/popupMenu.js b/js/ui/popupMenu.js
+index ad9b3c77c..49ed823b1 100644
+--- a/js/ui/popupMenu.js
++++ b/js/ui/popupMenu.js
+@@ -428,6 +428,7 @@ var PopupMenuBase = class {
+             throw new TypeError(`Cannot instantiate abstract class ${this.constructor.name}`);
+ 
+         this.sourceActor = sourceActor;
++        this.focusActor = sourceActor;
+         this._parent = null;
+ 
+         if (styleClass !== undefined) {
+@@ -1300,10 +1301,11 @@ var PopupMenuManager = class {
+         if (open) {
+             if (this.activeMenu)
+                 this.activeMenu.close(BoxPointer.PopupAnimation.FADE);
+-            this._grabHelper.grab({ actor: menu.actor, focus: menu.sourceActor,
+-                                    onUngrab: isUser => {
+-                                        this._closeMenu(isUser, menu);
+-                                    } });
++            this._grabHelper.grab({
++                actor: menu.actor,
++                focus: menu.focusActor,
++                onUngrab: isUser => this._closeMenu(isUser, menu),
++            });
+         } else {
+             this._grabHelper.ungrab({ actor: menu.actor });
+         }
+-- 
+2.23.0
+

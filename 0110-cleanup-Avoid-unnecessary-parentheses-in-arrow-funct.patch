@@ -1,0 +1,113 @@
+From 93525539c2d7a492ba56a4b26988e9927eadaed8 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Florian=20M=C3=BCllner?= <fmuellner@gnome.org>
+Date: Sat, 14 Sep 2019 17:02:29 +0200
+Subject: [PATCH 110/152] cleanup: Avoid unnecessary parentheses in arrow
+ functions
+
+Parentheses are only needed if there are zero or multiple arguments.
+
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/731
+---
+ js/misc/systemActions.js | 2 +-
+ js/ui/altTab.js          | 2 +-
+ js/ui/calendar.js        | 2 +-
+ js/ui/popupMenu.js       | 2 +-
+ js/ui/runDialog.js       | 2 +-
+ js/ui/windowManager.js   | 2 +-
+ js/ui/windowMenu.js      | 2 +-
+ 7 files changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/js/misc/systemActions.js b/js/misc/systemActions.js
+index 3f0b2ec98..7607efc65 100644
+--- a/js/misc/systemActions.js
++++ b/js/misc/systemActions.js
+@@ -269,7 +269,7 @@ const SystemActions = GObject.registerClass({
+ 
+     getMatchingActions(terms) {
+         // terms is a list of strings
+-        terms = terms.map((term) => term.toLowerCase());
++        terms = terms.map(term => term.toLowerCase());
+ 
+         let results = [];
+ 
+diff --git a/js/ui/altTab.js b/js/ui/altTab.js
+index 46f4ed912..4cf18e672 100644
+--- a/js/ui/altTab.js
++++ b/js/ui/altTab.js
+@@ -1043,7 +1043,7 @@ class WindowList extends SwitcherPopup.SwitcherList {
+             this.addItem(icon, icon.label);
+             this.icons.push(icon);
+ 
+-            icon._unmanagedSignalId = icon.window.connect('unmanaged', (window) => {
++            icon._unmanagedSignalId = icon.window.connect('unmanaged', window => {
+                 this._removeWindow(window);
+             });
+         }
+diff --git a/js/ui/calendar.js b/js/ui/calendar.js
+index 797558ffa..88e008e2c 100644
+--- a/js/ui/calendar.js
++++ b/js/ui/calendar.js
+@@ -1073,7 +1073,7 @@ var CalendarMessageList = class CalendarMessageList {
+         this._clearButton.set_x_align(Clutter.ActorAlign.END);
+         this._clearButton.connect('clicked', () => {
+             let sections = [...this._sections.keys()];
+-            sections.forEach((s) => s.clear());
++            sections.forEach(s => s.clear());
+         });
+         box.add_actor(this._clearButton);
+ 
+diff --git a/js/ui/popupMenu.js b/js/ui/popupMenu.js
+index de642e5a4..b66f3c5d1 100644
+--- a/js/ui/popupMenu.js
++++ b/js/ui/popupMenu.js
+@@ -549,7 +549,7 @@ var PopupMenuBase = class {
+     }
+ 
+     _connectItemSignals(menuItem) {
+-        menuItem._activeChangeId = menuItem.connect('notify::active', (menuItem) => {
++        menuItem._activeChangeId = menuItem.connect('notify::active', menuItem => {
+             let active = menuItem.active;
+             if (active && this._activeMenuItem != menuItem) {
+                 if (this._activeMenuItem)
+diff --git a/js/ui/runDialog.js b/js/ui/runDialog.js
+index ea8104765..32545590c 100644
+--- a/js/ui/runDialog.js
++++ b/js/ui/runDialog.js
+@@ -104,7 +104,7 @@ class RunDialog extends ModalDialog.ModalDialog {
+ 
+         this._history = new History.HistoryManager({ gsettingsKey: HISTORY_KEY,
+                                                      entry: this._entryText });
+-        this._entryText.connect('activate', (o) => {
++        this._entryText.connect('activate', o => {
+             this.popModal();
+             this._run(o.get_text(),
+                       Clutter.get_current_event().get_state() & Clutter.ModifierType.CONTROL_MASK);
+diff --git a/js/ui/windowManager.js b/js/ui/windowManager.js
+index 3df1cd508..8d5db083b 100644
+--- a/js/ui/windowManager.js
++++ b/js/ui/windowManager.js
+@@ -713,7 +713,7 @@ var WindowManager = class {
+         this._isWorkspacePrepended = false;
+ 
+         this._switchData = null;
+-        this._shellwm.connect('kill-switch-workspace', (shellwm) => {
++        this._shellwm.connect('kill-switch-workspace', shellwm => {
+             if (this._switchData) {
+                 if (this._switchData.inProgress)
+                     this._switchWorkspaceDone(shellwm);
+diff --git a/js/ui/windowMenu.js b/js/ui/windowMenu.js
+index f2fb750bc..bb6a8df7b 100644
+--- a/js/ui/windowMenu.js
++++ b/js/ui/windowMenu.js
+@@ -178,7 +178,7 @@ var WindowMenu = class extends PopupMenu.PopupMenu {
+         }
+ 
+         let waitId = 0;
+-        let id = global.display.connect('grab-op-end', (display) => {
++        let id = global.display.connect('grab-op-end', display => {
+             display.disconnect(id);
+             GLib.source_remove(waitId);
+ 
+-- 
+2.23.0
+

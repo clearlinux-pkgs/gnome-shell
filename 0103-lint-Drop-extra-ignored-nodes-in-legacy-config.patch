@@ -1,0 +1,31 @@
+From e44b7df0784c9ce9125e2ef01fb8ac70dd7dba10 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Florian=20M=C3=BCllner?= <fmuellner@gnome.org>
+Date: Fri, 13 Sep 2019 00:40:24 +0200
+Subject: [PATCH 103/152] lint: Drop extra ignored nodes in legacy config
+
+They didn't just allow for the style patterns they were added to,
+but allowed for some messed up indentation to slip through. Now
+that we adapted the code to not use the old style, it's time to
+drop the exceptions.
+
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/725
+---
+ lint/eslintrc-legacy.json | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/lint/eslintrc-legacy.json b/lint/eslintrc-legacy.json
+index 462607e4e..e49d5c63a 100644
+--- a/lint/eslintrc-legacy.json
++++ b/lint/eslintrc-legacy.json
+@@ -5,8 +5,6 @@
+             4,
+             {
+                 "ignoredNodes": [
+-                    "ConditionalExpression",
+-                    "CallExpression > ArrowFunctionExpression",
+                     "CallExpression[callee.object.name=GObject][callee.property.name=registerClass] > ClassExpression:first-child"
+                 ],
+                 "CallExpression": { "arguments": "first" },
+-- 
+2.23.0
+

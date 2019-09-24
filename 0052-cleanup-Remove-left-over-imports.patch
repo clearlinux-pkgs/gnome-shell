@@ -1,0 +1,41 @@
+From b6a2b2b8a584caefe7c34bee2b631bc83e414aa7 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Florian=20M=C3=BCllner?= <fmuellner@gnome.org>
+Date: Mon, 19 Aug 2019 19:26:31 +0200
+Subject: [PATCH 052/152] cleanup: Remove left-over imports
+
+Unfortunately this slipped through our CI tests, as the script
+filters errors by lines that are modified by the corresponding
+merge request.
+
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/710
+---
+ js/misc/util.js             | 1 -
+ js/ui/pointerA11yTimeout.js | 2 +-
+ 2 files changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/js/misc/util.js b/js/misc/util.js
+index 254c84e62..d8ee946ee 100644
+--- a/js/misc/util.js
++++ b/js/misc/util.js
+@@ -5,7 +5,6 @@
+ 
+ const { Clutter, Gio, GLib, GObject, Shell, St } = imports.gi;
+ const Gettext = imports.gettext;
+-const Mainloop = imports.mainloop;
+ 
+ const Main = imports.ui.main;
+ const Params = imports.misc.params;
+diff --git a/js/ui/pointerA11yTimeout.js b/js/ui/pointerA11yTimeout.js
+index 09515cc64..516dcf039 100644
+--- a/js/ui/pointerA11yTimeout.js
++++ b/js/ui/pointerA11yTimeout.js
+@@ -1,5 +1,5 @@
+ /* exported PointerA11yTimeout */
+-const { Clutter, GLib, GObject, Meta, St } = imports.gi;
++const { Clutter, GObject, Meta, St } = imports.gi;
+ const Main = imports.ui.main;
+ const Cairo = imports.cairo;
+ 
+-- 
+2.23.0
+

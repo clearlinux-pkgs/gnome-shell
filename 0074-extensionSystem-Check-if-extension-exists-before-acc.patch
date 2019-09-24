@@ -1,0 +1,35 @@
+From e76877c4b889590251fb9b646e7283480979e089 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jonas=20Dre=C3=9Fler?= <verdre@v0yd.nl>
+Date: Wed, 11 Sep 2019 14:36:18 +0200
+Subject: [PATCH 074/152] extensionSystem: Check if extension exists before
+ accessing property
+
+If the extension doesn't exist in the `this._extensions` Map, we'd try
+to access `extension.dir` on undefined/null. So set the `dir` variable
+after checking if `extension` is defined.
+
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/96
+---
+ js/ui/extensionSystem.js | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/js/ui/extensionSystem.js b/js/ui/extensionSystem.js
+index 47750bda3..98ef13be9 100644
+--- a/js/ui/extensionSystem.js
++++ b/js/ui/extensionSystem.js
+@@ -303,11 +303,10 @@ var ExtensionManager = class {
+ 
+     _callExtensionInit(uuid) {
+         let extension = this.lookup(uuid);
+-        let dir = extension.dir;
+-
+         if (!extension)
+             throw new Error("Extension was not properly created. Call createExtensionObject first");
+ 
++        let dir = extension.dir;
+         let extensionJs = dir.get_child('extension.js');
+         if (!extensionJs.query_exists(null)) {
+             this.logExtensionError(uuid, new Error('Missing extension.js'));
+-- 
+2.23.0
+

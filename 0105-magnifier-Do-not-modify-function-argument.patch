@@ -1,0 +1,31 @@
+From 8d6820c4df413eb51d1323a52e1d2212640777f2 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Florian=20M=C3=BCllner?= <fmuellner@gnome.org>
+Date: Mon, 19 Aug 2019 21:18:54 +0200
+Subject: [PATCH 105/152] magnifier: Do not modify function argument
+
+The intention of the code is clearly to operate on a copy, but that's
+not how the Object constructor works. While it doesn't matter in
+practice that we modify the passed-in object parameter, it's still
+a good idea to fix the code.
+
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/731
+---
+ js/ui/magnifier.js | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/js/ui/magnifier.js b/js/ui/magnifier.js
+index 73522586f..0ec30ee00 100644
+--- a/js/ui/magnifier.js
++++ b/js/ui/magnifier.js
+@@ -264,7 +264,7 @@ var Magnifier = class Magnifier {
+         zoomRegion.setViewPort(viewPort);
+ 
+         // We ignore the redundant width/height on the ROI
+-        let fixedROI = new Object(roi);
++        let fixedROI = Object.create(roi);
+         fixedROI.width = viewPort.width / xMagFactor;
+         fixedROI.height = viewPort.height / yMagFactor;
+         zoomRegion.setROI(fixedROI);
+-- 
+2.23.0
+

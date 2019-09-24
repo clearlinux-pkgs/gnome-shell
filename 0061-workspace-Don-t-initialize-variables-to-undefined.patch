@@ -1,0 +1,28 @@
+From f54e7804c5667dc9055320ad43055e5f71170cdc Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Florian=20M=C3=BCllner?= <fmuellner@gnome.org>
+Date: Mon, 19 Aug 2019 21:14:33 +0200
+Subject: [PATCH 061/152] workspace: Don't initialize variables to undefined
+
+The declaration itself already does this implicitly.
+
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/710
+---
+ js/ui/workspace.js | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/js/ui/workspace.js b/js/ui/workspace.js
+index 9a8c0d94d..d16a5c1ca 100644
+--- a/js/ui/workspace.js
++++ b/js/ui/workspace.js
+@@ -1985,7 +1985,7 @@ var Workspace = class {
+     }
+ 
+     _onCloneSelected(clone, time) {
+-        let wsIndex = undefined;
++        let wsIndex;
+         if (this.metaWorkspace)
+             wsIndex = this.metaWorkspace.index();
+         Main.activateWindow(clone.metaWindow, time, wsIndex);
+-- 
+2.23.0
+

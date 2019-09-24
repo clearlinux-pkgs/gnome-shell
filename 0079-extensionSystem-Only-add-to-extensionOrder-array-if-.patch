@@ -1,0 +1,42 @@
+From 9698ff491a3b1f2518a8710051211495cdfd4e2f Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jonas=20Dre=C3=9Fler?= <verdre@v0yd.nl>
+Date: Mon, 9 Sep 2019 16:07:32 +0200
+Subject: [PATCH 079/152] extensionSystem: Only add to extensionOrder array if
+ enabling worked
+
+Only push uuids of newly enabled extensions to the `_extensionOrder`
+array if enabling them was successful.
+
+Otherwise, since `_callExtensionDisable()` doesn't remove uuids that
+weren't successfully enabled from the array, those extensions get added
+to the array multiple times when they're disabled and enabled.
+
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/96
+---
+ js/ui/extensionSystem.js | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/js/ui/extensionSystem.js b/js/ui/extensionSystem.js
+index d14956810..714537b5d 100644
+--- a/js/ui/extensionSystem.js
++++ b/js/ui/extensionSystem.js
+@@ -111,8 +111,6 @@ var ExtensionManager = class {
+         if (extension.state != ExtensionState.DISABLED)
+             return;
+ 
+-        this._extensionOrder.push(uuid);
+-
+         let stylesheetNames = [`${global.session_mode}.css`, 'stylesheet.css'];
+         let theme = St.ThemeContext.get_for_stage(global.stage).get_theme();
+         for (let i = 0; i < stylesheetNames.length; i++) {
+@@ -132,6 +130,7 @@ var ExtensionManager = class {
+         try {
+             extension.stateObj.enable();
+             extension.state = ExtensionState.ENABLED;
++            this._extensionOrder.push(uuid);
+             this.emit('extension-state-changed', extension);
+         } catch (e) {
+             if (extension.stylesheet) {
+-- 
+2.23.0
+

@@ -1,0 +1,51 @@
+From 0ee7f02f8ec15280fbb699bb22cac481dee25e96 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Florian=20M=C3=BCllner?= <fmuellner@gnome.org>
+Date: Sun, 30 Jun 2019 01:05:27 +0200
+Subject: [PATCH 087/152] cleanup: Don't assume hasOwnProperty() method on
+ objects
+
+Since ES5, it is possible to create objects with no prototype at all:
+
+    let foo = Object.create(null);
+
+Those object won't have any builtin properties like hasOwnProperty(),
+which is why eslint added a corresponding rule to its default rule set.
+
+While this isn't an issue that affects our code, there's no harm in fol-
+lowing the recommendation and call the method through Object.prototype.
+
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/716
+---
+ js/ui/layout.js      | 2 +-
+ js/ui/sessionMode.js | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/js/ui/layout.js b/js/ui/layout.js
+index 85bbd24c2..bfe19bfcb 100644
+--- a/js/ui/layout.js
++++ b/js/ui/layout.js
+@@ -861,7 +861,7 @@ var LayoutManager = GObject.registerClass({
+         // We can't use Params.parse here because we want to drop
+         // the extra values like ancestorData.actor
+         for (let prop in defaultParams) {
+-            if (!params.hasOwnProperty(prop))
++            if (!Object.prototype.hasOwnProperty.call(params, prop))
+                 params[prop] = ancestorData[prop];
+         }
+ 
+diff --git a/js/ui/sessionMode.js b/js/ui/sessionMode.js
+index 583780111..55a422f3d 100644
+--- a/js/ui/sessionMode.js
++++ b/js/ui/sessionMode.js
+@@ -111,7 +111,7 @@ function _loadMode(file, info) {
+     let suffix = name.indexOf('.json');
+     let modeName = suffix == -1 ? name : name.slice(name, suffix);
+ 
+-    if (_modes.hasOwnProperty(modeName))
++    if (Object.prototype.hasOwnProperty.call(_modes, modeName))
+         return;
+ 
+     let fileContent, success_, newMode;
+-- 
+2.23.0
+

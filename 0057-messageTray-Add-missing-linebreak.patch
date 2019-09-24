@@ -1,0 +1,27 @@
+From 4ad2523877dface9b1835d35ee291e09736cdd0a Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Florian=20M=C3=BCllner?= <fmuellner@gnome.org>
+Date: Mon, 19 Aug 2019 21:08:38 +0200
+Subject: [PATCH 057/152] messageTray: Add missing linebreak
+
+Methods should be separated by an empty lines, even when short.
+
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/710
+---
+ js/ui/messageTray.js | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/js/ui/messageTray.js b/js/ui/messageTray.js
+index 6a65d5feb..801b28818 100644
+--- a/js/ui/messageTray.js
++++ b/js/ui/messageTray.js
+@@ -153,6 +153,7 @@ var NotificationPolicy = class NotificationPolicy {
+     // Do nothing for the default policy. These methods are only useful for the
+     // GSettings policy.
+     store() { }
++
+     destroy() { }
+ 
+     get enable() {
+-- 
+2.23.0
+

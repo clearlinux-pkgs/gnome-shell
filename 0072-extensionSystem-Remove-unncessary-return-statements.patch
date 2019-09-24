@@ -1,0 +1,32 @@
+From de86920e0e8f2b11c743621242ce41fd0bd4b2da Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jonas=20Dre=C3=9Fler?= <verdre@v0yd.nl>
+Date: Wed, 11 Sep 2019 14:54:13 +0200
+Subject: [PATCH 072/152] extensionSystem: Remove unncessary return statements
+
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/96
+---
+ js/ui/extensionSystem.js | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/js/ui/extensionSystem.js b/js/ui/extensionSystem.js
+index a668907f7..a3b8d615d 100644
+--- a/js/ui/extensionSystem.js
++++ b/js/ui/extensionSystem.js
+@@ -130,14 +130,12 @@ var ExtensionManager = class {
+             extension.stateObj.enable();
+             extension.state = ExtensionState.ENABLED;
+             this.emit('extension-state-changed', extension);
+-            return;
+         } catch (e) {
+             if (extension.stylesheet) {
+                 theme.unload_stylesheet(extension.stylesheet);
+                 delete extension.stylesheet;
+             }
+             this.logExtensionError(uuid, e);
+-            return;
+         }
+     }
+ 
+-- 
+2.23.0
+

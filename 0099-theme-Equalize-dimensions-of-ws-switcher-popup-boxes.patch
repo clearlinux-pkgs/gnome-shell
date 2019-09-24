@@ -1,0 +1,32 @@
+From d1a6601e604be63223978c5b6cacb6ad57808828 Mon Sep 17 00:00:00 2001
+From: Martin Zurowietz <martin@zurowietz.de>
+Date: Sun, 5 May 2019 13:12:09 +0200
+Subject: [PATCH 099/152] theme: Equalize dimensions of ws switcher popup boxes
+
+The indicator for the active workspace is currently two pixels
+smaller because it doesn't account for the border used for
+inactive workspaces.
+
+Fix that to make sure all indicators have the same size.
+
+https://gitlab.gnome.org/GNOME/gnome-shell/issues/1243
+---
+ data/theme/gnome-shell-sass/_common.scss | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/data/theme/gnome-shell-sass/_common.scss b/data/theme/gnome-shell-sass/_common.scss
+index 9d2361c89..852b505f1 100644
+--- a/data/theme/gnome-shell-sass/_common.scss
++++ b/data/theme/gnome-shell-sass/_common.scss
+@@ -750,7 +750,7 @@ StScrollBar {
+ 
+   .ws-switcher-active-up, .ws-switcher-active-down,
+   .ws-switcher-active-left, .ws-switcher-active-right {
+-    height: 50px;
++    height: 52px;
+     background-color: $selected_bg_color;
+     color: $selected_fg_color;
+     background-size: 32px;
+-- 
+2.23.0
+

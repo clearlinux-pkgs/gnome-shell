@@ -1,0 +1,36 @@
+From 7a4f9a5ff3e484054d42070c458cd27525cb79c4 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Marco=20Trevisan=20=28Trevi=C3=B1o=29?= <mail@3v1n0.net>
+Date: Sat, 13 Jul 2019 01:50:58 +0200
+Subject: [PATCH 005/152] keyboard: Treat menu items as actors
+
+This is a leftover of GNOME/gnome-shell!499, since menu items are all
+actors now, we can just avoid using the actor property when adding an
+action item.
+
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/700
+---
+ js/ui/keyboard.js | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/js/ui/keyboard.js b/js/ui/keyboard.js
+index d137d84b6..68071506f 100644
+--- a/js/ui/keyboard.js
++++ b/js/ui/keyboard.js
+@@ -193,12 +193,12 @@ var LanguageSelectionPopup = class extends PopupMenu.PopupMenu {
+             item = this.addAction(is.displayName, () => {
+                 inputSourceManager.activateInputSource(is, true);
+             });
+-            item.actor.can_focus = false;
++            item.can_focus = false;
+         }
+ 
+         this.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
+         item = this.addSettingsAction(_("Region & Language Settings"), 'gnome-region-panel.desktop');
+-        item.actor.can_focus = false;
++        item.can_focus = false;
+ 
+         this._capturedEventId = 0;
+ 
+-- 
+2.23.0
+

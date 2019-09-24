@@ -1,0 +1,30 @@
+From ce9227062635804a347cf214cf370d24bf39c624 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Florian=20M=C3=BCllner?= <fmuellner@gnome.org>
+Date: Thu, 12 Sep 2019 12:40:46 +0200
+Subject: [PATCH 081/152] extensionSystem: Add missing return value
+
+_callExtensionInit() should return whether the extension was initialized
+successfully or not, but the early return added in commit 2a9e065cfb
+doesn't.
+
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/715
+---
+ js/ui/extensionSystem.js | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/js/ui/extensionSystem.js b/js/ui/extensionSystem.js
+index 7fe275ec7..e8f207943 100644
+--- a/js/ui/extensionSystem.js
++++ b/js/ui/extensionSystem.js
+@@ -305,7 +305,7 @@ var ExtensionManager = class {
+ 
+     _callExtensionInit(uuid) {
+         if (!Main.sessionMode.allowExtensions)
+-            return;
++            return false;
+ 
+         let extension = this.lookup(uuid);
+         if (!extension)
+-- 
+2.23.0
+

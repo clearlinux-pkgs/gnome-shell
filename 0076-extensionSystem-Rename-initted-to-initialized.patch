@@ -1,0 +1,56 @@
+From 22107c183be8b01a5ba108b7c8191cdbbd34dcc5 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jonas=20Dre=C3=9Fler?= <verdre@v0yd.nl>
+Date: Wed, 11 Sep 2019 20:15:04 +0200
+Subject: [PATCH 076/152] extensionSystem: Rename initted to initialized
+
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/96
+---
+ js/ui/extensionSystem.js | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/js/ui/extensionSystem.js b/js/ui/extensionSystem.js
+index b1305187b..90b135e61 100644
+--- a/js/ui/extensionSystem.js
++++ b/js/ui/extensionSystem.js
+@@ -17,7 +17,7 @@ const EXTENSION_DISABLE_VERSION_CHECK_KEY = 'disable-extension-version-validatio
+ 
+ var ExtensionManager = class {
+     constructor() {
+-        this._initted = false;
++        this._initialized = false;
+         this._enabled = false;
+ 
+         this._extensions = new Map();
+@@ -479,9 +479,9 @@ var ExtensionManager = class {
+         if (this._enabled)
+             return;
+ 
+-        if (!this._initted) {
++        if (!this._initialized) {
+             this._loadExtensions();
+-            this._initted = true;
++            this._initialized = true;
+         } else {
+             this._enabledExtensions.forEach(uuid => {
+                 this._callExtensionEnable(uuid);
+@@ -494,7 +494,7 @@ var ExtensionManager = class {
+         if (!this._enabled)
+             return;
+ 
+-        if (this._initted) {
++        if (this._initialized) {
+             this._extensionOrder.slice().reverse().forEach(uuid => {
+                 this._callExtensionDisable(uuid);
+             });
+@@ -509,7 +509,7 @@ var ExtensionManager = class {
+         // property; it might make sense to make enabledExtensions independent
+         // from allowExtensions in the future
+         if (Main.sessionMode.allowExtensions) {
+-            if (this._initted)
++            if (this._initialized)
+                 this._enabledExtensions = this._getEnabledExtensions();
+             this._enableAllExtensions();
+         } else {
+-- 
+2.23.0
+

@@ -1,0 +1,33 @@
+From 4bfee3a8ca655c1cdf63e0b34f68e29d95476d2e Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Florian=20M=C3=BCllner?= <fmuellner@gnome.org>
+Date: Mon, 19 Aug 2019 21:12:13 +0200
+Subject: [PATCH 056/152] ibusManager: Wrap line before dot
+
+When chaining function calls, our coding style asks for the dot to
+start the new line, not end the preceding one.
+
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/710
+---
+ js/misc/ibusManager.js | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/js/misc/ibusManager.js b/js/misc/ibusManager.js
+index 5677820d3..210315e04 100644
+--- a/js/misc/ibusManager.js
++++ b/js/misc/ibusManager.js
+@@ -19,9 +19,9 @@ function _checkIBusVersion(requiredMajor, requiredMinor, requiredMicro) {
+          IBus.MICRO_VERSION >= requiredMicro))
+         return;
+ 
+-    throw "Found IBus version %d.%d.%d but required is %d.%d.%d".
+-        format(IBus.MAJOR_VERSION, IBus.MINOR_VERSION, IBus.MINOR_VERSION,
+-               requiredMajor, requiredMinor, requiredMicro);
++    throw "Found IBus version %d.%d.%d but required is %d.%d.%d"
++        .format(IBus.MAJOR_VERSION, IBus.MINOR_VERSION, IBus.MINOR_VERSION,
++                requiredMajor, requiredMinor, requiredMicro);
+ }
+ 
+ function getIBusManager() {
+-- 
+2.23.0
+

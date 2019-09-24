@@ -1,0 +1,26 @@
+From 5c3f4f5f8b64f7d0f80aa9852b94a96c3737fcbe Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jonas=20Dre=C3=9Fler?= <verdre@v0yd.nl>
+Date: Mon, 19 Aug 2019 11:54:42 +0200
+Subject: [PATCH 125/152] workspace: Remove unused properties of WindowClone
+
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/683
+---
+ js/ui/workspace.js | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/js/ui/workspace.js b/js/ui/workspace.js
+index b80aa6c9e..faf4f8aa7 100644
+--- a/js/ui/workspace.js
++++ b/js/ui/workspace.js
+@@ -412,8 +412,6 @@ var WindowClone = GObject.registerClass({
+ 
+     _onDragBegin(_draggable, _time) {
+         this._dragSlot = this._slot;
+-        [this.dragOrigX, this.dragOrigY] = this.get_position();
+-        this.dragOrigScale = this.scale_x;
+         this.inDrag = true;
+         this.emit('drag-begin');
+     }
+-- 
+2.23.0
+

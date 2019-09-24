@@ -1,0 +1,42 @@
+From 2a9977a5b3a22b8925d4480329930f88f234a104 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Marco=20Trevisan=20=28Trevi=C3=B1o=29?= <mail@3v1n0.net>
+Date: Thu, 19 Sep 2019 11:46:39 +0200
+Subject: [PATCH 142/152] layout: Don't use the actors pick workaround on
+ update regions
+
+As per introduction of geometric picking in mutter [1], the workaround we
+had consisting in picking all the actors to ensure that all the stage
+projections were computed to get valid actors stage-transformed coordinates
+and sizes is not working anymore as there is more caching involved.
+
+However since this can be now handled properly in mutter [2], initializing a
+valid projection matrix since the beginning, we can get rid of the
+workaround.
+
+[1] https://gitlab.gnome.org/GNOME/mutter/commit/14c706e51
+[2] https://gitlab.gnome.org/GNOME/mutter/merge_requests/803
+
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/734
+---
+ js/ui/layout.js | 5 -----
+ 1 file changed, 5 deletions(-)
+
+diff --git a/js/ui/layout.js b/js/ui/layout.js
+index 4708710f4..744a8f119 100644
+--- a/js/ui/layout.js
++++ b/js/ui/layout.js
+@@ -1015,11 +1015,6 @@ var LayoutManager = GObject.registerClass({
+         if (Main.modalCount > 0)
+             return GLib.SOURCE_REMOVE;
+ 
+-        // Bug workaround - get_transformed_position()/get_transformed_size() don't work after
+-        // a change in stage size until the first pick or paint.
+-        // https://bugzilla.gnome.org/show_bug.cgi?id=761565
+-        global.stage.get_actor_at_pos(Clutter.PickMode.ALL, 0, 0);
+-
+         let rects = [], struts = [], i;
+         let isPopupMenuVisible = global.top_window_group.get_children().some(isPopupMetaWindow);
+         let wantsInputRegion = !isPopupMenuVisible;
+-- 
+2.23.0
+

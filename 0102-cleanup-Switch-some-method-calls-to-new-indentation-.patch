@@ -1,0 +1,85 @@
+From 3a9eaa39ea50c909a3409d236c74259db4a2f079 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Florian=20M=C3=BCllner?= <fmuellner@gnome.org>
+Date: Fri, 13 Sep 2019 00:41:47 +0200
+Subject: [PATCH 102/152] cleanup: Switch some method calls to new indentation
+ style
+
+The legacy indent rule currently ignores arrow functions in parameters
+to allow callbacks to not align with the other arguments:
+
+    this._someFunctionWithFairlyLongishName(arg1, arg2, arg3,
+        () => {
+            this._someOtherFunctionWithLongName(arg1);
+        });
+
+But as ignoring entire nodes means we can end up with arbitrary
+indentation, we should drop the exception. While this would make
+the above "illegal" under the legacy config, it conforms with the
+non-legacy style, so everything should be fine ...
+
+... except that eslint starts to complain about some function args
+that should be fine under the legacy config. Maybe it's thrown off
+by the function-arg-in-arrow-function-in-function-arg structure, but
+rather than figuring it out, let's just move those to the new style.
+
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/725
+---
+ js/ui/screenshot.js           | 12 ++++++------
+ js/ui/status/accessibility.js |  4 ++--
+ 2 files changed, 8 insertions(+), 8 deletions(-)
+
+diff --git a/js/ui/screenshot.js b/js/ui/screenshot.js
+index c9ede2fc1..33233db90 100644
+--- a/js/ui/screenshot.js
++++ b/js/ui/screenshot.js
+@@ -116,8 +116,8 @@ var ScreenshotService = class {
+                 try {
+                     let [result, area, filenameUsed] =
+                         screenshot.screenshot_area_finish(res);
+-                    this._onScreenshotComplete(result, area, filenameUsed,
+-                                               flash, invocation);
++                    this._onScreenshotComplete(
++                        result, area, filenameUsed, flash, invocation);
+                 } catch (e) {
+                     invocation.return_gerror (e);
+                 }
+@@ -134,8 +134,8 @@ var ScreenshotService = class {
+                 try {
+                     let [result, area, filenameUsed] =
+                         screenshot.screenshot_window_finish(res);
+-                    this._onScreenshotComplete(result, area, filenameUsed,
+-                                               flash, invocation);
++                    this._onScreenshotComplete(
++                        result, area, filenameUsed, flash, invocation);
+                 } catch (e) {
+                     invocation.return_gerror (e);
+                 }
+@@ -152,8 +152,8 @@ var ScreenshotService = class {
+                 try {
+                     let [result, area, filenameUsed] =
+                         screenshot.screenshot_finish(res);
+-                    this._onScreenshotComplete(result, area, filenameUsed,
+-                                               flash, invocation);
++                    this._onScreenshotComplete(
++                        result, area, filenameUsed, flash, invocation);
+                 } catch (e) {
+                     invocation.return_gerror (e);
+                 }
+diff --git a/js/ui/status/accessibility.js b/js/ui/status/accessibility.js
+index 56d7802b3..0423fd510 100644
+--- a/js/ui/status/accessibility.js
++++ b/js/ui/status/accessibility.js
+@@ -179,8 +179,8 @@ class ATIndicator extends PanelMenu.Button {
+             settings.is_writable(KEY_TEXT_SCALING_FACTOR),
+             enabled => {
+                 if (enabled)
+-                    settings.set_double(KEY_TEXT_SCALING_FACTOR,
+-                                        DPI_FACTOR_LARGE);
++                    settings.set_double(
++                        KEY_TEXT_SCALING_FACTOR, DPI_FACTOR_LARGE);
+                 else
+                     settings.reset(KEY_TEXT_SCALING_FACTOR);
+             });
+-- 
+2.23.0
+

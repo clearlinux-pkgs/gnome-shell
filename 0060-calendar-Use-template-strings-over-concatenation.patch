@@ -1,0 +1,37 @@
+From 7db5f8b28ee1e226d60ec8dcdc621a26b8cfcf76 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Florian=20M=C3=BCllner?= <fmuellner@gnome.org>
+Date: Mon, 19 Aug 2019 21:12:21 +0200
+Subject: [PATCH 060/152] calendar: Use template strings over concatenation
+
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/710
+---
+ js/ui/calendar.js | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/js/ui/calendar.js b/js/ui/calendar.js
+index 4de3965ac..1f9802f4b 100644
+--- a/js/ui/calendar.js
++++ b/js/ui/calendar.js
+@@ -688,15 +688,15 @@ var EventMessage = class EventMessage extends MessageList.Message {
+         let rtl = Clutter.get_default_text_direction() == Clutter.TextDirection.RTL;
+         if (this._event.date < periodBegin && !this._event.allDay) {
+             if (rtl)
+-                title = title + ELLIPSIS_CHAR;
++                title = `${title}${ELLIPSIS_CHAR}`;
+             else
+-                title = ELLIPSIS_CHAR + title;
++                title = `${ELLIPSIS_CHAR}${title}`;
+         }
+         if (this._event.end > periodEnd && !this._event.allDay) {
+             if (rtl)
+-                title = ELLIPSIS_CHAR + title;
++                title = `${ELLIPSIS_CHAR}${title}`;
+             else
+-                title = title + ELLIPSIS_CHAR;
++                title = `${title}${ELLIPSIS_CHAR}`;
+         }
+         return title;
+     }
+-- 
+2.23.0
+

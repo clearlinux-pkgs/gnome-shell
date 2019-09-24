@@ -1,0 +1,70 @@
+From 43b4f2c7d5f975ca6589970f284f5eb7d4ed45db Mon Sep 17 00:00:00 2001
+From: Georges Basile Stavracas Neto <georges.stavracas@gmail.com>
+Date: Thu, 12 Sep 2019 15:45:04 -0300
+Subject: [PATCH 092/152] lookingGlass: Only update window list when visible
+
+Updating the window list in the Looking Glass is a costly
+operation: it destroys a whole lot of actors, and recreates
+them. This triggers CSS changes, repaints, and allocations.
+
+It is specially bad when paired with Wayland's big number
+of window creations and deletions when showing Builder's
+and Epiphany's popup window.
+
+Only update the window list in the Looking Glass when it is
+visible.
+
+Related: https://gitlab.gnome.org/GNOME/mutter/issues/556
+
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/719
+---
+ js/ui/lookingGlass.js | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+
+diff --git a/js/ui/lookingGlass.js b/js/ui/lookingGlass.js
+index 9f692f4aa..0317973e8 100644
+--- a/js/ui/lookingGlass.js
++++ b/js/ui/lookingGlass.js
+@@ -304,6 +304,9 @@ var WindowList = class WindowList {
+     }
+ 
+     _updateWindowList() {
++        if (!this._lookingGlass.isOpen)
++            return;
++
+         this.actor.destroy_all_children();
+         let windows = global.get_window_actors();
+         let tracker = Shell.WindowTracker.get_default();
+@@ -335,6 +338,10 @@ var WindowList = class WindowList {
+             }
+         }
+     }
++
++    update() {
++        this._updateWindowList();
++    }
+ };
+ Signals.addSignalMethods(WindowList.prototype);
+ 
+@@ -1099,6 +1106,8 @@ var LookingGlass = class LookingGlass {
+             duration,
+             mode: Clutter.AnimationMode.EASE_OUT_QUAD
+         });
++
++        this._windowList.update();
+     }
+ 
+     close() {
+@@ -1124,5 +1133,9 @@ var LookingGlass = class LookingGlass {
+             onComplete: () => this.actor.hide()
+         });
+     }
++
++    get isOpen() {
++        return this._open;
++    }
+ };
+ Signals.addSignalMethods(LookingGlass.prototype);
+-- 
+2.23.0
+

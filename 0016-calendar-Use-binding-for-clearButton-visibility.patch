@@ -1,0 +1,49 @@
+From 27da3ed1fec700cedd3735241c5160e85bbc5383 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Marco=20Trevisan=20=28Trevi=C3=B1o=29?= <mail@3v1n0.net>
+Date: Sat, 31 Aug 2019 20:43:05 +0200
+Subject: [PATCH 016/152] calendar: Use binding for clearButton visibility
+
+When the calendar PlaceHolder is visible, the ClearButton shouldn't
+be. Instead of setting the visibility explicitly, we can use a property
+binding.
+
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/700
+---
+ js/ui/calendar.js | 7 +++++--
+ 1 file changed, 5 insertions(+), 2 deletions(-)
+
+diff --git a/js/ui/calendar.js b/js/ui/calendar.js
+index 2a4214e60..4de3965ac 100644
+--- a/js/ui/calendar.js
++++ b/js/ui/calendar.js
+@@ -1,7 +1,7 @@
+ // -*- mode: js; js-indent-level: 4; indent-tabs-mode: nil -*-
+ /* exported Calendar, CalendarMessageList */
+ 
+-const { Clutter, Gio, GLib, Shell, St } = imports.gi;
++const { Clutter, Gio, GLib, GObject, Shell, St } = imports.gi;
+ const Signals = imports.signals;
+ 
+ const Main = imports.ui.main;
+@@ -1075,6 +1075,10 @@ var CalendarMessageList = class CalendarMessageList {
+         });
+         box.add_actor(this._clearButton);
+ 
++        this._placeholder.actor.bind_property('visible',
++            this._clearButton, 'visible',
++            GObject.BindingFlags.INVERT_BOOLEAN);
++
+         this._sectionList = new St.BoxLayout({ style_class: 'message-list-sections',
+                                                vertical: true,
+                                                y_expand: true,
+@@ -1145,7 +1149,6 @@ var CalendarMessageList = class CalendarMessageList {
+ 
+         let empty = sections.every(s => s.empty || !s.actor.visible);
+         this._placeholder.actor.visible = empty;
+-        this._clearButton.visible = !empty;
+ 
+         let canClear = sections.some(s => s.canClear && s.actor.visible);
+         this._clearButton.reactive = canClear;
+-- 
+2.23.0
+

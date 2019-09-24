@@ -1,0 +1,48 @@
+From 8ffea9d5c5136c3e0199a0d95f10b312397f6a90 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jonas=20Dre=C3=9Fler?= <verdre@v0yd.nl>
+Date: Tue, 12 Feb 2019 13:04:55 +0100
+Subject: [PATCH 122/152] workspace: Make title of overlay reactive
+
+Also make the title of the overlay reactive so we can keep the overlay
+visible if the mouse is hovering over the title.
+
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/683
+---
+ js/ui/workspace.js | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/js/ui/workspace.js b/js/ui/workspace.js
+index 72707173c..4d1f65115 100644
+--- a/js/ui/workspace.js
++++ b/js/ui/workspace.js
+@@ -468,7 +468,8 @@ var WindowOverlay = class {
+         this.border = new St.Bin({ style_class: 'window-clone-border' });
+ 
+         this.title = new St.Label({ style_class: 'window-caption',
+-                                    text: this._getCaption() });
++                                    text: this._getCaption(),
++                                    reactive: true });
+         this.title.clutter_text.ellipsize = Pango.EllipsizeMode.END;
+         windowClone.label_actor = this.title;
+ 
+@@ -493,7 +494,6 @@ var WindowOverlay = class {
+         this.closeButton.hide();
+ 
+         // Don't block drop targets
+-        Shell.util_set_hidden_from_pick(this.title, true);
+         Shell.util_set_hidden_from_pick(this.border, true);
+ 
+         parentActor.add_actor(this.border);
+@@ -693,7 +693,8 @@ var WindowOverlay = class {
+     }
+ 
+     _idleHideOverlay() {
+-        if (this.closeButton['has-pointer'])
++        if (this.closeButton['has-pointer'] ||
++            this.title['has-pointer'])
+             return GLib.SOURCE_CONTINUE;
+ 
+         if (!this._windowClone['has-pointer'])
+-- 
+2.23.0
+

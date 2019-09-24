@@ -1,0 +1,33 @@
+From 0888a9bffd256f2552224da465befc8ba7b54ad6 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Florian=20M=C3=BCllner?= <fmuellner@gnome.org>
+Date: Tue, 10 Sep 2019 15:28:42 +0200
+Subject: [PATCH 033/152] environment: Skip property animations while hidden
+
+For implicit animations, Clutter will skip any transitions while
+an actor is unmapped, and just set the property directly. Do the
+same in our ease_property() convencience method.
+
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/708
+---
+ js/ui/environment.js | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/js/ui/environment.js b/js/ui/environment.js
+index 0c291b0a2..bf5b7cb4d 100644
+--- a/js/ui/environment.js
++++ b/js/ui/environment.js
+@@ -139,6 +139,11 @@ function _easeActorProperty(actor, propName, target, params) {
+         params.duration = adjustAnimationTime(params.duration);
+     let duration = Math.floor(params.duration || 0);
+ 
++    // Copy Clutter's behavior for implicit animations, see
++    // should_skip_implicit_transition()
++    if (actor instanceof Clutter.Actor && !actor.mapped)
++        duration = 0;
++
+     let callback = _makeEaseCallback(params);
+ 
+     // cancel overwritten transition
+-- 
+2.23.0
+

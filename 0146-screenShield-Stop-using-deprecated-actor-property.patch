@@ -1,0 +1,31 @@
+From 92e5713e29ef925bfd1e3da39ced3a7e0a573192 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Florian=20M=C3=BCllner?= <fmuellner@gnome.org>
+Date: Fri, 20 Sep 2019 13:14:40 +0200
+Subject: [PATCH 146/152] screenShield: Stop using deprecated actor property
+
+Both LoginDialog and UnlockDialog are now actor subclasses, so stop
+using the deprecated actor delegate that will trigger a warning.
+
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/736
+---
+ js/ui/screenShield.js | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/js/ui/screenShield.js b/js/ui/screenShield.js
+index f79be611c..2e2e95a38 100644
+--- a/js/ui/screenShield.js
++++ b/js/ui/screenShield.js
+@@ -916,8 +916,8 @@ var ScreenShield = class {
+         this._lockScreenGroup.hide();
+ 
+         if (this._dialog) {
+-            this._dialog.actor.grab_key_focus();
+-            this._dialog.actor.navigate_focus(null, St.DirectionType.TAB_FORWARD, false);
++            this._dialog.grab_key_focus();
++            this._dialog.navigate_focus(null, St.DirectionType.TAB_FORWARD, false);
+         }
+     }
+ 
+-- 
+2.23.0
+

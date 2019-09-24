@@ -1,0 +1,40 @@
+From 2156577333fd96514888a8f2f825a14ab05b614a Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jonas=20Dre=C3=9Fler?= <verdre@v0yd.nl>
+Date: Sun, 22 Sep 2019 13:31:02 +0200
+Subject: [PATCH 151/152] slider: Unset signal IDs when ending the slider drag
+
+Unset the signal IDs we connected to when starting the drag. Otherwise
+we get error messages if a touch drag is ended after a mouse drag
+happened because the signal IDs are still set but no signals are
+connected.
+
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/740
+---
+ js/ui/slider.js | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
+
+diff --git a/js/ui/slider.js b/js/ui/slider.js
+index 3e35dbcb2..662716d67 100644
+--- a/js/ui/slider.js
++++ b/js/ui/slider.js
+@@ -100,10 +100,15 @@ var Slider = GObject.registerClass({
+ 
+     _endDragging() {
+         if (this._dragging) {
+-            if (this._releaseId)
++            if (this._releaseId) {
+                 this.disconnect(this._releaseId);
+-            if (this._motionId)
++                this._releaseId = 0;
++            }
++
++            if (this._motionId) {
+                 this.disconnect(this._motionId);
++                this._motionId = 0;
++            }
+ 
+             if (this._grabbedSequence != null)
+                 this._grabbedDevice.sequence_ungrab(this._grabbedSequence);
+-- 
+2.23.0
+

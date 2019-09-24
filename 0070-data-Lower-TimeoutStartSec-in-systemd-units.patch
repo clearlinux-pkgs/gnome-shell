@@ -1,0 +1,39 @@
+From d2ead59d74db2392ea0ed68b57c6a1adcfdf2a40 Mon Sep 17 00:00:00 2001
+From: Iain Lane <iainl@gnome.org>
+Date: Tue, 3 Sep 2019 12:45:24 +0100
+Subject: [PATCH 070/152] data: Lower TimeoutStartSec in systemd units
+
+If there's a stubborn process in our cgroup, we shouldn't hang around
+waiting for the default (30 seconds) before the session closes. We've
+logged out, SIGTERMed and the thing is refusing to go away, let's not
+make people hang around for ages.
+
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/699
+---
+ data/gnome-shell-wayland.service.in | 2 ++
+ data/gnome-shell-x11.service.in     | 2 ++
+ 2 files changed, 4 insertions(+)
+
+diff --git a/data/gnome-shell-wayland.service.in b/data/gnome-shell-wayland.service.in
+index 351571c7f..04f94af2d 100644
+--- a/data/gnome-shell-wayland.service.in
++++ b/data/gnome-shell-wayland.service.in
+@@ -23,3 +23,5 @@ ExecStart=@bindir@/gnome-shell
+ SuccessExitStatus=1
+ # On wayland we cannot restart
+ Restart=no
++# Kill any stubborn child processes after this long
++TimeoutStopSec=5
+diff --git a/data/gnome-shell-x11.service.in b/data/gnome-shell-x11.service.in
+index 2c9fec1b5..a10c33d29 100644
+--- a/data/gnome-shell-x11.service.in
++++ b/data/gnome-shell-x11.service.in
+@@ -29,3 +29,5 @@ SuccessExitStatus=1
+ Restart=always
+ # Do not wait before restarting the shell
+ RestartSec=0ms
++# Kill any stubborn child processes after this long
++TimeoutStopSec=5
+-- 
+2.23.0
+

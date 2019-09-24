@@ -1,0 +1,580 @@
+From af87bd8c877bf8c88ba37ecfc73db7c220d0f47e Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Florian=20M=C3=BCllner?= <fmuellner@gnome.org>
+Date: Mon, 19 Aug 2019 21:33:15 +0200
+Subject: [PATCH 101/152] cleanup: Use consistent style for ternary operator
+
+We are currently inconsistent whether to put the operators in front
+of the corresponding line or at the end of the preceding one. The
+most dominant style for now is to put condition and first branch on
+the same line, and then align the second branch:
+
+  let foo = condition ? fooValue
+                      : notFooValue;
+
+Unfortunately that's a style that eslint doesn't support, so to account
+for it, our legacy configuration currently plainly ignores all indentation
+in conditionals.
+
+In order to drop that exception and not let messed up indentation slip
+through, change all ternary operators to the non-legacy style.
+
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/725
+---
+ js/misc/systemActions.js            |  5 +++--
+ js/ui/altTab.js                     | 10 +++++-----
+ js/ui/appDisplay.js                 |  9 +++++----
+ js/ui/calendar.js                   | 10 ++++++----
+ js/ui/components/keyring.js         |  5 +++--
+ js/ui/components/telepathyClient.js |  8 ++++----
+ js/ui/dash.js                       |  4 ++--
+ js/ui/dateMenu.js                   |  5 +++--
+ js/ui/iconGrid.js                   | 14 +++++++-------
+ js/ui/inhibitShortcutsDialog.js     |  5 +++--
+ js/ui/layout.js                     |  8 ++++----
+ js/ui/messageTray.js                |  5 +++--
+ js/ui/mpris.js                      |  5 +++--
+ js/ui/notificationDaemon.js         | 10 ++++++----
+ js/ui/overviewControls.js           |  9 +++++----
+ js/ui/pageIndicators.js             | 10 ++++++----
+ js/ui/popupMenu.js                  |  5 +++--
+ js/ui/screenShield.js               |  5 +++--
+ js/ui/search.js                     |  5 +++--
+ js/ui/sessionMode.js                | 10 +++++-----
+ js/ui/status/keyboard.js            |  4 ++--
+ js/ui/status/location.js            |  5 +++--
+ js/ui/status/nightLight.js          | 10 ++++++----
+ js/ui/status/volume.js              |  6 +++---
+ js/ui/viewSelector.js               |  9 +++++----
+ 25 files changed, 101 insertions(+), 80 deletions(-)
+
+diff --git a/js/misc/systemActions.js b/js/misc/systemActions.js
+index d86935f4d..3f0b2ec98 100644
+--- a/js/misc/systemActions.js
++++ b/js/misc/systemActions.js
+@@ -244,8 +244,9 @@ const SystemActions = GObject.registerClass({
+ 
+     _updateOrientationLockIcon() {
+         let locked = this._orientationSettings.get_boolean('orientation-lock');
+-        let iconName = locked ? 'rotation-locked-symbolic'
+-                              : 'rotation-allowed-symbolic';
++        let iconName = locked
++            ? 'rotation-locked-symbolic'
++            : 'rotation-allowed-symbolic';
+         this._actions.get(LOCK_ORIENTATION_ACTION_ID).iconName = iconName;
+ 
+         this.notify('orientation-lock-icon');
+diff --git a/js/ui/altTab.js b/js/ui/altTab.js
+index f846d1020..98ca5b386 100644
+--- a/js/ui/altTab.js
++++ b/js/ui/altTab.js
+@@ -437,8 +437,8 @@ class CyclerHighlight {
+         if (this._clone.source)
+             this._clone.source.sync_visibility();
+ 
+-        let windowActor = this._window ? this._window.get_compositor_private()
+-                                       : null;
++        let windowActor = this._window
++            ? this._window.get_compositor_private() : null;
+ 
+         if (windowActor)
+             windowActor.hide();
+@@ -1014,9 +1014,9 @@ class WindowIcon extends St.BoxLayout {
+     }
+ 
+     _createAppIcon(app, size) {
+-        let appIcon = app ? app.create_icon_texture(size)
+-                          : new St.Icon({ icon_name: 'icon-missing',
+-                                          icon_size: size });
++        let appIcon = app
++            ? app.create_icon_texture(size)
++            : new St.Icon({ icon_name: 'icon-missing', icon_size: size });
+         appIcon.x_expand = appIcon.y_expand = true;
+         appIcon.x_align = appIcon.y_align = Clutter.ActorAlign.END;
+ 
+diff --git a/js/ui/appDisplay.js b/js/ui/appDisplay.js
+index a718fd428..44caf1643 100644
+--- a/js/ui/appDisplay.js
++++ b/js/ui/appDisplay.js
+@@ -1107,8 +1107,9 @@ var AppDisplay = class AppDisplay {
+             else
+                 this._views[i].control.remove_style_pseudo_class('checked');
+ 
+-            let animationDirection = i == activeIndex ? IconGrid.AnimationDirection.IN :
+-                                                        IconGrid.AnimationDirection.OUT;
++            let animationDirection = i == activeIndex
++                ? IconGrid.AnimationDirection.IN
++                : IconGrid.AnimationDirection.OUT;
+             this._views[i].view.animateSwitch(animationDirection);
+         }
+     }
+@@ -2398,8 +2399,8 @@ var AppIconMenu = class AppIconMenu extends PopupMenu.PopupMenu {
+             );
+ 
+         windows.forEach(window => {
+-            let title = window.title ? window.title
+-                                     : this._source.app.get_name();
++            let title = window.title
++                ? window.title : this._source.app.get_name();
+             let item = this._appendMenuItem(title);
+             item.connect('activate', () => {
+                 this.emit('activate-window', window);
+diff --git a/js/ui/calendar.js b/js/ui/calendar.js
+index 1f9802f4b..797558ffa 100644
+--- a/js/ui/calendar.js
++++ b/js/ui/calendar.js
+@@ -581,8 +581,9 @@ var Calendar = class Calendar {
+             if (row == 2)
+                 styleClass = `calendar-day-top ${styleClass}`;
+ 
+-            let leftMost = rtl ? iter.getDay() == (this._weekStart + 6) % 7
+-                               : iter.getDay() == this._weekStart;
++            let leftMost = rtl
++                ? iter.getDay() == (this._weekStart + 6) % 7
++                : iter.getDay() == this._weekStart;
+             if (leftMost)
+                 styleClass = `calendar-day-left ${styleClass}`;
+ 
+@@ -680,8 +681,9 @@ var EventMessage = class EventMessage extends MessageList.Message {
+              */
+             title = C_("event list time", "All Day");
+         } else {
+-            let date = this._event.date >= periodBegin ? this._event.date
+-                                                       : this._event.end;
++            let date = this._event.date >= periodBegin
++                ? this._event.date
++                : this._event.end;
+             title = Util.formatTime(date, { timeOnly: true });
+         }
+ 
+diff --git a/js/ui/components/keyring.js b/js/ui/components/keyring.js
+index 28932ddd8..66948b65d 100644
+--- a/js/ui/components/keyring.js
++++ b/js/ui/components/keyring.js
+@@ -232,8 +232,9 @@ var KeyringPrompter = class {
+     constructor() {
+         this._prompter = new Gcr.SystemPrompter();
+         this._prompter.connect('new-prompt', () => {
+-            let dialog = this._enabled ? new KeyringDialog()
+-                                       : new KeyringDummyDialog();
++            let dialog = this._enabled
++                ? new KeyringDialog()
++                : new KeyringDummyDialog();
+             this._currentPrompt = dialog.prompt;
+             return this._currentPrompt;
+         });
+diff --git a/js/ui/components/telepathyClient.js b/js/ui/components/telepathyClient.js
+index 6d4915d53..0943301d3 100644
+--- a/js/ui/components/telepathyClient.js
++++ b/js/ui/components/telepathyClient.js
+@@ -673,8 +673,8 @@ var ChatNotification = class extends MessageTray.Notification {
+                         { datetime: GLib.DateTime.new_from_unix_local (message.timestamp),
+                           bannerMarkup: true });
+ 
+-        let group = (message.direction == NotificationDirection.RECEIVED ?
+-                     'received' : 'sent');
++        let group = (message.direction == NotificationDirection.RECEIVED
++            ? 'received' : 'sent');
+ 
+         this._append({ body: messageBody,
+                        group: group,
+@@ -696,8 +696,8 @@ var ChatNotification = class extends MessageTray.Notification {
+         // SCROLLBACK_RECENT_LENGTH previous messages. Otherwise
+         // we'll keep SCROLLBACK_IDLE_LENGTH messages.
+ 
+-        let maxLength = (lastMessageTime < currentTime - SCROLLBACK_RECENT_TIME) ?
+-            SCROLLBACK_IDLE_LENGTH : SCROLLBACK_RECENT_LENGTH;
++        let maxLength = (lastMessageTime < currentTime - SCROLLBACK_RECENT_TIME)
++            ? SCROLLBACK_IDLE_LENGTH : SCROLLBACK_RECENT_LENGTH;
+ 
+         let filteredHistory = this.messages.filter(item => item.realMessage);
+         if (filteredHistory.length > maxLength) {
+diff --git a/js/ui/dash.js b/js/ui/dash.js
+index 3d95ddab2..5751afee0 100644
+--- a/js/ui/dash.js
++++ b/js/ui/dash.js
+@@ -703,8 +703,8 @@ var Dash = class Dash {
+             }
+ 
+             // App moved
+-            let nextApp = newApps.length > newIndex + 1 ? newApps[newIndex + 1]
+-                                                        : null;
++            let nextApp = newApps.length > newIndex + 1
++                ? newApps[newIndex + 1] : null;
+             let insertHere = nextApp && nextApp == oldApp;
+             let alreadyRemoved = removedActors.reduce((result, actor) => {
+                 let removedApp = actor.child._delegate.app;
+diff --git a/js/ui/dateMenu.js b/js/ui/dateMenu.js
+index 2c8253481..cfe52091f 100644
+--- a/js/ui/dateMenu.js
++++ b/js/ui/dateMenu.js
+@@ -148,8 +148,9 @@ var WorldClocksSection = class WorldClocksSection {
+         });
+ 
+         let layout = this._grid.layout_manager;
+-        let title = (this._locations.length == 0) ? _("Add world clocks…")
+-                                                  : _("World Clocks");
++        let title = (this._locations.length == 0)
++            ? _("Add world clocks…")
++            : _("World Clocks");
+         let header = new St.Label({ style_class: 'world-clocks-header',
+                                     x_align: Clutter.ActorAlign.START,
+                                     text: title });
+diff --git a/js/ui/iconGrid.js b/js/ui/iconGrid.js
+index 0cddb6256..ca23bccdb 100644
+--- a/js/ui/iconGrid.js
++++ b/js/ui/iconGrid.js
+@@ -273,9 +273,9 @@ var IconGrid = GObject.registerClass({
+             return [0, 0];
+ 
+         let nChildren = this.get_n_children();
+-        let nColumns = this._colLimit ? Math.min(this._colLimit,
+-                                                 nChildren)
+-                                      : nChildren;
++        let nColumns = this._colLimit
++            ? Math.min(this._colLimit, nChildren)
++            : nChildren;
+         let totalSpacing = Math.max(0, nColumns - 1) * this._getSpacing();
+         // Kind of a lie, but not really an issue right now.  If
+         // we wanted to support some sort of hidden/overflow that would
+@@ -787,8 +787,9 @@ var IconGrid = GObject.registerClass({
+             let neededWidth = this.usedWidthForNColumns(this._minColumns) - availWidth;
+             let neededHeight = this.usedHeightForNRows(this._minRows) - availHeight;
+ 
+-            let neededSpacePerItem = (neededWidth > neededHeight) ? Math.ceil(neededWidth / this._minColumns)
+-                                                                  : Math.ceil(neededHeight / this._minRows);
++            let neededSpacePerItem = (neededWidth > neededHeight)
++                ? Math.ceil(neededWidth / this._minColumns)
++                : Math.ceil(neededHeight / this._minRows);
+             this._fixedHItemSize = Math.max(this._hItemSize - neededSpacePerItem, MIN_ICON_SIZE);
+             this._fixedVItemSize = Math.max(this._vItemSize - neededSpacePerItem, MIN_ICON_SIZE);
+ 
+@@ -963,8 +964,7 @@ var PaginatedIconGrid = GObject.registerClass({
+         let childrenPerRow = this._childrenPerPage / this._rowsPerPage;
+         let sourceRow = Math.floor((index - pageOffset) / childrenPerRow);
+ 
+-        let nRowsAbove = (side == St.Side.TOP) ? sourceRow + 1
+-                                               : sourceRow;
++        let nRowsAbove = (side == St.Side.TOP) ? sourceRow + 1 : sourceRow;
+         let nRowsBelow = this._rowsPerPage - nRowsAbove;
+ 
+         let nRowsUp, nRowsDown;
+diff --git a/js/ui/inhibitShortcutsDialog.js b/js/ui/inhibitShortcutsDialog.js
+index b81fec394..76960e233 100644
+--- a/js/ui/inhibitShortcutsDialog.js
++++ b/js/ui/inhibitShortcutsDialog.js
+@@ -76,8 +76,9 @@ var InhibitShortcutsDialog = GObject.registerClass({
+         let name = this._app ? this._app.get_name() : this._window.title;
+ 
+         /* Translators: %s is an application name like "Settings" */
+-        let title = name ? _("%s wants to inhibit shortcuts").format(name)
+-                         : _("Application wants to inhibit shortcuts");
++        let title = name
++            ? _("%s wants to inhibit shortcuts").format(name)
++            : _("Application wants to inhibit shortcuts");
+         let icon = new Gio.ThemedIcon({ name: 'dialog-warning-symbolic' });
+ 
+         let contentParams = { icon, title };
+diff --git a/js/ui/layout.js b/js/ui/layout.js
+index bfe19bfcb..17bda4778 100644
+--- a/js/ui/layout.js
++++ b/js/ui/layout.js
+@@ -771,8 +771,7 @@ var LayoutManager = GObject.registerClass({
+         this.keyboardBox.ease({
+             anchor_y: 0,
+             opacity: 0,
+-            duration: immediate ? 0
+-                                : KEYBOARD_ANIMATION_TIME,
++            duration: immediate ? 0 : KEYBOARD_ANIMATION_TIME,
+             mode: Clutter.AnimationMode.EASE_IN_QUAD,
+             onComplete: () => {
+                 this._hideKeyboardComplete();
+@@ -856,8 +855,9 @@ var LayoutManager = GObject.registerClass({
+             index = this._findActor(ancestor);
+         }
+ 
+-        let ancestorData = ancestor ? this._trackedActors[index]
+-                                    : defaultParams;
++        let ancestorData = ancestor
++            ? this._trackedActors[index]
++            : defaultParams;
+         // We can't use Params.parse here because we want to drop
+         // the extra values like ancestorData.actor
+         for (let prop in defaultParams) {
+diff --git a/js/ui/messageTray.js b/js/ui/messageTray.js
+index f4d524540..b9e4cd715 100644
+--- a/js/ui/messageTray.js
++++ b/js/ui/messageTray.js
+@@ -735,8 +735,9 @@ var Source = class Source {
+     }
+ 
+     get narrowestPrivacyScope() {
+-        return this.notifications.every(n => n.privacyScope == PrivacyScope.SYSTEM) ? PrivacyScope.SYSTEM
+-                                                                                    : PrivacyScope.USER;
++        return this.notifications.every(n => n.privacyScope == PrivacyScope.SYSTEM)
++            ? PrivacyScope.SYSTEM
++            : PrivacyScope.USER;
+     }
+ 
+     setTitle(newTitle) {
+diff --git a/js/ui/mpris.js b/js/ui/mpris.js
+index 6ea7aafa3..9debc0b2e 100644
+--- a/js/ui/mpris.js
++++ b/js/ui/mpris.js
+@@ -71,8 +71,9 @@ var MediaMessage = class MediaMessage extends MessageList.Message {
+         }
+ 
+         let isPlaying = this._player.status == 'Playing';
+-        let iconName = isPlaying ? 'media-playback-pause-symbolic'
+-                                 : 'media-playback-start-symbolic';
++        let iconName = isPlaying
++            ? 'media-playback-pause-symbolic'
++            : 'media-playback-start-symbolic';
+         this._playPauseButton.child.icon_name = iconName;
+ 
+         this._updateNavButton(this._prevButton, this._player.canGoPrevious);
+diff --git a/js/ui/notificationDaemon.js b/js/ui/notificationDaemon.js
+index 34b149628..ece95e790 100644
+--- a/js/ui/notificationDaemon.js
++++ b/js/ui/notificationDaemon.js
+@@ -346,8 +346,9 @@ var FdoNotificationDaemon = class FdoNotificationDaemon {
+         notification.setTransient(!!hints['transient']);
+ 
+         let privacyScope = (hints['x-gnome-privacy-scope'] || 'user');
+-        notification.setPrivacyScope(privacyScope == 'system' ? MessageTray.PrivacyScope.SYSTEM
+-                                                              : MessageTray.PrivacyScope.USER);
++        notification.setPrivacyScope(privacyScope == 'system'
++            ? MessageTray.PrivacyScope.SYSTEM
++            : MessageTray.PrivacyScope.USER);
+ 
+         let sourceGIcon = source.useNotificationIcon ? gicon : null;
+         source.processNotification(notification, sourceGIcon);
+@@ -554,8 +555,9 @@ class GtkNotificationDaemonNotification extends MessageTray.Notification {
+             let urgency = PRIORITY_URGENCY_MAP[priority.unpack()];
+             this.setUrgency(urgency != undefined ? urgency : MessageTray.Urgency.NORMAL);
+         } else if (urgent) {
+-            this.setUrgency(urgent.unpack() ? MessageTray.Urgency.CRITICAL
+-                            : MessageTray.Urgency.NORMAL);
++            this.setUrgency(urgent.unpack()
++                ? MessageTray.Urgency.CRITICAL
++                : MessageTray.Urgency.NORMAL);
+         } else {
+             this.setUrgency(MessageTray.Urgency.NORMAL);
+         }
+diff --git a/js/ui/overviewControls.js b/js/ui/overviewControls.js
+index f5c51eed7..0edf8cd5d 100644
+--- a/js/ui/overviewControls.js
++++ b/js/ui/overviewControls.js
+@@ -14,8 +14,8 @@ var SIDE_CONTROLS_ANIMATION_TIME = 160;
+ function getRtlSlideDirection(direction, actor) {
+     let rtl = (actor.text_direction == Clutter.TextDirection.RTL);
+     if (rtl)
+-        direction = (direction == SlideDirection.LEFT) ?
+-            SlideDirection.RIGHT : SlideDirection.LEFT;
++        direction = (direction == SlideDirection.LEFT)
++            ? SlideDirection.RIGHT : SlideDirection.LEFT;
+ 
+     return direction;
+ }
+@@ -67,8 +67,9 @@ var SlideLayout = GObject.registerClass({
+         // flags only determine what to do if the allocated box is bigger
+         // than the actor's box.
+         let realDirection = getRtlSlideDirection(this._direction, child);
+-        let alignX = (realDirection == SlideDirection.LEFT) ? (availWidth - natWidth)
+-                                                            : (availWidth - natWidth * this._slideX);
++        let alignX = (realDirection == SlideDirection.LEFT)
++            ? availWidth - natWidth
++            : availWidth - natWidth * this._slideX;
+ 
+         let actorBox = new Clutter.ActorBox();
+         actorBox.x1 = box.x1 + alignX + this._translationX;
+diff --git a/js/ui/pageIndicators.js b/js/ui/pageIndicators.js
+index 008867740..8d81fd0f3 100644
+--- a/js/ui/pageIndicators.js
++++ b/js/ui/pageIndicators.js
+@@ -126,12 +126,14 @@ class AnimatedPageIndicators extends PageIndicators {
+             offset = children[0].width;
+ 
+         let isAnimationIn = animationDirection == AnimationDirection.IN;
+-        let delay = isAnimationIn ? INDICATORS_ANIMATION_DELAY :
+-                                    INDICATORS_ANIMATION_DELAY_OUT;
++        let delay = isAnimationIn
++            ? INDICATORS_ANIMATION_DELAY
++            : INDICATORS_ANIMATION_DELAY_OUT;
+         let baseTime = isAnimationIn ? INDICATORS_BASE_TIME : INDICATORS_BASE_TIME_OUT;
+         let totalAnimationTime = baseTime + delay * this._nPages;
+-        let maxTime = isAnimationIn ? INDICATORS_ANIMATION_MAX_TIME :
+-                                      INDICATORS_ANIMATION_MAX_TIME_OUT;
++        let maxTime = isAnimationIn
++            ? INDICATORS_ANIMATION_MAX_TIME
++            : INDICATORS_ANIMATION_MAX_TIME_OUT;
+         if (totalAnimationTime > maxTime)
+             delay -= (totalAnimationTime - maxTime) / this._nPages;
+ 
+diff --git a/js/ui/popupMenu.js b/js/ui/popupMenu.js
+index 75f7cae9c..de642e5a4 100644
+--- a/js/ui/popupMenu.js
++++ b/js/ui/popupMenu.js
+@@ -1306,8 +1306,9 @@ var PopupMenuManager = class {
+     }
+ 
+     _changeMenu(newMenu) {
+-        newMenu.open(this.activeMenu ? BoxPointer.PopupAnimation.FADE
+-                                     : BoxPointer.PopupAnimation.FULL);
++        newMenu.open(this.activeMenu
++            ? BoxPointer.PopupAnimation.FADE
++            : BoxPointer.PopupAnimation.FULL);
+     }
+ 
+     _onMenuSourceEnter(menu) {
+diff --git a/js/ui/screenShield.js b/js/ui/screenShield.js
+index ab83f6846..f79be611c 100644
+--- a/js/ui/screenShield.js
++++ b/js/ui/screenShield.js
+@@ -173,8 +173,9 @@ var NotificationsBox = class {
+ 
+             let body = '';
+             if (n.bannerBodyText) {
+-                body = n.bannerBodyMarkup ? n.bannerBodyText
+-                                          : GLib.markup_escape_text(n.bannerBodyText, -1);
++                body = n.bannerBodyMarkup
++                    ? n.bannerBodyText
++                    : GLib.markup_escape_text(n.bannerBodyText, -1);
+             }
+ 
+             let label = new St.Label({ style_class: 'screen-shield-notification-count-text' });
+diff --git a/js/ui/search.js b/js/ui/search.js
+index d4de5ece2..8d70d35ab 100644
+--- a/js/ui/search.js
++++ b/js/ui/search.js
+@@ -710,8 +710,9 @@ var SearchResults = class {
+     navigateFocus(direction) {
+         let rtl = this.actor.get_text_direction() == Clutter.TextDirection.RTL;
+         if (direction == St.DirectionType.TAB_BACKWARD ||
+-            direction == (rtl ? St.DirectionType.RIGHT
+-                              : St.DirectionType.LEFT) ||
++            direction == (rtl
++                ? St.DirectionType.RIGHT
++                : St.DirectionType.LEFT) ||
+             direction == St.DirectionType.UP) {
+             this.actor.navigate_focus(null, direction, false);
+             return;
+diff --git a/js/ui/sessionMode.js b/js/ui/sessionMode.js
+index 55a422f3d..e47bb97b1 100644
+--- a/js/ui/sessionMode.js
++++ b/js/ui/sessionMode.js
+@@ -92,11 +92,11 @@ const _modes = {
+         isLocked: false,
+         isPrimary: true,
+         unlockDialog: imports.ui.unlockDialog.UnlockDialog,
+-        components: Config.HAVE_NETWORKMANAGER ?
+-                    ['networkAgent', 'polkitAgent', 'telepathyClient',
+-                     'keyring', 'autorunManager', 'automountManager'] :
+-                    ['polkitAgent', 'telepathyClient',
+-                     'keyring', 'autorunManager', 'automountManager'],
++        components: Config.HAVE_NETWORKMANAGER
++            ? ['networkAgent', 'polkitAgent', 'telepathyClient',
++               'keyring', 'autorunManager', 'automountManager']
++            : ['polkitAgent', 'telepathyClient',
++               'keyring', 'autorunManager', 'automountManager'],
+ 
+         panel: {
+             left: ['activities', 'appMenu'],
+diff --git a/js/ui/status/keyboard.js b/js/ui/status/keyboard.js
+index 9383e9c2c..9a6252ad6 100644
+--- a/js/ui/status/keyboard.js
++++ b/js/ui/status/keyboard.js
+@@ -976,8 +976,8 @@ class InputSourceIndicator extends PanelMenu.Button {
+                 item.prop = prop;
+                 radioGroup.push(item);
+                 item.radioGroup = radioGroup;
+-                item.setOrnament(prop.get_state() == IBus.PropState.CHECKED ?
+-                                 PopupMenu.Ornament.DOT : PopupMenu.Ornament.NONE);
++                item.setOrnament(prop.get_state() == IBus.PropState.CHECKED
++                    ? PopupMenu.Ornament.DOT : PopupMenu.Ornament.NONE);
+                 item.connect('activate', () => {
+                     if (item.prop.get_state() == IBus.PropState.CHECKED)
+                         return;
+diff --git a/js/ui/status/location.js b/js/ui/status/location.js
+index beb783c19..0679e22b7 100644
+--- a/js/ui/status/location.js
++++ b/js/ui/status/location.js
+@@ -168,8 +168,9 @@ var Indicator = class extends PanelMenu.SystemIndicator {
+ 
+     _updateMenuLabels() {
+         if (this._settings.get_boolean(ENABLED)) {
+-            this._item.label.text = this._indicator.visible ? _("Location In Use")
+-                                                            : _("Location Enabled");
++            this._item.label.text = this._indicator.visible
++                ? _("Location In Use")
++                : _("Location Enabled");
+             this._onOffAction.label.text = _("Disable");
+         } else {
+             this._item.label.text = _("Location Disabled");
+diff --git a/js/ui/status/nightLight.js b/js/ui/status/nightLight.js
+index 43a7c06ff..fceb3c68d 100644
+--- a/js/ui/status/nightLight.js
++++ b/js/ui/status/nightLight.js
+@@ -58,10 +58,12 @@ var Indicator = class extends PanelMenu.SystemIndicator {
+         let visible = this._proxy.NightLightActive;
+         let disabled = this._proxy.DisabledUntilTomorrow;
+ 
+-        this._item.label.text = disabled ? _("Night Light Disabled")
+-                                         : _("Night Light On");
+-        this._disableItem.label.text = disabled ? _("Resume")
+-                                                : _("Disable Until Tomorrow");
++        this._item.label.text = disabled
++            ? _("Night Light Disabled")
++            : _("Night Light On");
++        this._disableItem.label.text = disabled
++            ? _("Resume")
++            : _("Disable Until Tomorrow");
+         this._item.visible = this._indicator.visible = visible;
+     }
+ };
+diff --git a/js/ui/status/volume.js b/js/ui/status/volume.js
+index 75ad2cac0..21968107d 100644
+--- a/js/ui/status/volume.js
++++ b/js/ui/status/volume.js
+@@ -228,9 +228,9 @@ var OutputStreamSlider = class extends StreamSlider {
+     }
+ 
+     _updateSliderIcon() {
+-        this._icon.icon_name = (this._hasHeadphones ?
+-                                'audio-headphones-symbolic' :
+-                                'audio-speakers-symbolic');
++        this._icon.icon_name = (this._hasHeadphones
++            ? 'audio-headphones-symbolic'
++            : 'audio-speakers-symbolic');
+     }
+ 
+     _portChanged() {
+diff --git a/js/ui/viewSelector.js b/js/ui/viewSelector.js
+index 4ee8f41d6..df69adfcc 100644
+--- a/js/ui/viewSelector.js
++++ b/js/ui/viewSelector.js
+@@ -389,8 +389,8 @@ var ViewSelector = class {
+     }
+ 
+     _onShowAppsButtonToggled() {
+-        this._showPage(this._showAppsButton.checked ?
+-                       this._appsPage : this._workspacesPage);
++        this._showPage(this._showAppsButton.checked
++            ? this._appsPage : this._workspacesPage);
+     }
+ 
+     _onStageKeyPress(actor, event) {
+@@ -424,8 +424,9 @@ var ViewSelector = class {
+     }
+ 
+     _searchCancelled() {
+-        this._showPage(this._showAppsButton.checked ? this._appsPage
+-                                                    : this._workspacesPage);
++        this._showPage(this._showAppsButton.checked
++            ? this._appsPage
++            : this._workspacesPage);
+ 
+         // Leave the entry focused when it doesn't have any text;
+         // when replacing a selected search term, Clutter emits
+-- 
+2.23.0
+

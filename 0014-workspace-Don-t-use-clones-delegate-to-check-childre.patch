@@ -1,0 +1,45 @@
+From 24d3744cb98aa5b828edfc007994bfe0912df245 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Marco=20Trevisan=20=28Trevi=C3=B1o=29?= <mail@3v1n0.net>
+Date: Fri, 12 Jul 2019 14:00:55 +0200
+Subject: [PATCH 014/152] workspace: Don't use clones' delegate to check
+ children
+
+The WindowClones are now themselves actors, so we can just check for
+their type instead of checking for the delegate.
+
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/700
+---
+ js/ui/workspace.js | 10 ++++------
+ 1 file changed, 4 insertions(+), 6 deletions(-)
+
+diff --git a/js/ui/workspace.js b/js/ui/workspace.js
+index 5459b8baf..9a8c0d94d 100644
+--- a/js/ui/workspace.js
++++ b/js/ui/workspace.js
+@@ -83,8 +83,8 @@ class WindowCloneLayout extends Clutter.LayoutManager {
+     vfunc_allocate(container, box, flags) {
+         container.get_children().forEach(child => {
+             let realWindow;
+-            if (child == container._delegate._windowClone)
+-                realWindow = container._delegate.realWindow;
++            if (child == container._windowClone)
++                realWindow = container.realWindow;
+             else
+                 realWindow = child.source;
+ 
+@@ -1099,10 +1099,8 @@ const WorkspaceActor = GObject.registerClass(
+ class WorkspaceActor extends St.Widget {
+     vfunc_get_focus_chain() {
+         return this.get_children().filter(c => c.visible).sort((a, b) => {
+-            let cloneA = (a._delegate && a._delegate instanceof WindowClone) ? a._delegate : null;
+-            let cloneB = (b._delegate && b._delegate instanceof WindowClone) ? b._delegate : null;
+-            if (cloneA && cloneB)
+-                return cloneA.slotId - cloneB.slotId;
++            if (a instanceof WindowClone && b instanceof WindowClone)
++                return a.slotId - b.slotId;
+ 
+             return 0;
+         });
+-- 
+2.23.0
+

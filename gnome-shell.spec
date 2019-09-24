@@ -4,7 +4,7 @@
 #
 Name     : gnome-shell
 Version  : 3.34.0
-Release  : 63
+Release  : 64
 URL      : https://download.gnome.org/sources/gnome-shell/3.34/gnome-shell-3.34.0.tar.xz
 Source0  : https://download.gnome.org/sources/gnome-shell/3.34/gnome-shell-3.34.0.tar.xz
 Summary  : Next generation desktop shell
@@ -55,6 +55,154 @@ BuildRequires : pkgconfig(polkit-agent-1)
 BuildRequires : pkgconfig(telepathy-glib)
 BuildRequires : python3-dev
 BuildRequires : sassc
+Patch1: 0001-animation-Stop-the-animation-before-removing-all-the.patch
+Patch2: 0002-altTab-use-AltTab-prefix-on-AppIcon-class.patch
+Patch3: 0003-lightbox-Use-common-ease-parameters-and-avoid-simila.patch
+Patch4: 0004-lookingGlass-Throw-a-clearer-error-on-referencing-in.patch
+Patch5: 0005-keyboard-Treat-menu-items-as-actors.patch
+Patch6: 0006-messageTray-Remove-unused-source-object-parameter.patch
+Patch7: 0007-realmd-Set-login-format-to-null-on-start-and-update-.patch
+Patch8: 0008-ripples-Add-destroy-method-and-remove-them-when-unne.patch
+Patch9: 0009-locatePointer-Bind-ripples-creation-to-settings.patch
+Patch10: 0010-search-Remove-updateSearch-later-on-destruction.patch
+Patch11: 0011-status-keyboard-Make-Input-source-types-var.patch
+Patch12: 0012-workspace-Remove-Long-press-later-with-the-actor.patch
+Patch13: 0013-workspace-Use-Workspace-prefix-for-WindowClone-class.patch
+Patch14: 0014-workspace-Don-t-use-clones-delegate-to-check-childre.patch
+Patch15: 0015-workspacesDisplay-Disconnect-MetaLater-and-parent-si.patch
+Patch16: 0016-calendar-Use-binding-for-clearButton-visibility.patch
+Patch17: 0017-popupMenu-Remove-extra-parameter-on-boolean-ParamSpe.patch
+Patch18: 0018-system-Track-buttonGroup-visibility-using-a-group-of.patch
+Patch19: 0019-extensionSystem-Use-logError-to-record-extension-err.patch
+Patch20: 0020-iconGrid-Delete-private-child-property-when-removing.patch
+Patch21: 0021-iconGrid-Queue-a-relayout-after-child-opacity-change.patch
+Patch22: 0022-extensionPrefs-Connect-to-ExtensionStateChanged-afte.patch
+Patch23: 0023-extensionPrefs-Block-notify-active-signal-handler-wh.patch
+Patch24: 0024-appDisplay-Allow-editing-folder-names.patch
+Patch25: 0025-Update-Brazilian-Portuguese-translation.patch
+Patch26: 0026-Update-Galician-translation.patch
+Patch27: 0027-Update-Hungarian-translation.patch
+Patch28: 0028-Update-Italian-translation.patch
+Patch29: 0029-Update-Romanian-translation.patch
+Patch30: 0030-Update-Indonesian-translation.patch
+Patch31: 0031-Update-Finnish-translation.patch
+Patch32: 0032-Updated-Spanish-translation.patch
+Patch33: 0033-environment-Skip-property-animations-while-hidden.patch
+Patch34: 0034-Update-Polish-translation.patch
+Patch35: 0035-build-Remove-st-private.h-from-public-headers.patch
+Patch36: 0036-build-Exclude-private-headers-from-GIR.patch
+Patch37: 0037-calendar-server-Disable-deprecated-e-d-s-API.patch
+Patch38: 0038-calendar-server-Temporarily-ignore-all-deprecations-.patch
+Patch39: 0039-shell-Replace-another-GTimeVal.patch
+Patch40: 0041-selectArea-Ignore-motion-events-once-we-got-a-result.patch
+Patch41: 0042-Update-Swedish-translation.patch
+Patch42: 0043-overviewControls-Remove-slide-transitions-before-set.patch
+Patch43: 0044-Updated-Czech-translation.patch
+Patch44: 0045-gnome-extensions-Translate-help-command.patch
+Patch45: 0046-Update-Polish-translation.patch
+Patch46: 0047-Update-Indonesian-translation.patch
+Patch47: 0048-Update-Catalan-translation.patch
+Patch48: 0049-Updated-Lithuanian-translation.patch
+Patch49: 0050-Update-Hungarian-translation.patch
+Patch50: 0051-Update-Romanian-translation.patch
+Patch51: 0052-cleanup-Remove-left-over-imports.patch
+Patch52: 0053-lookingGlass-Fix-misleading-typeof-use.patch
+Patch53: 0054-system-Properly-separate-statements.patch
+Patch54: 0055-kbdA11yDialog-Avoid-unnecessary-ternary-operators.patch
+Patch55: 0056-ibusManager-Wrap-line-before-dot.patch
+Patch56: 0057-messageTray-Add-missing-linebreak.patch
+Patch57: 0058-network-Don-t-omit-parens-when-constructing.patch
+Patch58: 0059-util-Separate-statements-with-linebreak.patch
+Patch59: 0060-calendar-Use-template-strings-over-concatenation.patch
+Patch60: 0061-workspace-Don-t-initialize-variables-to-undefined.patch
+Patch61: 0062-jsParse-Disambiguate-regex.patch
+Patch62: 0063-workspace-Use-operator-shorthand.patch
+Patch63: 0064-overview-Minor-cleanup.patch
+Patch64: 0065-workspaceThumbnails-Replace-loops-with-Array.find.patch
+Patch65: 0066-Update-German-translation.patch
+Patch66: 0067-backgroundMenu-Animate-menu-opening.patch
+Patch67: 0068-workspace-Minor-clarification.patch
+Patch68: 0069-Update-Turkish-translation.patch
+Patch69: 0070-data-Lower-TimeoutStartSec-in-systemd-units.patch
+Patch70: 0071-extensionUtils-Check-version-variable-for-undefined-.patch
+Patch71: 0072-extensionSystem-Remove-unncessary-return-statements.patch
+Patch72: 0073-extensionSystem-Fix-a-wrong-error-message.patch
+Patch73: 0074-extensionSystem-Check-if-extension-exists-before-acc.patch
+Patch74: 0075-extensionSystem-Log-an-extension-error-if-loading-th.patch
+Patch75: 0076-extensionSystem-Rename-initted-to-initialized.patch
+Patch76: 0077-extensionSystem-Handle-added-or-removed-sessionMode-.patch
+Patch77: 0078-extensionSystem-Always-enforce-disallowing-extension.patch
+Patch78: 0079-extensionSystem-Only-add-to-extensionOrder-array-if-.patch
+Patch79: 0080-extensionSystem-Always-disable-multiple-extensions-i.patch
+Patch80: 0081-extensionSystem-Add-missing-return-value.patch
+Patch81: 0082-Update-Brazilian-Portuguese-translation.patch
+Patch82: 0083-Update-Persian-translation.patch
+Patch83: 0084-windowMenu-Animate-menu.patch
+Patch84: 0085-cleanup-Stop-using-Mainloop-module.patch
+Patch85: 0086-cleanup-Only-use-two-indentation-styles-for-object-l.patch
+Patch86: 0087-cleanup-Don-t-assume-hasOwnProperty-method-on-object.patch
+Patch87: 0091-Update-Swedish-translation.patch
+Patch88: 0092-lookingGlass-Only-update-window-list-when-visible.patch
+Patch89: 0093-Updated-Spanish-translation.patch
+Patch90: 0094-Update-Italian-translation.patch
+Patch91: 0095-iconGrid-Only-animate-visible-icons.patch
+Patch92: 0096-environment-Disable-fullscreen-unredirect-during-all.patch
+Patch93: 0097-Update-Serbian-translation.patch
+Patch94: 0098-overview-Fix-fading-out-desktop-icons.patch
+Patch95: 0099-theme-Equalize-dimensions-of-ws-switcher-popup-boxes.patch
+Patch96: 0100-cleanup-Fix-wrong-indentation.patch
+Patch97: 0101-cleanup-Use-consistent-style-for-ternary-operator.patch
+Patch98: 0102-cleanup-Switch-some-method-calls-to-new-indentation-.patch
+Patch99: 0103-lint-Drop-extra-ignored-nodes-in-legacy-config.patch
+Patch100: 0104-magnifier-Simplify-some-code.patch
+Patch101: 0105-magnifier-Do-not-modify-function-argument.patch
+Patch102: 0106-volume-Clarify-some-code.patch
+Patch103: 0107-scripting-Disable-an-eslint-warning.patch
+Patch104: 0108-cleanup-Don-t-use-Array-Object-constructors.patch
+Patch105: 0109-cleanup-Avoid-useless-return-statements.patch
+Patch106: 0110-cleanup-Avoid-unnecessary-parentheses-in-arrow-funct.patch
+Patch107: 0111-cleanup-Avoid-pointless-renames-in-destructuring.patch
+Patch108: 0112-cleanup-Use-consistent-brace-style-of-blocks.patch
+Patch109: 0113-cleanup-Fix-up-special-comments.patch
+Patch110: 0114-cleanup-Remove-trailing-spaces.patch
+Patch111: 0115-cleanup-Disambiguate-assignments-in-arrow-functions.patch
+Patch112: 0116-cleanup-Don-t-add-linebreak-before-operators.patch
+Patch113: 0117-util-Handle-trailing-LTR-RTL-markers-in-URLs.patch
+Patch114: 0118-Update-French-translation.patch
+Patch115: 0119-Update-French-translation.patch
+Patch116: 0120-Update-Norwegian-Bokm-l-translation.patch
+Patch117: 0121-workspace-Continue-overlay-idle-hide-timeout-when-po.patch
+Patch118: 0122-workspace-Make-title-of-overlay-reactive.patch
+Patch119: 0123-workspace-Reset-idle-hide-timeout-for-overlays-on-re.patch
+Patch120: 0124-viewSelector-Only-reset-search-entry-if-it-has-key-f.patch
+Patch121: 0125-workspace-Remove-unused-properties-of-WindowClone.patch
+Patch122: 0126-st-Fix-box-shadow-drawing-with-prerendered_texture.patch
+Patch123: 0127-introspect-Check-whitelist-also-for-GetRunningWindow.patch
+Patch124: 0128-workspace-Use-AppIcon.app-to-check-action-support-by.patch
+Patch125: 0129-shell-app-Never-allow-opening-new-windows-while-an-a.patch
+Patch126: 0130-overview-Only-accept-AppIcon-drops-if-the-app-can-op.patch
+Patch127: 0131-workspace-Return-results-of-forwarded-acceptDrop.patch
+Patch128: 0132-appDisplay-Add-API-to-animate-launch-at-given-positi.patch
+Patch129: 0133-appDisplay-Animate-DnD-app-icons-at-the-position-the.patch
+Patch130: 0134-workspace-Fix-an-incorrect-signal-check.patch
+Patch131: 0135-folderIcon-Remove-duplicated-addMenu-call.patch
+Patch132: 0136-renameFolderMenu-Don-t-save-the-source.patch
+Patch133: 0137-popupBaseMenuItem-Add-support-for-Hidden-Ornament.patch
+Patch134: 0138-popupMenu-Add-focusActor-property-to-define-the-defa.patch
+Patch135: 0139-renameFolderMenu-Set-the-entry-as-menu-focus-actor.patch
+Patch136: 0140-renameFolderMenu-Move-to-non-legacy-coding-style.patch
+Patch137: 0141-renameFolderMenu-Use-a-custom-menu-item-inheriting-f.patch
+Patch138: 0142-layout-Don-t-use-the-actors-pick-workaround-on-updat.patch
+Patch139: 0143-environment-Try-harder-to-find-a-transition.patch
+Patch140: 0144-loginDialog-Stop-using-deprecated-actor-property.patch
+Patch141: 0145-unlockDialog-Use-inheritance-instead-of-composition.patch
+Patch142: 0146-screenShield-Stop-using-deprecated-actor-property.patch
+Patch143: 0147-Update-Galician-translation.patch
+Patch144: 0148-shell-util-Do-not-scale-the-clip-in-get_content_for_.patch
+Patch145: 0149-Update-Japanese-translation.patch
+Patch146: 0150-Update-Japanese-translation.patch
+Patch147: 0151-slider-Unset-signal-IDs-when-ending-the-slider-drag.patch
+Patch148: 0152-main-Remove-NOTIFY_SOCKET-from-environment.patch
 
 %description
 # GNOME Shell
@@ -138,22 +286,169 @@ services components for the gnome-shell package.
 
 %prep
 %setup -q -n gnome-shell-3.34.0
+%patch1 -p1
+%patch2 -p1
+%patch3 -p1
+%patch4 -p1
+%patch5 -p1
+%patch6 -p1
+%patch7 -p1
+%patch8 -p1
+%patch9 -p1
+%patch10 -p1
+%patch11 -p1
+%patch12 -p1
+%patch13 -p1
+%patch14 -p1
+%patch15 -p1
+%patch16 -p1
+%patch17 -p1
+%patch18 -p1
+%patch19 -p1
+%patch20 -p1
+%patch21 -p1
+%patch22 -p1
+%patch23 -p1
+%patch24 -p1
+%patch25 -p1
+%patch26 -p1
+%patch27 -p1
+%patch28 -p1
+%patch29 -p1
+%patch30 -p1
+%patch31 -p1
+%patch32 -p1
+%patch33 -p1
+%patch34 -p1
+%patch35 -p1
+%patch36 -p1
+%patch37 -p1
+%patch38 -p1
+%patch39 -p1
+%patch40 -p1
+%patch41 -p1
+%patch42 -p1
+%patch43 -p1
+%patch44 -p1
+%patch45 -p1
+%patch46 -p1
+%patch47 -p1
+%patch48 -p1
+%patch49 -p1
+%patch50 -p1
+%patch51 -p1
+%patch52 -p1
+%patch53 -p1
+%patch54 -p1
+%patch55 -p1
+%patch56 -p1
+%patch57 -p1
+%patch58 -p1
+%patch59 -p1
+%patch60 -p1
+%patch61 -p1
+%patch62 -p1
+%patch63 -p1
+%patch64 -p1
+%patch65 -p1
+%patch66 -p1
+%patch67 -p1
+%patch68 -p1
+%patch69 -p1
+%patch70 -p1
+%patch71 -p1
+%patch72 -p1
+%patch73 -p1
+%patch74 -p1
+%patch75 -p1
+%patch76 -p1
+%patch77 -p1
+%patch78 -p1
+%patch79 -p1
+%patch80 -p1
+%patch81 -p1
+%patch82 -p1
+%patch83 -p1
+%patch84 -p1
+%patch85 -p1
+%patch86 -p1
+%patch87 -p1
+%patch88 -p1
+%patch89 -p1
+%patch90 -p1
+%patch91 -p1
+%patch92 -p1
+%patch93 -p1
+%patch94 -p1
+%patch95 -p1
+%patch96 -p1
+%patch97 -p1
+%patch98 -p1
+%patch99 -p1
+%patch100 -p1
+%patch101 -p1
+%patch102 -p1
+%patch103 -p1
+%patch104 -p1
+%patch105 -p1
+%patch106 -p1
+%patch107 -p1
+%patch108 -p1
+%patch109 -p1
+%patch110 -p1
+%patch111 -p1
+%patch112 -p1
+%patch113 -p1
+%patch114 -p1
+%patch115 -p1
+%patch116 -p1
+%patch117 -p1
+%patch118 -p1
+%patch119 -p1
+%patch120 -p1
+%patch121 -p1
+%patch122 -p1
+%patch123 -p1
+%patch124 -p1
+%patch125 -p1
+%patch126 -p1
+%patch127 -p1
+%patch128 -p1
+%patch129 -p1
+%patch130 -p1
+%patch131 -p1
+%patch132 -p1
+%patch133 -p1
+%patch134 -p1
+%patch135 -p1
+%patch136 -p1
+%patch137 -p1
+%patch138 -p1
+%patch139 -p1
+%patch140 -p1
+%patch141 -p1
+%patch142 -p1
+%patch143 -p1
+%patch144 -p1
+%patch145 -p1
+%patch146 -p1
+%patch147 -p1
+%patch148 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1568127031
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1569341912
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -falign-functions=32 -fcf-protection=full -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
-export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -fcf-protection=full -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
-export FFLAGS="$CFLAGS -O3 -falign-functions=32 -fcf-protection=full -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
-export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -fcf-protection=full -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong "
+export CFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -mzero-caller-saved-regs=used "
 CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --libdir=lib64 --prefix=/usr --buildtype=plain -Dman=true -Dnetworkmanager=true -Dsystemd=true  builddir
 ninja -v -C builddir
 

@@ -1,0 +1,42 @@
+From ce63d21dcc141912232185b1c90de9a88a6ddf02 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Florian=20M=C3=BCllner?= <fmuellner@gnome.org>
+Date: Tue, 20 Aug 2019 04:25:24 +0200
+Subject: [PATCH 064/152] overview: Minor cleanup
+
+Safe one indentation level by combining conditions.
+
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/710
+---
+ js/ui/overview.js | 16 +++++++---------
+ 1 file changed, 7 insertions(+), 9 deletions(-)
+
+diff --git a/js/ui/overview.js b/js/ui/overview.js
+index 1325eff6b..49907b9d2 100644
+--- a/js/ui/overview.js
++++ b/js/ui/overview.js
+@@ -481,15 +481,13 @@ var Overview = class {
+ 
+         if (this._shown) {
+             let shouldBeModal = !this._inXdndDrag;
+-            if (shouldBeModal) {
+-                if (!this._modal) {
+-                    if (Main.pushModal(this._overview,
+-                                       { actionMode: Shell.ActionMode.OVERVIEW })) {
+-                        this._modal = true;
+-                    } else {
+-                        this.hide();
+-                        return false;
+-                    }
++            if (shouldBeModal && !this._modal) {
++                let actionMode = Shell.ActionMode.OVERVIEW;
++                if (Main.pushModal(this._overview, { actionMode })) {
++                    this._modal = true;
++                } else {
++                    this.hide();
++                    return false;
+                 }
+             }
+         } else {
+-- 
+2.23.0
+

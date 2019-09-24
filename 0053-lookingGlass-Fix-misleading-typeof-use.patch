@@ -1,0 +1,47 @@
+From 691610f23c27b0e580dae7fb8a0a536452b5ba28 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Florian=20M=C3=BCllner?= <fmuellner@gnome.org>
+Date: Mon, 19 Aug 2019 20:11:12 +0200
+Subject: [PATCH 053/152] lookingGlass: Fix misleading typeof use
+
+typeof is an operator, not a function. Putting unneeded parentheses
+around the expression obfuscates that.
+
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/710
+---
+ js/ui/lookingGlass.js | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/js/ui/lookingGlass.js b/js/ui/lookingGlass.js
+index 2c1239cd5..1143dedb5 100644
+--- a/js/ui/lookingGlass.js
++++ b/js/ui/lookingGlass.js
+@@ -240,7 +240,7 @@ var Notebook = class Notebook {
+ Signals.addSignalMethods(Notebook.prototype);
+ 
+ function objectToString(o) {
+-    if (typeof(o) == typeof(objectToString)) {
++    if (typeof o == typeof objectToString) {
+         // special case this since the default is way, way too verbose
+         return '<js function>';
+     } else {
+@@ -369,7 +369,7 @@ var ObjInspector = class ObjInspector {
+ 
+         let hbox = new St.BoxLayout({ style_class: 'lg-obj-inspector-title' });
+         this._container.add_actor(hbox);
+-        let label = new St.Label({ text: 'Inspecting: %s: %s'.format(typeof(obj),
++        let label = new St.Label({ text: 'Inspecting: %s: %s'.format(typeof obj,
+                                                                      objectToString(obj)) });
+         label.single_line_mode = true;
+         hbox.add(label, { expand: true, y_fill: false });
+@@ -387,7 +387,7 @@ var ObjInspector = class ObjInspector {
+         button.add_actor(new St.Icon({ icon_name: 'window-close-symbolic' }));
+         button.connect('clicked', this.close.bind(this));
+         hbox.add(button);
+-        if (typeof(obj) == typeof({})) {
++        if (typeof obj == typeof {}) {
+             let properties = [];
+             for (let propName in obj) {
+                 properties.push(propName);
+-- 
+2.23.0
+

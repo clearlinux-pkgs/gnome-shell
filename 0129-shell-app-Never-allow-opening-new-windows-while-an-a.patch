@@ -1,0 +1,45 @@
+From 00e95de1148296fbf6f1eece0552cfd07242ac44 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jonas=20Dre=C3=9Fler?= <verdre@v0yd.nl>
+Date: Thu, 1 Aug 2019 17:22:50 +0200
+Subject: [PATCH 129/152] shell-app: Never allow opening new windows while an
+ app is starting
+
+We allow opening new windows as a fallback in case the app doesn't give
+us explicit information about it, but we don't want to allow opening new
+windows if we're unable to ask for this information (we can only use the
+APIs to get this information while the app is RUNNING).
+
+So always return FALSE in case the app is STARTING, always return TRUE
+in case the app is STOPPED (starting an app always opens a new window)
+and go through the usual checks in case the app is RUNNING (and
+eventually fall back to FALSE).
+
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/121
+---
+ src/shell-app.c | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+
+diff --git a/src/shell-app.c b/src/shell-app.c
+index 7968e3358..33d5ec3a7 100644
+--- a/src/shell-app.c
++++ b/src/shell-app.c
+@@ -604,10 +604,12 @@ shell_app_can_open_new_window (ShellApp *app)
+   GDesktopAppInfo *desktop_info;
+   const char * const *desktop_actions;
+ 
+-  /* Apps that are not running can always open new windows, because
+-     activating them would open the first one */
+-  if (!app->running_state)
+-    return TRUE;
++  /* Apps that are stopped can always open new windows, because
++   * activating them would open the first one; if they are starting,
++   * we cannot tell whether they can open additional windows until
++   * they are running */
++  if (app->state != SHELL_APP_STATE_RUNNING)
++    return app->state == SHELL_APP_STATE_STOPPED;
+ 
+   state = app->running_state;
+ 
+-- 
+2.23.0
+

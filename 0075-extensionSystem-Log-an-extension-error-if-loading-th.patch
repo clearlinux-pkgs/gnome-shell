@@ -1,0 +1,32 @@
+From c06eb5d0a7c65b33090c7908f86abcda66bc7752 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jonas=20Dre=C3=9Fler?= <verdre@v0yd.nl>
+Date: Wed, 11 Sep 2019 14:55:04 +0200
+Subject: [PATCH 075/152] extensionSystem: Log an extension error if loading
+ the stylesheet failed
+
+Instead of only logging a message that loading the extension stylesheet
+failed and silently returning we should use `logExtensionError` for that
+instead. This also sets the extension state to ERROR and makes sure we
+don't try to enable it again.
+
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/96
+---
+ js/ui/extensionSystem.js | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/js/ui/extensionSystem.js b/js/ui/extensionSystem.js
+index 98ef13be9..b1305187b 100644
+--- a/js/ui/extensionSystem.js
++++ b/js/ui/extensionSystem.js
+@@ -121,7 +121,7 @@ var ExtensionManager = class {
+             } catch (e) {
+                 if (e.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.NOT_FOUND))
+                     continue; // not an error
+-                log(`Failed to load stylesheet for extension ${uuid}: ${e.message}`);
++                this.logExtensionError(uuid, e);
+                 return;
+             }
+         }
+-- 
+2.23.0
+

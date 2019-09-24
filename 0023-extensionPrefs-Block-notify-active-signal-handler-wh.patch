@@ -1,0 +1,50 @@
+From 1e68e78d8e5755b48f6ab1c2032ea45920f00737 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Jonas=20Dre=C3=9Fler?= <verdre@v0yd.nl>
+Date: Mon, 9 Sep 2019 17:08:53 +0200
+Subject: [PATCH 023/152] extensionPrefs: Block notify::active signal handler
+ while updating state
+
+We disable and enable extensions inside the `notify::active` signal
+handler, but we shouldn't do that in case the change didn't come from
+the user but because something else changed the state of the extension.
+
+This causes an issue when the extensionPrefs window is open and the
+session gets locked: The extensions are temporarily disabled by the
+shell, extensionPrefs updates its switches on the state change and adds
+those extensions to the `disabled-extensions` gsettings key inside the
+signal handler. Now when the session is unlocked again, the extensions
+won't be enabled again since they're forced-disabled.
+
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/705
+---
+ js/extensionPrefs/main.js | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/js/extensionPrefs/main.js b/js/extensionPrefs/main.js
+index 1a0783bdd..552360080 100644
+--- a/js/extensionPrefs/main.js
++++ b/js/extensionPrefs/main.js
+@@ -578,7 +578,11 @@ class ExtensionRow extends Gtk.ListBoxRow {
+ 
+                 this._extension = ExtensionUtils.deserializeExtension(newState);
+                 let state = (this._extension.state == ExtensionState.ENABLED);
++
++                GObject.signal_handler_block(this._switch, this._notifyActiveId);
+                 this._switch.state = state;
++                GObject.signal_handler_unblock(this._switch, this._notifyActiveId);
++
+                 this._switch.sensitive = this._canToggle();
+             });
+     }
+@@ -646,7 +650,7 @@ class ExtensionRow extends Gtk.ListBoxRow {
+             sensitive: this._canToggle(),
+             state: this._extension.state === ExtensionState.ENABLED
+         });
+-        this._switch.connect('notify::active', () => {
++        this._notifyActiveId = this._switch.connect('notify::active', () => {
+             if (this._switch.active)
+                 this._app.shellProxy.EnableExtensionRemote(this.uuid);
+             else
+-- 
+2.23.0
+

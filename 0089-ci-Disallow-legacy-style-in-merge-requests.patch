@@ -1,0 +1,29 @@
+From 1aca2ba6bbee99e74d87d09d14176aa46275423e Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Florian=20M=C3=BCllner?= <fmuellner@gnome.org>
+Date: Thu, 12 Sep 2019 13:51:26 +0200
+Subject: [PATCH 089/152] ci: Disallow legacy style in merge requests
+
+In order to transition from the current legacy style to the modern
+gjs one, use the MR line-filtering we used to do on common errors
+to ensure new code complies with the new style.
+
+https://gitlab.gnome.org/GNOME/gnome-shell/merge_requests/716
+---
+ .gitlab-ci/run-eslint.sh | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.gitlab-ci/run-eslint.sh b/.gitlab-ci/run-eslint.sh
+index aad95f46a..8466d97c3 100755
+--- a/.gitlab-ci/run-eslint.sh
++++ b/.gitlab-ci/run-eslint.sh
+@@ -96,6 +96,6 @@ if [ -z "$CI_MERGE_REQUEST_TARGET_BRANCH_NAME" ]; then
+   exit 0
+ fi
+ 
+-copy_matched_lines $OUTPUT_FINAL $LINE_CHANGES $OUTPUT_MR
++copy_matched_lines $OUTPUT_REGULAR $LINE_CHANGES $OUTPUT_MR
+ cat $OUTPUT_MR
+ is_empty $OUTPUT_MR
+-- 
+2.23.0
+
