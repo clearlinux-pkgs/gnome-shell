@@ -4,7 +4,7 @@
 #
 Name     : gnome-shell
 Version  : 3.34.1
-Release  : 67
+Release  : 68
 URL      : https://download.gnome.org/sources/gnome-shell/3.34/gnome-shell-3.34.1.tar.xz
 Source0  : https://download.gnome.org/sources/gnome-shell/3.34/gnome-shell-3.34.1.tar.xz
 Summary  : No detailed summary available
@@ -28,6 +28,7 @@ BuildRequires : evolution-data-server-dev
 BuildRequires : glibc-bin
 BuildRequires : gnome-bluetooth-dev
 BuildRequires : gnome-control-center-dev
+BuildRequires : gsettings-desktop-schemas-dev
 BuildRequires : gstreamer-dev
 BuildRequires : libsass-dev
 BuildRequires : libxslt-bin
@@ -44,11 +45,11 @@ BuildRequires : pkgconfig(ibus-1.0)
 BuildRequires : pkgconfig(libcanberra)
 BuildRequires : pkgconfig(libcanberra-gtk3)
 BuildRequires : pkgconfig(libcroco-0.6)
-BuildRequires : pkgconfig(libnm-glib)
-BuildRequires : pkgconfig(libnm-gtk)
+BuildRequires : pkgconfig(libnm)
 BuildRequires : pkgconfig(libpulse)
 BuildRequires : pkgconfig(libsoup-2.4)
 BuildRequires : pkgconfig(libstartup-notification-1.0)
+BuildRequires : pkgconfig(mutter-clutter-5)
 BuildRequires : pkgconfig(polkit-agent-1)
 BuildRequires : pkgconfig(telepathy-glib)
 BuildRequires : python3-dev
@@ -131,13 +132,14 @@ services components for the gnome-shell package.
 
 %prep
 %setup -q -n gnome-shell-3.34.1
+cd %{_builddir}/gnome-shell-3.34.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1570636691
+export SOURCE_DATE_EPOCH=1576106099
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -151,9 +153,9 @@ ninja -v -C builddir
 
 %install
 mkdir -p %{buildroot}/usr/share/package-licenses/gnome-shell
-cp COPYING %{buildroot}/usr/share/package-licenses/gnome-shell/COPYING
-cp data/theme/gnome-shell-sass/COPYING %{buildroot}/usr/share/package-licenses/gnome-shell/data_theme_gnome-shell-sass_COPYING
-cp src/extensions-tool/COPYING %{buildroot}/usr/share/package-licenses/gnome-shell/src_extensions-tool_COPYING
+cp %{_builddir}/gnome-shell-3.34.1/COPYING %{buildroot}/usr/share/package-licenses/gnome-shell/4cc77b90af91e615a64ae04893fdffa7939db84c
+cp %{_builddir}/gnome-shell-3.34.1/data/theme/gnome-shell-sass/COPYING %{buildroot}/usr/share/package-licenses/gnome-shell/a49ccf4ee26e90b0baa0cdd4cf2ae9bb3b0ff67d
+cp %{_builddir}/gnome-shell-3.34.1/src/extensions-tool/COPYING %{buildroot}/usr/share/package-licenses/gnome-shell/338650eb7a42dd9bc1f1c6961420f2633b24932d
 DESTDIR=%{buildroot} ninja -C builddir install
 %find_lang gnome-shell
 
@@ -218,9 +220,9 @@ DESTDIR=%{buildroot} ninja -C builddir install
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/gnome-shell/COPYING
-/usr/share/package-licenses/gnome-shell/data_theme_gnome-shell-sass_COPYING
-/usr/share/package-licenses/gnome-shell/src_extensions-tool_COPYING
+/usr/share/package-licenses/gnome-shell/338650eb7a42dd9bc1f1c6961420f2633b24932d
+/usr/share/package-licenses/gnome-shell/4cc77b90af91e615a64ae04893fdffa7939db84c
+/usr/share/package-licenses/gnome-shell/a49ccf4ee26e90b0baa0cdd4cf2ae9bb3b0ff67d
 
 %files man
 %defattr(0644,root,root,0755)
