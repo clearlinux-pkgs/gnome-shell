@@ -1,7 +1,9 @@
-3.34.1
+3.34.2
 bash-completion-dev
+gnome-desktop-dev
 gsettings-desktop-schemas-dev
 pkgconfig(bash-completion)
 pkgconfig(gnome-autoar-0)
+pkgconfig(gnome-desktop-3.0)
 pkgconfig(libnm)
 pkgconfig(mutter-clutter-5)
