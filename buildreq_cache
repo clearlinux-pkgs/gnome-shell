@@ -1,4 +1,4 @@
-3.36.5
+3.38.0
 appstream-glib
 bash-completion-dev
 gnome-desktop-dev
@@ -6,3 +6,4 @@ pkgconfig(bash-completion)
 pkgconfig(gnome-autoar-0)
 pkgconfig(gnome-desktop-3.0)
 pkgconfig(libnm)
+pkgconfig(libpipewire-0.3)
