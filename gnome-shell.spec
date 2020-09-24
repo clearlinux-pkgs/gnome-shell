@@ -4,7 +4,7 @@
 #
 Name     : gnome-shell
 Version  : 3.38.0
-Release  : 78
+Release  : 79
 URL      : https://download.gnome.org/sources/gnome-shell/3.38/gnome-shell-3.38.0.tar.xz
 Source0  : https://download.gnome.org/sources/gnome-shell/3.38/gnome-shell-3.38.0.tar.xz
 Summary  : No detailed summary available
