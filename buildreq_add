@@ -1,18 +1,26 @@
 # This file contains additional build requirements that did not get
 # picked up automatically. One name per line, no whitespace.
-python3-dev
-evolution-data-server-dev
+appstream-glib
+asciidoc
+bash-completion-dev
 clutter-dev
-mutter-data
-mutter-dev
-mutter
-gstreamer-dev
+docbook-xml
+evolution-data-server-dev
 glibc-bin
 gnome-bluetooth-dev
-mesa-dev
-sassc
+gnome-control-center-dev
+gnome-desktop-dev
+gstreamer-dev
 libsass-dev
 libxslt-bin
-docbook-xml
-gnome-control-center-dev
-asciidoc
+mesa-dev
+mutter
+mutter-data
+mutter-dev
+pkgconfig(bash-completion)
+pkgconfig(gnome-autoar-0)
+pkgconfig(gnome-desktop-3.0)
+pkgconfig(libnm)
+pkgconfig(libpipewire-0.3)
+python3-dev
+sassc
