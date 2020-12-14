@@ -4,7 +4,7 @@
 #
 Name     : gnome-shell
 Version  : 3.38.2
-Release  : 81
+Release  : 82
 URL      : https://download.gnome.org/sources/gnome-shell/3.38/gnome-shell-3.38.2.tar.xz
 Source0  : https://download.gnome.org/sources/gnome-shell/3.38/gnome-shell-3.38.2.tar.xz
 Summary  : No detailed summary available
