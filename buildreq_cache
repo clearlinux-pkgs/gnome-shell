@@ -1,0 +1,4 @@
+40.0
+Vulkan-Headers-dev
+pkgconfig(gtk4)
+pkgconfig(mutter-clutter-8)
