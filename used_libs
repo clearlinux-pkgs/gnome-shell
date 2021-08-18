@@ -27,6 +27,7 @@ libmutter-8.so.0
 libmutter-clutter-8.so.0
 libmutter-cogl-8.so.0
 libmutter-cogl-pango-8.so.0
+libmvec.so.1
 libnm.so.0
 libpango-1.0.so.0
 libpangocairo-1.0.so.0
