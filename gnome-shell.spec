@@ -4,7 +4,7 @@
 #
 Name     : gnome-shell
 Version  : 41.0
-Release  : 94
+Release  : 95
 URL      : https://download.gnome.org/sources/gnome-shell/41/gnome-shell-41.0.tar.xz
 Source0  : https://download.gnome.org/sources/gnome-shell/41/gnome-shell-41.0.tar.xz
 Summary  : No detailed summary available
@@ -12,6 +12,7 @@ Group    : Development/Tools
 License  : GPL-2.0 GPL-3.0 LGPL-2.1
 Requires: gnome-shell-bin = %{version}-%{release}
 Requires: gnome-shell-data = %{version}-%{release}
+Requires: gnome-shell-filemap = %{version}-%{release}
 Requires: gnome-shell-lib = %{version}-%{release}
 Requires: gnome-shell-libexec = %{version}-%{release}
 Requires: gnome-shell-license = %{version}-%{release}
@@ -71,6 +72,7 @@ Requires: gnome-shell-data = %{version}-%{release}
 Requires: gnome-shell-libexec = %{version}-%{release}
 Requires: gnome-shell-license = %{version}-%{release}
 Requires: gnome-shell-services = %{version}-%{release}
+Requires: gnome-shell-filemap = %{version}-%{release}
 
 %description bin
 bin components for the gnome-shell package.
@@ -84,12 +86,21 @@ Group: Data
 data components for the gnome-shell package.
 
 
+%package filemap
+Summary: filemap components for the gnome-shell package.
+Group: Default
+
+%description filemap
+filemap components for the gnome-shell package.
+
+
 %package lib
 Summary: lib components for the gnome-shell package.
 Group: Libraries
 Requires: gnome-shell-data = %{version}-%{release}
 Requires: gnome-shell-libexec = %{version}-%{release}
 Requires: gnome-shell-license = %{version}-%{release}
+Requires: gnome-shell-filemap = %{version}-%{release}
 
 %description lib
 lib components for the gnome-shell package.
@@ -99,6 +110,7 @@ lib components for the gnome-shell package.
 Summary: libexec components for the gnome-shell package.
 Group: Default
 Requires: gnome-shell-license = %{version}-%{release}
+Requires: gnome-shell-filemap = %{version}-%{release}
 
 %description libexec
 libexec components for the gnome-shell package.
@@ -139,32 +151,39 @@ services components for the gnome-shell package.
 %prep
 %setup -q -n gnome-shell-41.0
 cd %{_builddir}/gnome-shell-41.0
+pushd ..
+cp -a gnome-shell-41.0 buildavx2
+popd
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1632497225
+export SOURCE_DATE_EPOCH=1634133365
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mprefer-vector-width=256 "
-export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mprefer-vector-width=256 "
-export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mprefer-vector-width=256 "
-export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mprefer-vector-width=256 "
+export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mno-vzeroupper -mprefer-vector-width=256 "
+export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mno-vzeroupper -mprefer-vector-width=256 "
+export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mno-vzeroupper -mprefer-vector-width=256 "
+export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mno-vzeroupper -mprefer-vector-width=256 "
 CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --libdir=lib64 --prefix=/usr --buildtype=plain -Dman=true \
 -Dnetworkmanager=true \
 -Dsystemd=true  builddir
 ninja -v -C builddir
+CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -O3" CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 " LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3" meson --libdir=lib64 --prefix=/usr --buildtype=plain -Dman=true \
+-Dnetworkmanager=true \
+-Dsystemd=true  builddiravx2
+ninja -v -C builddiravx2
 
 %check
 export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-meson test -C builddir || :
+meson test -C builddir --print-errorlogs || :
 
 %install
 mkdir -p %{buildroot}/usr/share/package-licenses/gnome-shell
@@ -173,8 +192,10 @@ cp %{_builddir}/gnome-shell-41.0/data/theme/gnome-shell-sass/COPYING %{buildroot
 cp %{_builddir}/gnome-shell-41.0/subprojects/extensions-app/COPYING %{buildroot}/usr/share/package-licenses/gnome-shell/4cc77b90af91e615a64ae04893fdffa7939db84c
 cp %{_builddir}/gnome-shell-41.0/subprojects/extensions-tool/COPYING %{buildroot}/usr/share/package-licenses/gnome-shell/338650eb7a42dd9bc1f1c6961420f2633b24932d
 cp %{_builddir}/gnome-shell-41.0/subprojects/shew/COPYING %{buildroot}/usr/share/package-licenses/gnome-shell/01a6b4bf79aca9b556822601186afab86e8c4fbf
+DESTDIR=%{buildroot}-v3 ninja -C builddiravx2 install
 DESTDIR=%{buildroot} ninja -C builddir install
 %find_lang gnome-shell
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
@@ -191,6 +212,7 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/bin/gnome-shell-extension-prefs
 /usr/bin/gnome-shell-extension-tool
 /usr/bin/gnome-shell-perf-tool
+/usr/share/clear/optimized-elf/bin*
 
 %files data
 %defattr(-,root,root,-)
@@ -246,6 +268,10 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/share/metainfo/org.gnome.Extensions.metainfo.xml
 /usr/share/xdg-desktop-portal/portals/gnome-shell.portal
 
+%files filemap
+%defattr(-,root,root,-)
+/usr/share/clear/filemap/filemap-gnome-shell
+
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/gnome-shell/libgnome-shell-menu.so
@@ -253,6 +279,7 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/lib64/gnome-shell/libgvc.so
 /usr/lib64/gnome-shell/libshew-0.so
 /usr/lib64/gnome-shell/libst-1.0.so
+/usr/share/clear/optimized-elf/lib*
 
 %files libexec
 %defattr(-,root,root,-)
@@ -261,6 +288,7 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/libexec/gnome-shell-overrides-migration.sh
 /usr/libexec/gnome-shell-perf-helper
 /usr/libexec/gnome-shell-portal-helper
+/usr/share/clear/optimized-elf/exec*
 
 %files license
 %defattr(0644,root,root,0755)
