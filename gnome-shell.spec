@@ -4,7 +4,7 @@
 #
 Name     : gnome-shell
 Version  : 42.2
-Release  : 107
+Release  : 108
 URL      : https://download.gnome.org/sources/gnome-shell/42/gnome-shell-42.2.tar.xz
 Source0  : https://download.gnome.org/sources/gnome-shell/42/gnome-shell-42.2.tar.xz
 Summary  : No detailed summary available
@@ -160,7 +160,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1656117214
+export SOURCE_DATE_EPOCH=1656712873
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -281,6 +281,7 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/lib64/gnome-shell/libgvc.so
 /usr/lib64/gnome-shell/libshew-0.so
 /usr/lib64/gnome-shell/libst-1.0.so
+/usr/share/clear/optimized-elf/other*
 
 %files libexec
 %defattr(-,root,root,-)
