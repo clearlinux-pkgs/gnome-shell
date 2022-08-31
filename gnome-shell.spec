@@ -4,7 +4,7 @@
 #
 Name     : gnome-shell
 Version  : 42.4
-Release  : 113
+Release  : 114
 URL      : https://download.gnome.org/sources/gnome-shell/42/gnome-shell-42.4.tar.xz
 Source0  : https://download.gnome.org/sources/gnome-shell/42/gnome-shell-42.4.tar.xz
 Summary  : No detailed summary available
@@ -19,7 +19,7 @@ Requires: gnome-shell-license = %{version}-%{release}
 Requires: gnome-shell-locales = %{version}-%{release}
 Requires: gnome-shell-man = %{version}-%{release}
 Requires: gnome-shell-services = %{version}-%{release}
-Requires: libgweather4
+Requires: libgweather
 BuildRequires : appstream-glib
 BuildRequires : asciidoc
 BuildRequires : bash-completion-dev
@@ -160,7 +160,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1660315372
+export SOURCE_DATE_EPOCH=1661970116
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
