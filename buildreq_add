@@ -24,3 +24,4 @@ pkgconfig(libnm)
 pkgconfig(libpipewire-0.3)
 python3-dev
 sassc
+libsoup-dev
