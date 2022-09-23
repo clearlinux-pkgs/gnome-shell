@@ -1,76 +1,144 @@
-42.4
+43.0
 ====
-* Fix adding suggestions from on-screen keyboard [Carlos, Florian; !2368, !2421]
+* Fix rebooting into boot loader menu [Florian; !2472]
+* Improve entry legibility in GNOME Classic [Jakub; !2477]
+* Fixed crash [Jonas; !2478]
+* Misc. bug fixes and cleanups [sabriunal, Florian; !2467, !2484, !2485]
+
+Contributors:
+  Florian Müllner, Jakub Steiner, sabriunal, Jonas Ådahl
+
+Translators:
+  Jürgen Benvenuti [de], Quentin PAGÈS [oc], Aurimas Černius [lt],
+  Anders Jonsson [sv], Pawan Chitrakar [ne], Jordi Mas [ca],
+  Daniel Mustieles [es], Alexander Shopov [bg], Asier Sarasua Garmendia [eu],
+  Aleksandr Melman [ru], Alexandre Franke [fr], Goran Vidović [hr],
+  Emin Tufan Çetin [tr], Balázs Úr [hu], Marek Černocký [cs],
+  Yuri Chornoivan [uk], Jiri Grönroos [fi], Yosef Or Boczko [he],
+  Piotr Drąg [pl], Luming Zh [zh_CN], Fran Dieguez [gl],
+  Enrico Nicoletto [pt_BR], Alan Mortensen [da], Matej Urbančič [sl]
+
+43.rc
+=====
+* Tweak quick settings appearance [Sam; !2427, !2441, !2463]
+* Use NM connectivity check URI for portal helper [Clerie; !2228]
+* Only show "Night Light" toggle when supported [Florian; !2425]
+* Fix accessibility of quick settings sliders [Florian; !2431]
+* Use more unambiguous icons in on-screen keyboard [Carlos; !2433]
+* Add screenshot item to quick settings [Florian; !2439]
+* Fix entering extended characters from on-screen keyboard [Carlos; !2445]
+* Prevent SignalTracker from leaking objects [Sebastian; !2450, !2466]
+* Fix turning off VPN in quick settings [Florian; !2426]
+* Fix initial selection in switch-monitor popup on desktop [Yao; !2451]
+* Improve handling of recurring events [Milan; !2328]
+* Indicate transitional states in bluetooth quick toggle [Florian; !2444]
+* Work around pipewire regression for screencasts [Sebastian; !2436]
+* Plugged memory leak [Florian; !2461]
+* Misc. bug fixes and cleanups [Daniel, Jonas Å., Florian, Georges, Carlos;
+  !2429, !2434, !2430, !2442, !2455, !2462, !2456, !2464, !2465, !2288]
+
+Contributors:
+  Yao Wei (魏銘廷), Milan Crha, Carlos Garnacho, Sam Hewitt, Sebastian Keller,
+  Florian Müllner, Dmitrii Naidolinskii, Georges Basile Stavracas Neto,
+  Clerie Riese, Daniel van Vugt, msizanoen1, Jonas Ådahl
+
+Translators:
+  Danial Behzadi [fa], Kukuh Syafaat [id], Марко Костић [sr],
+  Zurab Kargareteli [ka], Hugo Carvalho [pt], Goran Vidović [hr],
+  Aleksandr Melman [ru], Jordi Mas [ca], Piotr Drąg [pl],
+  Asier Sarasua Garmendia [eu], Luming Zh [zh_CN], Yosef Or Boczko [he],
+  Fran Dieguez [gl], Emin Tufan Çetin [tr], Daniel Mustieles [es],
+  Nart Tlisha [ab], Marek Černocký [cs], Leônidas Araújo [pt_BR],
+  Matej Urbančič [sl], Balázs Úr [hu], Nathan Follens [nl],
+  Baurzhan Muftakhidinov [kk], Rūdolfs Mazurs [lv], Alan Mortensen [da],
+  Changwoo Ryu [ko]
+
+43.beta
+=======
 * Allow extension updates with only Extension Manager installed [Matthew; !2358]
-* Only load extensions that support the current session mode [Alessandro; !2378]
-* Fix logging in with realmd [Alessandro; !2404]
+* Use new About window in Extensions app [Christopher; !2373]
+* Stop auto-dismissing notifications on focus changes [Florian; !2332]
 * Tweak access portal dialog [Georges; !2377]
-* Improve overview animation performance [Ivan; !2395]
+* Add device switcher to volume sliders [Florian; !2380]
+* Replace combined system menu with quick settings [Florian; !2385, !2389,
+  !2391, !2392, !2393, !2406, !2407, !2408]
+* Use the same format in screencast and screenshot file names [Emmanuele; !2300]
+* Only load extensions that support the current session mode [Alessandro; !2378]
+* Improve overview animation performance [Ivan; !2395, !2394]
+* Port to gcr4 [Milan; !2386]
+* Fix logging in with realmd [Alessandro; !2404]
+* Optimize workspace background shadow [Daniel; !1915]
+* Improve app grid navigation [Georges; !2335]
+* Improve on-screen keyboard
+  - delete multiple characters and words when holding backspace
+  - provide word suggestions when using plan keyboard layouts
+  - use extended layout when TERMINAL hint is set
+  [Carlos; !2278]
 * Fix remembering set up bluetooth devices [Florian; !2409]
-* Plugged leak [Sebastian; !2367]
-* Misc. bug fixes and cleanups [Alessandro, Florian, Marco, Sam; !2402, !2412,
-  !2411, !2351, !2366, !2372, !2350, !2388, !2326, !2413]
+* Misc. bug fixes and cleanups [Florian, Carlos, Sam, Sebastian, Alessandro,
+  Robert; !2374, !2369, !2350, !2381, !2375, !2384, !2388, !2371, !2344, !2370,
+  !2396, !2397, !2403, !2402, !2326, !2405, !2401, !2398, !2414, !2412, !2411,
+  !2415, !2416, !2419, !2413]
 
 Contributors:
-  Marco Trevisan (Treviño), Alessandro Bono, Carlos Garnacho, Sam Hewitt,
-  Matthew Jakeman, Sebastian Keller, Ivan Molodetskikh, Florian Müllner,
-  Georges Basile Stavracas Neto
+  Robert Ancell, Emmanuele Bassi, Alessandro Bono, Milan Crha,
+  Christopher Davis, Carlos Garnacho, Sam Hewitt, Matthew Jakeman,
+  Sebastian Keller, Andre Klapper, Ivan Molodetskikh, Florian Müllner,
+  Georges Basile Stavracas Neto, Nart Tlisha, Daniel van Vugt
 
 Translators:
-  Jordi Mas [ca], Nathan Follens [nl], Aleksandr Melman [ru]
+  Kukuh Syafaat [id], Emin Tufan Çetin [tr], Jordi Mas [ca],
+  Zurab Kargareteli [ka], Nart Tlisha [ab], Asier Sarasua Garmendia [eu],
+  Fran Dieguez [gl], Aleksandr Melman [ru], Hugo Carvalho [pt],
+  Yuri Chornoivan [uk], Alexander Shopov [bg], Yosef Or Boczko [he],
+  Quentin PAGÈS [oc], Danial Behzadi [fa], Daniel Mustieles [es],
+  Luming Zh [zh_CN], Jiri Grönroos [fi]
 
-42.3.1
-======
-* Fix regression in ibus support [Florian; !2359]
-* Make sure screenshot UI opens above dialogs [Alynx; !2331]
-* Misc. bug fixes and cleanups [Florian; !2293]
-
-Contributors:
-  Florian Müllner, Alynx Zhou
-
-Translators:
-  Vojtěch Perník [cs]
-
-42.3
-====
-* Fix feedback when turning on a11y features by keyboard [Olivier; !2334]
-* Fix OSD colors with light stylesheet [Jakub; !2315]
-* Only close messages via delete key if they can be closed [PhilProg; !2323]
-* Fix screenshots when XDG directories are disabled [Sam; !2327]
-* Do not create systemd scope for D-Bus activated apps [msizanoen1; !2305]
-* Improve high-contrast stylesheet [Sam; !2284]
-* Hide overview after 'Show Details' from app context menu [PhilProg; !2329]
-* Fix stylesheet papercuts [Sam; !2309]
-* Respect IM hint for candidates list in on-screen keyboard [Carlos; !2347]
-* Fix edge case where windows stay dimmed after a modal is closed [Jonas; !2349]
-* Improve Belgian on-screen keyboard layout [Evert; !2336]
-* Fix fallback ibus-daemon launching [oreo639; !2345]
-* Misc. bug fixes [Sebastian, Florian; !2319, !2355]
-
-Contributors:
-  Jonas Dreßler, Olivier Fourdan, Carlos Garnacho, Sam Hewitt, Sebastian Keller,
-  Florian Müllner, PhilProg, Evert Provoost, Jakub Steiner, Sam Uong,
-  msizanoen1, oreo639
-
-Translators:
-  Milo Casagrande [it], Jordi Mas [ca]
-
-42.2
-====
-* Align space-padded times in world clocks [Maksym; !2294]
+43.alpha
+========
+* Add convenience property for icon-only buttons [Florian; !2254]
+* Align space-padded times in world clocks [Maksym; !2294, !2340]
 * Fix top bar menus on lock screen [Florian; !2298]
+* Show wireguard connects in VPN list [Christian; !1995]
 * Fix on-screen keyboard gestures [Carlos; !2304]
 * Fix focus tracking in magnifier on wayland [Sebastian; !2301]
-* Misc. bug fixes [Florian, Jonas; !2295, !2296, !2306]
+* Fix OSD colors with light stylesheet [Jakub; !2315]
+* Only close messages via delete key if they can be closed [PhilProg; !2323]
+* Fix screenshots when XDG directories are disabled [Sam U.; !2327]
+* Do not create systemd scope for D-Bus activated apps [msizanoen1; !2305]
+* Improve high-contrast stylesheet [Sam H.; !2284]
+* Hide overview after 'Show Details' from app context menu [PhilProg; !2329]
+* Fix feedback when turning on a11y features by keyboard [Olivier; !2334]
+* Fix stylesheet papercuts [Sam H.; !2309]
+* Use libsoup 3.0 by default [Florian; !2338]
+* Indicate selected language in on-screen keyboard menu [Carlos; !2346]
+* Respect IM hint for candidates list in on-screen keyboard
+  [Carlos, Florian; !2347, !2359]
+* Fix edge case where windows stay dimmed after a modal is closed
+  [Jonas D.; !2349]
+* Improve Belgian on-screen keyboard layout [Evert; !2336]
+* Fix fallback ibus-daemon launching [oreo639; !2345]
+* Make sure screenshot UI opens above dialogs [Alynx; !2331]
+* Use EventEmitter class instead of injecting Signal methods [Evan; !2043]
+* Plugged leak [Sebastian; !2367]
+* Misc. bug fixes and cleanups [Florian, Jonas D., Jonas Å., Sebastian, Evan,
+  Marco; !2295, !2296, !2297, !2306, !2317, !2316, !2319, !2325, !2337, !2355,
+  !2351, !2293, !2365, !2366, !697, !2363, !2362, !2372]
 
 Contributors:
-  Jonas Dreßler, Carlos Garnacho, Maksym Hazevych, Sebastian Keller,
-  Florian Müllner
+  Marco Trevisan (Treviño), Jonas Dreßler, Olivier Fourdan, Carlos Garnacho,
+  Christian Glombek, Maksym Hazevych, Sam Hewitt, Sebastian Keller,
+  Florian Müllner, PhilProg, Evert Provoost, Jakub Steiner, Sam Uong,
+  Evan Welsh, Alynx Zhou, msizanoen1, oreo639, Jonas Ådahl
 
 Translators:
-  Jordi Mas [ca], Kukuh Syafaat [id], Cheng-Chia Tseng [zh_TW],
-  Charles Monzat [fr], Changwoo Ryu [ko], Daniel Rusek [cs],
-  Christian Kirbach [de], Luming Zh [zh_CN]
+  Jordi Mas [ca], Cheng-Chia Tseng [zh_TW], Charles Monzat [fr],
+  Changwoo Ryu [ko], Daniel Rusek [cs], Aleksandr Melman [ru],
+  Christian Kirbach [de], Yuri Chornoivan [uk], Emin Tufan Çetin [tr],
+  Danial Behzadi [fa], Hugo Carvalho [pt], Luming Zh [zh_CN],
+  Quentin PAGÈS [oc], Yosef Or Boczko [he], Fabio Tomat [fur],
+  Irénée THIRION [fr], Jürgen Benvenuti [de], Milo Casagrande [it],
+  Aurimas Černius [lt], Daniel Mustieles [es], Vojtěch Perník [cs]
 
 42.1
 ====
@@ -96,7 +164,7 @@ Translators:
 * Fix grab regressions when entering overview [Carlos, Sebastian; !2281, !2287]
 * Scale calendar with text size [Jonas; !2282]
 * Allow more intermediate icon sizes in app grid [Sebastian; !2289]
-* Fixed crash [Jonas; !2231]
+* Fixed crash [Jonas D.; !2231]
 * Plugged memory leak [Sebastian; !2256]
 * Misc. bug fixes and cleanups [Jonas, Florian, Sebastian, Daniel, Marco, Simon;
   !2283, !2285, !2286, !2233, !2236, !2244, !2246, !2258, !2257, !2252, !2261,
