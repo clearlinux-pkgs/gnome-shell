@@ -4,7 +4,7 @@
 #
 Name     : gnome-shell
 Version  : 43.0
-Release  : 120
+Release  : 121
 URL      : https://download.gnome.org/sources/gnome-shell/43/gnome-shell-43.0.tar.xz
 Source0  : https://download.gnome.org/sources/gnome-shell/43/gnome-shell-43.0.tar.xz
 Summary  : No detailed summary available
