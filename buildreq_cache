@@ -1,2 +1,4 @@
-43.3
+44.0
+dbus-dev
 pkgconfig(gcr-4)
+pkgconfig(mutter-clutter-12)
