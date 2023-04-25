@@ -4,10 +4,10 @@
 # Using build pattern: meson
 #
 Name     : gnome-shell
-Version  : 44.0
-Release  : 151
-URL      : https://download.gnome.org/sources/gnome-shell/44/gnome-shell-44.0.tar.xz
-Source0  : https://download.gnome.org/sources/gnome-shell/44/gnome-shell-44.0.tar.xz
+Version  : 44.1
+Release  : 152
+URL      : https://download.gnome.org/sources/gnome-shell/44/gnome-shell-44.1.tar.xz
+Source0  : https://download.gnome.org/sources/gnome-shell/44/gnome-shell-44.1.tar.xz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 GPL-3.0 LGPL-2.1
@@ -27,7 +27,6 @@ BuildRequires : bash-completion-dev
 BuildRequires : buildreq-gnome
 BuildRequires : buildreq-meson
 BuildRequires : clutter-dev
-BuildRequires : dbus-dev
 BuildRequires : docbook-xml
 BuildRequires : evolution-data-server-dev
 BuildRequires : glibc-bin
@@ -57,7 +56,6 @@ BuildRequires : pkgconfig(libnm)
 BuildRequires : pkgconfig(libpipewire-0.3)
 BuildRequires : pkgconfig(libpulse)
 BuildRequires : pkgconfig(libstartup-notification-1.0)
-BuildRequires : pkgconfig(mutter-clutter-12)
 BuildRequires : pkgconfig(polkit-agent-1)
 BuildRequires : pkgconfig(telepathy-glib)
 BuildRequires : python3-dev
@@ -147,16 +145,17 @@ man components for the gnome-shell package.
 %package services
 Summary: services components for the gnome-shell package.
 Group: Systemd services
+Requires: systemd
 
 %description services
 services components for the gnome-shell package.
 
 
 %prep
-%setup -q -n gnome-shell-44.0
-cd %{_builddir}/gnome-shell-44.0
+%setup -q -n gnome-shell-44.1
+cd %{_builddir}/gnome-shell-44.1
 pushd ..
-cp -a gnome-shell-44.0 buildavx2
+cp -a gnome-shell-44.1 buildavx2
 popd
 
 %build
@@ -164,7 +163,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1680030721
+export SOURCE_DATE_EPOCH=1682455390
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
