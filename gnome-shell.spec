@@ -5,7 +5,7 @@
 #
 Name     : gnome-shell
 Version  : 44.1
-Release  : 153
+Release  : 154
 URL      : https://download.gnome.org/sources/gnome-shell/44/gnome-shell-44.1.tar.xz
 Source0  : https://download.gnome.org/sources/gnome-shell/44/gnome-shell-44.1.tar.xz
 Summary  : No detailed summary available
@@ -13,7 +13,6 @@ Group    : Development/Tools
 License  : GPL-2.0 GPL-3.0 LGPL-2.1
 Requires: gnome-shell-bin = %{version}-%{release}
 Requires: gnome-shell-data = %{version}-%{release}
-Requires: gnome-shell-filemap = %{version}-%{release}
 Requires: gnome-shell-lib = %{version}-%{release}
 Requires: gnome-shell-libexec = %{version}-%{release}
 Requires: gnome-shell-license = %{version}-%{release}
@@ -74,7 +73,6 @@ Requires: gnome-shell-data = %{version}-%{release}
 Requires: gnome-shell-libexec = %{version}-%{release}
 Requires: gnome-shell-license = %{version}-%{release}
 Requires: gnome-shell-services = %{version}-%{release}
-Requires: gnome-shell-filemap = %{version}-%{release}
 
 %description bin
 bin components for the gnome-shell package.
@@ -88,21 +86,12 @@ Group: Data
 data components for the gnome-shell package.
 
 
-%package filemap
-Summary: filemap components for the gnome-shell package.
-Group: Default
-
-%description filemap
-filemap components for the gnome-shell package.
-
-
 %package lib
 Summary: lib components for the gnome-shell package.
 Group: Libraries
 Requires: gnome-shell-data = %{version}-%{release}
 Requires: gnome-shell-libexec = %{version}-%{release}
 Requires: gnome-shell-license = %{version}-%{release}
-Requires: gnome-shell-filemap = %{version}-%{release}
 
 %description lib
 lib components for the gnome-shell package.
@@ -112,7 +101,6 @@ lib components for the gnome-shell package.
 Summary: libexec components for the gnome-shell package.
 Group: Default
 Requires: gnome-shell-license = %{version}-%{release}
-Requires: gnome-shell-filemap = %{version}-%{release}
 
 %description libexec
 libexec components for the gnome-shell package.
@@ -163,15 +151,15 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1682455390
+export SOURCE_DATE_EPOCH=1682974036
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -fno-semantic-interposition -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --libdir=lib64 --prefix=/usr --buildtype=plain -Dman=true \
 -Dnetworkmanager=true \
 -Dsystemd=true  builddir
@@ -209,13 +197,14 @@ DESTDIR=%{buildroot} ninja -C builddir install
 
 %files bin
 %defattr(-,root,root,-)
+/V3/usr/bin/gnome-extensions
+/V3/usr/bin/gnome-shell
 /usr/bin/gnome-extensions
 /usr/bin/gnome-extensions-app
 /usr/bin/gnome-shell
 /usr/bin/gnome-shell-extension-prefs
 /usr/bin/gnome-shell-extension-tool
 /usr/bin/gnome-shell-perf-tool
-/usr/share/clear/optimized-elf/bin*
 
 %files data
 %defattr(-,root,root,-)
@@ -272,26 +261,29 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/share/metainfo/org.gnome.Extensions.metainfo.xml
 /usr/share/xdg-desktop-portal/portals/gnome-shell.portal
 
-%files filemap
-%defattr(-,root,root,-)
-/usr/share/clear/filemap/filemap-gnome-shell
-
 %files lib
 %defattr(-,root,root,-)
+/V3/usr/lib64/gnome-shell/libgnome-shell-menu.so
+/V3/usr/lib64/gnome-shell/libgvc.so
+/V3/usr/lib64/gnome-shell/libshell-12.so
+/V3/usr/lib64/gnome-shell/libshew-0.so
+/V3/usr/lib64/gnome-shell/libst-12.so
 /usr/lib64/gnome-shell/libgnome-shell-menu.so
 /usr/lib64/gnome-shell/libgvc.so
 /usr/lib64/gnome-shell/libshell-12.so
 /usr/lib64/gnome-shell/libshew-0.so
 /usr/lib64/gnome-shell/libst-12.so
-/usr/share/clear/optimized-elf/other*
 
 %files libexec
 %defattr(-,root,root,-)
+/V3/usr/libexec/gnome-shell-calendar-server
+/V3/usr/libexec/gnome-shell-hotplug-sniffer
+/V3/usr/libexec/gnome-shell-perf-helper
+/V3/usr/libexec/gnome-shell-portal-helper
 /usr/libexec/gnome-shell-calendar-server
 /usr/libexec/gnome-shell-hotplug-sniffer
 /usr/libexec/gnome-shell-perf-helper
 /usr/libexec/gnome-shell-portal-helper
-/usr/share/clear/optimized-elf/exec*
 
 %files license
 %defattr(0644,root,root,0755)
