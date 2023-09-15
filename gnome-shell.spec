@@ -5,7 +5,7 @@
 #
 Name     : gnome-shell
 Version  : 44.4
-Release  : 164
+Release  : 165
 URL      : https://download.gnome.org/sources/gnome-shell/44/gnome-shell-44.4.tar.xz
 Source0  : https://download.gnome.org/sources/gnome-shell/44/gnome-shell-44.4.tar.xz
 Summary  : No detailed summary available
