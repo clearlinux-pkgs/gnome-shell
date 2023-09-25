@@ -4,10 +4,10 @@
 # Using build pattern: meson
 #
 Name     : gnome-shell
-Version  : 44.4
-Release  : 165
-URL      : https://download.gnome.org/sources/gnome-shell/44/gnome-shell-44.4.tar.xz
-Source0  : https://download.gnome.org/sources/gnome-shell/44/gnome-shell-44.4.tar.xz
+Version  : 45.0
+Release  : 166
+URL      : https://download.gnome.org/sources/gnome-shell/45/gnome-shell-45.0.tar.xz
+Source0  : https://download.gnome.org/sources/gnome-shell/45/gnome-shell-45.0.tar.xz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 GPL-3.0 LGPL-2.1
@@ -141,10 +141,10 @@ services components for the gnome-shell package.
 
 
 %prep
-%setup -q -n gnome-shell-44.4
-cd %{_builddir}/gnome-shell-44.4
+%setup -q -n gnome-shell-45.0
+cd %{_builddir}/gnome-shell-45.0
 pushd ..
-cp -a gnome-shell-44.4 buildavx2
+cp -a gnome-shell-45.0 buildavx2
 popd
 
 %build
@@ -152,7 +152,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1694728532
+export SOURCE_DATE_EPOCH=1695679000
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -192,8 +192,8 @@ DESTDIR=%{buildroot} ninja -C builddir install
 %files
 %defattr(-,root,root,-)
 /usr/lib64/gnome-shell/Gvc-1.0.typelib
-/usr/lib64/gnome-shell/Shell-12.typelib
-/usr/lib64/gnome-shell/St-12.typelib
+/usr/lib64/gnome-shell/Shell-13.typelib
+/usr/lib64/gnome-shell/St-13.typelib
 /usr/lib64/gnome-shell/girepository-1.0/Shew-0.typelib
 
 %files bin
@@ -205,7 +205,7 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/bin/gnome-shell
 /usr/bin/gnome-shell-extension-prefs
 /usr/bin/gnome-shell-extension-tool
-/usr/bin/gnome-shell-perf-tool
+/usr/bin/gnome-shell-test-tool
 
 %files data
 %defattr(-,root,root,-)
@@ -235,8 +235,8 @@ DESTDIR=%{buildroot} ninja -C builddir install
 /usr/share/gnome-control-center/keybindings/50-gnome-shell-screenshots.xml
 /usr/share/gnome-control-center/keybindings/50-gnome-shell-system.xml
 /usr/share/gnome-shell/Gvc-1.0.gir
-/usr/share/gnome-shell/Shell-12.gir
-/usr/share/gnome-shell/St-12.gir
+/usr/share/gnome-shell/Shell-13.gir
+/usr/share/gnome-shell/St-13.gir
 /usr/share/gnome-shell/gir-1.0/Shew-0.gir
 /usr/share/gnome-shell/gnome-shell-dbus-interfaces.gresource
 /usr/share/gnome-shell/gnome-shell-icons.gresource
@@ -266,14 +266,14 @@ DESTDIR=%{buildroot} ninja -C builddir install
 %defattr(-,root,root,-)
 /V3/usr/lib64/gnome-shell/libgnome-shell-menu.so
 /V3/usr/lib64/gnome-shell/libgvc.so
-/V3/usr/lib64/gnome-shell/libshell-12.so
+/V3/usr/lib64/gnome-shell/libshell-13.so
 /V3/usr/lib64/gnome-shell/libshew-0.so
-/V3/usr/lib64/gnome-shell/libst-12.so
+/V3/usr/lib64/gnome-shell/libst-13.so
 /usr/lib64/gnome-shell/libgnome-shell-menu.so
 /usr/lib64/gnome-shell/libgvc.so
-/usr/lib64/gnome-shell/libshell-12.so
+/usr/lib64/gnome-shell/libshell-13.so
 /usr/lib64/gnome-shell/libshew-0.so
-/usr/lib64/gnome-shell/libst-12.so
+/usr/lib64/gnome-shell/libst-13.so
 
 %files libexec
 %defattr(-,root,root,-)
