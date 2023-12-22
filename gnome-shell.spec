@@ -7,7 +7,7 @@
 #
 Name     : gnome-shell
 Version  : 45.1
-Release  : 169
+Release  : 170
 URL      : https://download.gnome.org/sources/gnome-shell/45/gnome-shell-45.1.tar.xz
 Source0  : https://download.gnome.org/sources/gnome-shell/45/gnome-shell-45.1.tar.xz
 Summary  : No detailed summary available
