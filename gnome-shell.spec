@@ -7,7 +7,7 @@
 #
 Name     : gnome-shell
 Version  : 45.3
-Release  : 173
+Release  : 174
 URL      : https://download.gnome.org/sources/gnome-shell/45/gnome-shell-45.3.tar.xz
 Source0  : https://download.gnome.org/sources/gnome-shell/45/gnome-shell-45.3.tar.xz
 Summary  : No detailed summary available
