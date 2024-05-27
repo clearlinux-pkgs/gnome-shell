@@ -6,10 +6,10 @@
 # autospec commit: 5905be9
 #
 Name     : gnome-shell
-Version  : 46.1
-Release  : 180
-URL      : https://download.gnome.org/sources/gnome-shell/46/gnome-shell-46.1.tar.xz
-Source0  : https://download.gnome.org/sources/gnome-shell/46/gnome-shell-46.1.tar.xz
+Version  : 46.2
+Release  : 181
+URL      : https://download.gnome.org/sources/gnome-shell/46/gnome-shell-46.2.tar.xz
+Source0  : https://download.gnome.org/sources/gnome-shell/46/gnome-shell-46.2.tar.xz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 GPL-3.0 LGPL-2.1
@@ -143,10 +143,10 @@ services components for the gnome-shell package.
 
 
 %prep
-%setup -q -n gnome-shell-46.1
-cd %{_builddir}/gnome-shell-46.1
+%setup -q -n gnome-shell-46.2
+cd %{_builddir}/gnome-shell-46.2
 pushd ..
-cp -a gnome-shell-46.1 buildavx2
+cp -a gnome-shell-46.2 buildavx2
 popd
 
 %build
@@ -154,7 +154,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1713798575
+export SOURCE_DATE_EPOCH=1716831484
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
