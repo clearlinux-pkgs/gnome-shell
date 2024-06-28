@@ -7,7 +7,7 @@
 #
 Name     : gnome-shell
 Version  : 46.2
-Release  : 181
+Release  : 182
 URL      : https://download.gnome.org/sources/gnome-shell/46/gnome-shell-46.2.tar.xz
 Source0  : https://download.gnome.org/sources/gnome-shell/46/gnome-shell-46.2.tar.xz
 Summary  : No detailed summary available
