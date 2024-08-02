@@ -7,7 +7,7 @@
 #
 Name     : gnome-shell
 Version  : 46.3.1
-Release  : 183
+Release  : 184
 URL      : https://download.gnome.org/sources/gnome-shell/46/gnome-shell-46.3.1.tar.xz
 Source0  : https://download.gnome.org/sources/gnome-shell/46/gnome-shell-46.3.1.tar.xz
 Summary  : No detailed summary available
