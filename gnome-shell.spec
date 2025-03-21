@@ -7,7 +7,7 @@
 #
 Name     : gnome-shell
 Version  : 47.4
-Release  : 198
+Release  : 199
 URL      : https://download.gnome.org/sources/gnome-shell/47/gnome-shell-47.4.tar.xz
 Source0  : https://download.gnome.org/sources/gnome-shell/47/gnome-shell-47.4.tar.xz
 Summary  : A behavior-driven development framework for GJS
