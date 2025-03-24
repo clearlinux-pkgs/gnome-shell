@@ -1,49 +1,76 @@
-47.4
+48.0
 ====
+* Fix ibus candidate popup position [Peng; !3659]
+* breakManager: Allow break to be taken or delayed when overdue [Philip; !3656]
+* Fix audio selection dialog in light style [Laria; !3665]
+* Misc. bug fixes and cleanups [Philip, Simon, Daniel, Florian, Jonas; !3655,
+  !3662, !3664, !3669, !3667, !3670]
+
+Contributors:
+  Laria Carolin Chabowski, Simon McVittie, Florian Müllner, Daniel van Vugt,
+  Philip Withnall, Peng Wu, Jonas Ådahl
+
+Translators:
+  Yuri Chornoivan [uk], Alexander Shopov [bg], Daniel Rusek [cs],
+  Luming Zh [zh_CN], Changwoo Ryu [ko], Artur S0 [ru], Ekaterine Papava [ka],
+  Martin [sl], Daniel Mustieles [es], Artur Miranda [pt_BR], Hugo Carvalho [pt],
+  Piotr Drąg [pl], Balázs Úr [hu], Vasil Pupkin [be], Quentin PAGÈS [oc],
+  Jordi Mas i Hernandez [ca], Fran Dieguez [gl], Aurimas Černius [lt],
+  Ask Hjorth Larsen [da], Asier Saratsua Garmendia [eu], Anders Jonsson [sv],
+  Sabri Ünal [tr], Yosef Or Boczko [he], Andika Triwidada [id],
+  Brage Fuglseth [nb], A S Alam [pa], Bruce Cowan [en_GB], Cas Pascal [vi],
+  Irénée THIRION [fr]
+
+48.rc
+=====
+* Fix integer scaling for spinner [Daniel v. V.; !3634]
+* Group notifications by app [Julian; !3012]
+* Fix tracking inactive time for screen time limits [Florian; !3636]
+* Fix occasional stacking glitch during overview transition [Keyu; !3460]
+* Reorganize default dash/grid/folder apps [Florian, Allan; !3642]
+* Handle suspend/resume when tracking screen time [Philip; !3643]
+* Misc. bug fixes and cleanups [Marco, Florian, Sebastian, Daniel R.,
+  Alessandro; !3629, !3630, !3631] !3620, !3637, !3635, !3632, !3616, !3633,
+  !3639, !3649, !3646, !3647, !3651]
+
+Contributors:
+  Alessandro Astone, Allan Day, Florian Müllner, Daniel Rusek, Julian Sparber,
+  Keyu Tao, Marco Trevisan (Treviño), Daniel van Vugt, Sebastian Wick,
+  Philip Withnall
+
+Translators:
+  Cheng-Chia Tseng [zh_TW], Jordi Mas i Hernandez [ca], Sabri Ünal [tr],
+  Jordi Mas [ca], Aurimas Černius [lt], Piotr Drąg [pl], Aefgh Threenine [th],
+  Ekaterine Papava [ka], Andika Triwidada [id], Daniel Rusek [cs],
+  Danial Behzadi [fa], Yuri Chornoivan [uk], Asier Sarasua Garmendia [eu],
+  Yosef Or Boczko [he], twlvnn kraftwerk [bg], Quentin PAGÈS [oc],
+  Luming Zh [zh_CN], Jiri Grönroos [fi], Hugo Carvalho [pt], Fran Dieguez [gl],
+  A S Alam [pa], Brage Fuglseth [nb], Giannis Antypas [el]
+
+48.beta
+=======
 * Fix overlapping tiles in app grid on hover [Sam; !3551]
-* Fix default user avatar with light style [Sam; !3596]
-* Fixed crash [Florian; !3619]
-* Misc. bug fixes and cleanups [Daniel, Florian; !3601, !3613, !3615, !3599]
+* Improve screen time limit support
+  [Philip, Florian; !3597, !3603, !3604, !3606]
+* Fix default user avatar with light stsyle [Sam; !3596]
+* Transition to new BoxLayout.orientation property
+  [Florian, Carlos; !3614, !3618]
+* Allow tracking screen time history with no limit set [Philip; !3610]
+* Fix Extensions app losing state after shell restart [Florian; !3463]
+* Support loading login banner message from file [Florian; !3558]
+* Misc. bug fixes and cleanups [Florian, Daniel, Bilal, Philip, Adam, Carlos,
+  Julian; !3600, !3601, !3528, !3510, !3605, !3607, !3609, !3613, !3615, !3598,
+  !3617, !3599, !3612, !3621, !3619, !3429, !3627]
 
 Contributors:
-  Sam Hewitt, Florian Müllner, Daniel van Vugt
+  Bilal Elmoussaoui, Carlos Garnacho, Sam Hewitt, Florian Müllner,
+  Julian Sparber, Daniel van Vugt, Adam Williamson, Philip Withnall
 
 Translators:
-  Rafael Fontenelle [pt_BR], Philipp Kiemle [de]
-
-47.3
-====
-* Fix Escape handling in run dialog [Florian; !3585]
-* Fix custom text-scaling-factor getting reset [Matthijs; !3574]
-* Tweak ibus candidate popover appearance [AuralRay; !3584]
-* Misc. bug fixes and cleanups [Florian, Bilal, Michel, Bartłomiej, Alberto,
-  AsciiWolf, Jakub; !3563, !3547, !3573, !3525, !3572, !3580, !3578, !3576,
-  !3579, !3589, !3587, !3593]
-
-Contributors:
-  AsciiWolf, AuralRay, Michel Dänzer, Bilal Elmoussaoui, Florian Müllner,
-  Bartłomiej Piotrowski, Alberto Ruiz, Jakub Steiner, Matthijs Velsink
-
-47.2
-====
-* Fix graphical artifacts in partially-rounded buttons [Sebastian; #7996]
-* Fix caret tracking in magnifier [Bilal; !3522]
-* Improve accessibility of keyboard backlight quick settings toggle
-  [Lukáš, Florian; !3538, !3545]
-* Fix resetting non-caps shift key in on-screen keyboard [Jonas; !3286]
-* Misc. bug fixes and cleanups [Florian, Bilal, Automeris, Daniel, Jonas;
-  !3520, !3518, !3521, !3529, !3535, !3532, !3540, !3549, !3548, !3539]
-
-Contributors:
-  Jonas Dreßler, Bilal Elmoussaoui, Sebastian Keller, Florian Müllner,
-  Automeris naranja, Daniel Rusek, Lukáš Tyrychtr
-
-Translators:
-  Aefgh Threenine [th], Fabio Tomat [fur], Nathan Follens [nl],
-  Марко Костић [sr]
-
-47.1
-====
+  Rafael Fontenelle [pt_BR], Artur S0 [ru], Quentin PAGÈS [oc],
+  Emilio Sepúlveda [ia], Martin [sl], Philipp Kiemle [de]
+48.alpha
+========
 * Improve quick settings accessibility [Lukáš; !3477, !3481, !3484, !3485]
 * Use accent color in tablet configuration UI [Alice; !3480]
 * Improve accuracy of inset box shadows [Daniel; !3488]
@@ -51,17 +78,51 @@ Translators:
 * Consider text direction when handling arrow keys in sliders [Sundeep; !3500]
 * Fix layout issues with new dialog style [Sam; !3473]
 * Fix uneven padding in notification headers [Sam; !3486]
-* Fixed crash [Florian; #7912]
-* Misc. cleanups and bug fixes [Florian, Marco, Bilal; !3478, !3479, !3490,
-  !3495, !3499, !3504, !3505, !3507, !3508, !3506, !3511, !3514]
+* Fix graphical artifacts in partially-rounded buttons [Sebastian; #7996]
+* Do not depend on gnome-menus for folder translations [Pablo; !3526]
+* Fix caret tracking in magnifier [Bilal; !3522]
+* Show OSD notification for headphone connection [Sundeep; !3531]
+* Improve accessibility of keyboard backlight quick settings toggle
+  [Lukáš, Florian; !3538, !3545]
+* Fix resetting non-caps shift key in on-screen keyboard [Jonas; !3286]
+* Improve contrast of notification placeholder [Sam; !3557]
+* Add support for screen time / health breaks [Philip; !3251]
+* Add sysext support to toolbox tooling [Florian; !3498]
+* Modernize spinner [Florian; !3565]
+* extensions-app: Allow closing with ctrl+w [Maximiliano; !3577]
+* Fix Escape handling in run dialog [Florian; !3585]
+* Fix custom text-scaling-factor getting reset [Matthijs; !3574]
+* Tweak ibus candidate popover appearance [AuralRay; !3584]
+* Add convenience logging API for extensions [Florian; !3586]
+* Improve on-screen keyboard appearance [Sam; !3555, !3553]
+* Tweak quick settings appearance [Sam; !3554]
+* Add support for screen time limits [Philip; !3397]
+* Fixed crash [Florian; !3476]
+* Misc. bug fixes and cleanups [Florian, Robert, Bilal, Marco, Guacamolie,
+  Automeris, Daniel, Jonas, Georges, Michel, Bartłomiej, Alberto, AsciiWolf,
+  Jakub, Sam; !3478, !3479, !3482, !3490, !3099, !3494, !3495, !3497, !3499,
+  !3504, !3503, !3502, !3505, !3507, !3508, !3506, !3379, !3511, !3514, !3515,
+  !3519, !3520, !3518, !3521, !3524, !3527, !3501, !3529, !3535, !3532, !3542,
+  !3540, !3543, !3541, !3549, !3548, !3539, !3563, !3567, !3569, !3570, !3547,
+  !3573, !3525, !3546, !3575, !3572, !3544, !3580, !3578, !3576, !3579, !3589,
+  !3587, !3552, !3593]
 
 Contributors:
-  Bilal Elmoussaoui, Sam Hewitt, Sundeep Mediratta, Alice Mikhaylenko,
-  Florian Müllner, Marco Trevisan (Treviño), Lukáš Tyrychtr, Daniel van Vugt,
-  Andrew Zaech
+  AsciiWolf, AuralRay, Georges Basile Stavracas Neto, Pablo Correa Gómez,
+  Jonas Dreßler, Michel Dänzer, Bilal Elmoussaoui, Guacamolie, Sam Hewitt,
+  Sebastian Keller, Robert Mader, Sundeep Mediratta, Alice Mikhaylenko,
+  Florian Müllner, Bogi Napoleon Wennerström, Automeris naranja,
+  Bartłomiej Piotrowski, Alberto Ruiz, Daniel Rusek, Maximiliano Sandoval,
+  Jakub Steiner, Marco Trevisan (Treviño), Lukáš Tyrychtr, Daniel van Vugt,
+  Matthijs Velsink, Philip Withnall, Andrew Zaech
 
 Translators:
-  Aefgh Threenine [th], Daniel Mustieles [es]
+  Aefgh Threenine [th], Daniel Mustieles [es], Mahdi Hasan [bn],
+  Brage Fuglseth [nb], Athmane MOKRAOUI [kab], Fabio Tomat [fur],
+  Bogi Napoleon Wennerström [fo], Martin [sl], Emilio Sepúlveda [ia],
+  Vasil Pupkin [be], Nathan Follens [nl], Artur S0 [ru],
+  Марко Костић [sr], Yaron Shahrabani [he], Cas Pascal [vi],
+  Sabri Ünal [tr]
 
 47.0
 ====
